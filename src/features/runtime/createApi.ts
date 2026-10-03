@@ -1,4 +1,4 @@
-import type { InternalRestApiDefinition } from '@ankhorage/contracts/data';
+import type { InternalRestApiDefinition } from '@ankhorage/contracts';
 
 import type { Api, ApiOperationHandlerRegistry } from '../../types/api.js';
 import { executeApiOperationAsync } from './executeApiOperationAsync.js';

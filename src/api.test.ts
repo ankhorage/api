@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test';
-import type { InternalRestApiDefinition } from '@ankhorage/contracts/data';
+import type { InternalRestApiDefinition } from '@ankhorage/contracts';
 
 import { createApi } from './api.js';
 

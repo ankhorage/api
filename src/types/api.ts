@@ -2,7 +2,7 @@ import type {
   DataEndpointConfig,
   DataOperationConfig,
   InternalRestApiDefinition,
-} from '@ankhorage/contracts/data';
+} from '@ankhorage/contracts';
 
 export interface ApiOperationHandlerArgs {
   readonly definition: InternalRestApiDefinition;
