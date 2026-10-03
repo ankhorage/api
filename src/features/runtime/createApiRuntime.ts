@@ -3,6 +3,7 @@ import type { InternalRestApiDefinition } from '@ankhorage/contracts/data';
 import { resolveApiOperationBindings } from './resolveApiOperationBindings.js';
 import type {
   ApiHandlerRegistry,
+  ApiHandlerResponse,
   ApiRequest,
   ApiResponse,
   ApiRuntime,
@@ -48,9 +49,9 @@ async function dispatchApiRequestAsync(
 }
 
 /*** Normalize handler responses to the stable runtime response contract. */
-function normalizeResponse(response: ApiResponse): ApiResponse {
+function normalizeResponse(response: ApiHandlerResponse): ApiResponse {
   return {
-    status: response.status,
+    status: response.status ?? 200,
     headers: response.headers ?? {},
     ...(response.body === undefined ? {} : { body: response.body }),
   };
