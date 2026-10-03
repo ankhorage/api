@@ -40,6 +40,8 @@ jobs:
       - run: npm install -g npm@latest
       - run: bun install
       - run: bun run build
+      - name: Validate release contract
+        run: BUN_INSTALL_CACHE_DIR="${RUNNER_TEMP}/doctor-cache" bunx @ankhorage/doctor@0.12.13 validate .
       - name: Version packages directly on main
         run: |
           if [ -z "$(find .changeset -maxdepth 1 -type f -name '*.md' ! -name README.md -print -quit)" ]; then
