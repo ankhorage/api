@@ -2,7 +2,7 @@ import type {
   ApiOperationBinding,
   ApiRuntime,
   ApiTransportAdapter,
-} from '../../types/api.js';
+} from "../../types/api.js";
 
 /*** Compose one framework adapter with the canonical runtime for a single operation binding. */
 export function createApiTransportHandler<TRequest, TResponse>(
