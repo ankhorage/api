@@ -1,51 +1,54 @@
-import { describe, expect, test } from 'bun:test';
+import { describe, expect, test } from "bun:test";
 
-import { createApiRuntime } from './createApiRuntime.js';
-import { createApiTransportHandler } from './createApiTransportHandler.js';
-import type { ApiTransportAdapter } from '../../types/api.js';
+import type { ApiTransportAdapter } from "../../types/api.js";
+import { createApiRuntime } from "./createApiRuntime.js";
+import { createApiTransportHandler } from "./createApiTransportHandler.js";
 
-describe('createApiTransportHandler', () => {
-  test('translates through one adapter while dispatching through the shared runtime', async () => {
+describe("createApiTransportHandler", () => {
+  test("translates through one adapter while dispatching through the shared runtime", async () => {
     const runtime = createApiRuntime({
       definition: {
-        id: 'example',
-        origin: 'internal',
-        protocol: 'rest',
-        basePath: '/api',
+        id: "example",
+        origin: "internal",
+        protocol: "rest",
+        basePath: "/api",
         endpoints: {
           health: {
-            id: 'health',
-            kind: 'http',
+            id: "health",
+            kind: "http",
             operations: {
-              'health.read': {
-                id: 'health.read',
-                protocol: 'http',
-                intent: 'read',
-                method: 'GET',
-                path: '/health',
+              "health.read": {
+                id: "health.read",
+                protocol: "http",
+                intent: "read",
+                method: "GET",
+                path: "/health",
               },
             },
           },
         },
       },
       handlers: {
-        'health.read': () => ({ body: { ok: true } }),
+        "health.read": () => ({ body: { ok: true } }),
       },
     });
-    const binding = runtime.bindings[0];
-    if (!binding) throw new Error('Expected one operation binding.');
+    const [binding] = runtime.bindings;
+    if (!binding) throw new Error("Expected one operation binding.");
 
     const adapter: ApiTransportAdapter<string, number> = {
-      toApiRequestAsync: async () => ({
-        operationId: binding.operationId,
-        method: binding.method,
-        params: {},
-        query: {},
-        headers: {},
-      }),
-      fromApiResponseAsync: async (response) => response.status,
+      toApiRequestAsync: () =>
+        Promise.resolve({
+          operationId: binding.operationId,
+          method: binding.method,
+          params: {},
+          query: {},
+          headers: {},
+        }),
+      fromApiResponseAsync: (response) => Promise.resolve(response.status),
     };
 
-    await expect(createApiTransportHandler(runtime, adapter, binding)('request')).resolves.toBe(200);
+    const handler = createApiTransportHandler(runtime, adapter, binding);
+    const status = await handler("request");
+    expect(status).toBe(200);
   });
 });
