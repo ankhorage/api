@@ -1,6 +1,6 @@
 {
   "name": "@ankhorage/api",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "description": "Framework-neutral executable API runtime for Ankhorage.",
   "license": "MIT",
