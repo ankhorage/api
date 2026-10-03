@@ -3,7 +3,7 @@ import type {
   DataOperationConfig,
   DataOperationMethod,
   InternalRestApiDefinition,
-} from '@ankhorage/contracts/data';
+} from "@ankhorage/contracts/data";
 
 export interface ApiOperationBinding {
   readonly definition: InternalRestApiDefinition;
@@ -54,6 +54,9 @@ export interface ApiRuntime {
 }
 
 export interface ApiTransportAdapter<TRequest, TResponse> {
-  toApiRequestAsync(request: TRequest, binding: ApiOperationBinding): Promise<ApiRequest>;
+  toApiRequestAsync(
+    request: TRequest,
+    binding: ApiOperationBinding,
+  ): Promise<ApiRequest>;
   fromApiResponseAsync(response: ApiResponse): Promise<TResponse>;
 }
