@@ -1,0 +1,66 @@
+{
+  "name": "@ankhorage/api",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Framework-neutral executable API runtime for Ankhorage.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ankhorage/api.git"
+  },
+  "homepage": "https://github.com/ankhorage/api#readme",
+  "bugs": {
+    "url": "https://github.com/ankhorage/api/issues"
+  },
+  "keywords": [
+    "ankhorage",
+    "api",
+    "adapter",
+    "runtime",
+    "typescript"
+  ],
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/api.d.ts",
+      "import": "./dist/api.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "build": "rm -rf dist tsconfig.tsbuildinfo && bun x tsc -p tsconfig.build.json",
+    "changeset": "ankhorage-changeset",
+    "changeset:status": "ankhorage-changeset status --since=origin/main",
+    "format": "ankhorage-prettier --write .",
+    "format:check": "ankhorage-prettier --check .",
+    "lint": "ankhorage-eslint . --max-warnings=0",
+    "lint:fix": "ankhorage-eslint . --fix --max-warnings=0",
+    "prepack": "bun run build",
+    "test": "bun test src",
+    "typecheck": "bun x tsc --noEmit -p tsconfig.json",
+    "version-packages": "ankhorage-changeset version",
+    "knip:check": "ankhorage-knip"
+  },
+  "dependencies": {
+    "@ankhorage/contracts": "^22.8.102"
+  },
+  "devDependencies": {
+    "@ankhorage/devtools": "^2.1.11",
+    "@types/bun": "^1.4.2",
+    "@types/node": "^26.6.4",
+    "typescript": "^6.0.3"
+  },
+  "packageManager": "bun@1.4.2"
+}
