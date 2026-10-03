@@ -23,6 +23,12 @@ export interface ApiRequest {
   readonly body?: unknown;
 }
 
+export interface ApiHandlerResponse {
+  readonly status?: number;
+  readonly headers?: Readonly<Record<string, string>>;
+  readonly body?: unknown;
+}
+
 export interface ApiResponse {
   readonly status: number;
   readonly headers: Readonly<Record<string, string>>;
@@ -36,7 +42,7 @@ export interface ApiHandlerContext {
 export type ApiHandler = (
   request: ApiRequest,
   context: ApiHandlerContext,
-) => ApiResponse | Promise<ApiResponse>;
+) => ApiHandlerResponse | Promise<ApiHandlerResponse>;
 
 export type ApiHandlerRegistry = Readonly<Record<string, ApiHandler>>;
 
