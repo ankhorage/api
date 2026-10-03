@@ -55,8 +55,7 @@
     "typecheck": "bun x tsc --noEmit -p tsconfig.json",
     "version-packages": "ankhorage-changeset version",
     "knip:check": "ankhorage-knip",
-    "docs": "paradox",
-    "metadata:sync": "bun scripts/sync-repository-metadata.ts"
+    "docs": "paradox"
   },
   "dependencies": {
     "@ankhorage/contracts": "^22.8.102"

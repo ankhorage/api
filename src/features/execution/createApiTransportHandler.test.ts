@@ -5,7 +5,7 @@ import { createApiRuntime } from "./createApiRuntime.js";
 import { createApiTransportHandler } from "./createApiTransportHandler.js";
 
 describe("createApiTransportHandler", () => {
-  test("translates through one adapter while dispatching through the shared runtime", async () => {
+  test("translates through one adapter while preserving transport context", async () => {
     const runtime = createApiRuntime({
       definition: {
         id: "example",
@@ -35,7 +35,7 @@ describe("createApiTransportHandler", () => {
     const [binding] = runtime.bindings;
     if (!binding) throw new Error("Expected one operation binding.");
 
-    const adapter: ApiTransportAdapter<string, number> = {
+    const adapter: ApiTransportAdapter<{ readonly marker: string }, string> = {
       toApiRequestAsync: () =>
         Promise.resolve({
           operationId: binding.operationId,
@@ -44,11 +44,14 @@ describe("createApiTransportHandler", () => {
           query: {},
           headers: {},
         }),
-      fromApiResponseAsync: (response) => Promise.resolve(response.status),
+      fromApiResponseAsync: (response, request, resolvedBinding) =>
+        Promise.resolve(
+          `${response.status}:${request.marker}:${resolvedBinding.operationId}`,
+        ),
     };
 
     const handler = createApiTransportHandler(runtime, adapter, binding);
-    const status = await handler("request");
-    expect(status).toBe(200);
+    const result = await handler({ marker: "transport" });
+    expect(result).toBe("200:transport:health.read");
   });
 });

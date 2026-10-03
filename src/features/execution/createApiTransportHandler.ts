@@ -13,6 +13,6 @@ export function createApiTransportHandler<TRequest, TResponse>(
   return async (request) => {
     const apiRequest = await adapter.toApiRequestAsync(request, binding);
     const apiResponse = await runtime.dispatchAsync(apiRequest);
-    return adapter.fromApiResponseAsync(apiResponse);
+    return adapter.fromApiResponseAsync(apiResponse, request, binding);
   };
 }

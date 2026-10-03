@@ -58,5 +58,9 @@ export interface ApiTransportAdapter<TRequest, TResponse> {
     request: TRequest,
     binding: ApiOperationBinding,
   ): Promise<ApiRequest>;
-  fromApiResponseAsync(response: ApiResponse): Promise<TResponse>;
+  fromApiResponseAsync(
+    response: ApiResponse,
+    request: TRequest,
+    binding: ApiOperationBinding,
+  ): Promise<TResponse>;
 }
