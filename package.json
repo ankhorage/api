@@ -2,7 +2,7 @@
   "name": "@ankhorage/api",
   "version": "0.1.0",
   "type": "module",
-  "description": "Framework-neutral executable API runtime for Ankhorage.",
+  "description": "Framework-neutral executable API runtime and transport contract for Ankhorage.",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -15,8 +15,11 @@
   "keywords": [
     "ankhorage",
     "api",
+    "api-runtime",
     "adapter",
-    "runtime",
+    "ports-and-adapters",
+    "rest",
+    "transport",
     "typescript"
   ],
   "sideEffects": false,
@@ -52,7 +55,8 @@
     "typecheck": "bun x tsc --noEmit -p tsconfig.json",
     "version-packages": "ankhorage-changeset version",
     "knip:check": "ankhorage-knip",
-    "docs": "paradox"
+    "docs": "paradox",
+    "metadata:sync": "bun scripts/sync-repository-metadata.ts"
   },
   "dependencies": {
     "@ankhorage/contracts": "^22.8.102"
