@@ -4,6 +4,7 @@ export { createApiTransportHandler } from './features/transport/createApiTranspo
 export type {
   ApiHandler,
   ApiHandlerContext,
+  ApiHandlerResponse,
   ApiHandlerRegistry,
   ApiOperationBinding,
   ApiRequest,
