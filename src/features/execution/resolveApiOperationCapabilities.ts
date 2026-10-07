@@ -1,4 +1,7 @@
-import { isCapabilityId, type Capability } from "@ankhorage/contracts/capabilities";
+import {
+  type Capability,
+  isCapabilityId,
+} from "@ankhorage/contracts/capabilities";
 import type { ApiDefinition, DataSchemaSlot } from "@ankhorage/contracts/data";
 
 /*** Project every canonical API operation into the shared capability namespace. */
@@ -20,7 +23,9 @@ export function resolveApiOperationCapabilities(
         access: ["invoke"],
         binding: { kind: "api", bindableAs: ["target"] },
         label: operation.name ?? operation.id,
-        ...(operation.description === undefined ? {} : { description: operation.description }),
+        ...(operation.description === undefined
+          ? {}
+          : { description: operation.description }),
         ...(input === undefined ? {} : { input }),
         ...(output === undefined ? {} : { output }),
       } satisfies Capability;
@@ -29,15 +34,21 @@ export function resolveApiOperationCapabilities(
 
   const ids = capabilities.map(({ id }) => id);
   if (new Set(ids).size !== ids.length) {
-    throw new Error(`API definition ${definition.id} projects duplicate capability ids.`);
+    throw new Error(
+      `API definition ${definition.id} projects duplicate capability ids.`,
+    );
   }
 
   return capabilities.sort((left, right) => left.id.localeCompare(right.id));
 }
 
 /*** Copy only the portable schema-slot fields from richer operation request/response metadata. */
-function projectDataSchemaSlot(slot: DataSchemaSlot | undefined): DataSchemaSlot | undefined {
-  if (slot?.schema === undefined && slot?.schemaRef === undefined) return undefined;
+function projectDataSchemaSlot(
+  slot: DataSchemaSlot | undefined,
+): DataSchemaSlot | undefined {
+  if (slot?.schema === undefined && slot?.schemaRef === undefined) {
+    return undefined;
+  }
   return {
     ...(slot.schema === undefined ? {} : { schema: slot.schema }),
     ...(slot.schemaRef === undefined ? {} : { schemaRef: slot.schemaRef }),
