@@ -58,6 +58,7 @@ describe("projectApiCapabilities", () => {
     "preserves a body-only schema reference without wrapping or duplication",
     testBodyOnlySchemaRef,
   );
+  test("projects parameter-only requests into one object input schema", testParameterOnlyInput);
   test(
     "rejects invalid projected ids instead of casting them into the capability contract",
     testInvalidProjectedId,
@@ -123,6 +124,38 @@ function testBodyOnlySchemaRef(): void {
 
   expect(projectApiCapabilities(definition)[0]?.input).toEqual({
     schemaRef: { id: "createProduct" },
+  });
+}
+
+function testParameterOnlyInput(): void {
+  const definition = {
+    ...DEFINITION,
+    endpoints: {
+      products: {
+        ...DEFINITION.endpoints.products,
+        operations: {
+          create: {
+            ...DEFINITION.endpoints.products.operations.create,
+            request: {
+              parameters: DEFINITION.endpoints.products.operations.create.request.parameters,
+            },
+          },
+        },
+      },
+    },
+  } satisfies InternalRestApiDefinition;
+
+  expect(projectApiCapabilities(definition)[0]?.input).toEqual({
+    schema: {
+      type: "object",
+      properties: {
+        locale: {
+          type: "string",
+          description: "Locale used for the created product.",
+        },
+      },
+      required: ["locale"],
+    },
   });
 }
 
