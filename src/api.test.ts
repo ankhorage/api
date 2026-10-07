@@ -4,6 +4,7 @@ import {
   createApiRuntime,
   createApiTransportHandler,
   resolveApiOperationBindings,
+  resolveApiOperationCapabilities,
 } from "./api.js";
 
 describe("@ankhorage/api public entrypoint", () => {
@@ -11,5 +12,6 @@ describe("@ankhorage/api public entrypoint", () => {
     expect(createApiRuntime).toBeFunction();
     expect(createApiTransportHandler).toBeFunction();
     expect(resolveApiOperationBindings).toBeFunction();
+    expect(resolveApiOperationCapabilities).toBeFunction();
   });
 });
