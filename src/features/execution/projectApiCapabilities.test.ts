@@ -134,8 +134,7 @@ function testBodyOnlySchemaRef(): void {
 }
 
 function testParameterOnlyInput(): void {
-  const parameters =
-    DEFINITION.endpoints.products.operations.create.request.parameters;
+  const { parameters } = DEFINITION.endpoints.products.operations.create.request;
   const definition = {
     ...DEFINITION,
     endpoints: {
