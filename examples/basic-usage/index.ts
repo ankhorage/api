@@ -1,6 +1,6 @@
-import type { InternalRestApiDefinition } from '@ankhorage/contracts/data';
+import type { InternalRestApiDefinition } from "@ankhorage/contracts/data";
 
-import { createApiRuntime } from '../../src/api.js';
+import { createApiRuntime } from "../../src/api.js";
 
 /***
  * @title Basic Usage
@@ -13,21 +13,21 @@ import { createApiRuntime } from '../../src/api.js';
  * @readme
  */
 const definition = {
-  id: 'health-api',
-  origin: 'internal',
-  protocol: 'rest',
-  basePath: '/api',
+  id: "health-api",
+  origin: "internal",
+  protocol: "rest",
+  basePath: "/api",
   endpoints: {
     health: {
-      id: 'health',
-      kind: 'http',
+      id: "health",
+      kind: "http",
       operations: {
-        'health.read': {
-          id: 'health.read',
-          protocol: 'http',
-          intent: 'read',
-          method: 'GET',
-          path: '/health',
+        "health.read": {
+          id: "health.read",
+          protocol: "http",
+          intent: "read",
+          method: "GET",
+          path: "/health",
         },
       },
     },
@@ -37,6 +37,6 @@ const definition = {
 export const runtime = createApiRuntime({
   definition,
   handlers: {
-    'health.read': () => ({ body: { ok: true } }),
+    "health.read": () => ({ body: { ok: true } }),
   },
 });

@@ -32,16 +32,16 @@ jobs:
           token: ${{ steps.release-token.outputs.token }}
       - uses: oven-sh/setup-bun@v2
         with:
-          bun-version: '1.4.2'
+          bun-version: "1.4.2"
       - uses: actions/setup-node@v4
         with:
-          node-version: '24'
+          node-version: "24"
           registry-url: https://registry.npmjs.org
       - run: npm install -g npm@latest
       - run: bun install
       - run: bun run build
       - name: Validate release contract
-        run: BUN_INSTALL_CACHE_DIR="${RUNNER_TEMP}/doctor-cache" bunx @ankhorage/doctor@0.12.13 validate .
+        run: BUN_INSTALL_CACHE_DIR="${RUNNER_TEMP}/doctor-cache" bunx @ankhorage/doctor@0.13.1 validate .
       - name: Version packages directly on main
         run: |
           if [ -z "$(find .changeset -maxdepth 1 -type f -name '*.md' ! -name README.md -print -quit)" ]; then
