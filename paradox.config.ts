@@ -1,14 +1,14 @@
-import { defineParadoxConfig } from '@ankhorage/paradox';
+import { defineParadoxConfig } from "@ankhorage/paradox";
 
 export default defineParadoxConfig({
-  mode: 'write',
+  mode: "write",
   docs: {
-    title: '@ankhorage/api',
-    description: 'Framework-neutral executable API runtime for Ankhorage.',
+    title: "@ankhorage/api",
+    description: "Framework-neutral executable API runtime for Ankhorage.",
   },
   package: {
-    root: '.',
-    entrypoints: ['src/api.ts'],
+    root: ".",
+    entrypoints: ["src/api.ts"],
   },
-  output: { dir: './paradox' },
+  output: { dir: "./paradox" },
 });
