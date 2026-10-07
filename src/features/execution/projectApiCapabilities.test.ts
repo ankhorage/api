@@ -53,12 +53,18 @@ const DEFINITION = {
 } satisfies InternalRestApiDefinition;
 
 describe("projectApiCapabilities", () => {
-  test(\n    "projects stable API capability identity and schema semantics",\n    testProjection,\n  );
+  test(
+    "projects stable API capability identity and schema semantics",
+    testProjection,
+  );
   test(
     "preserves a body-only schema reference without wrapping or duplication",
     testBodyOnlySchemaRef,
   );
-  test(\n    "projects parameter-only requests into one object input schema",\n    testParameterOnlyInput,\n  );
+  test(
+    "projects parameter-only requests into one object input schema",
+    testParameterOnlyInput,
+  );
   test(
     "rejects invalid projected ids instead of casting them into the capability contract",
     testInvalidProjectedId,
@@ -137,7 +143,8 @@ function testParameterOnlyInput(): void {
           create: {
             ...DEFINITION.endpoints.products.operations.create,
             request: {
-              parameters:\n                DEFINITION.endpoints.products.operations.create.request.parameters,
+              parameters:
+                DEFINITION.endpoints.products.operations.create.request.parameters,
             },
           },
         },
