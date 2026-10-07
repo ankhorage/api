@@ -1,4 +1,4 @@
-import type { Capability } from '@ankhorage/contracts/capabilities';
+import type { Capability } from "@ankhorage/contracts/capabilities";
 
 /**
  * Static API package capabilities.
