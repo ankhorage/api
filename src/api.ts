@@ -1,3 +1,5 @@
+export { CAPABILITIES } from "./capabilities/index.js";
+export { projectApiCapabilities } from "./features/execution/projectApiCapabilities.js";
 export { createApiRuntime } from "./features/execution/createApiRuntime.js";
 export { createApiTransportHandler } from "./features/execution/createApiTransportHandler.js";
 export { resolveApiOperationBindings } from "./features/execution/resolveApiOperationBindings.js";
