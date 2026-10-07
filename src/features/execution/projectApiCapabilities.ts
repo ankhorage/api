@@ -90,7 +90,7 @@ function projectOperationParameters(
   return {
     type: 'object',
     properties,
-    ...(required.length === 0 ? {} : { required: required.toSorted() }),
+    ...(required.length === 0 ? {} : { required: [...required].sort() }),
   };
 }
 
