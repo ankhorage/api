@@ -19,7 +19,7 @@ const definition = {
   basePath: "/api",
   endpoints: {
     health: {
-      id: 'health',
+      id: "health",
       kind: "http",
       operations: {
         "health.read": {
