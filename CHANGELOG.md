@@ -1,5 +1,11 @@
 # @ankhorage/api
 
+## 0.3.0
+
+### Minor Changes
+
+- 8f52b7f: Project authored internal REST operations into canonical API capabilities with stable semantic ids and schema-driven binding metadata.
+
 ## 0.2.0
 
 ### Minor Changes
