@@ -62,7 +62,8 @@
     "docs": "paradox"
   },
   "dependencies": {
-    "@ankhorage/contracts": "^24.1.0"
+    "@ankhorage/capability": "^0.2.1",
+    "@ankhorage/contracts": "^26.0.0"
   },
   "devDependencies": {
     "@ankhorage/devtools": "^2.1.11",
