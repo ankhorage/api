@@ -3,13 +3,23 @@
 
 # @ankhorage/api
 
+![license: MIT](././paradox/badges/license.svg) ![npm: v0.3.1](././paradox/badges/npm.svg) ![runtime: bun](././paradox/badges/runtime.svg) ![typescript: strict](././paradox/badges/typescript.svg) ![eslint: checked](././paradox/badges/eslint.svg) ![prettier: checked](././paradox/badges/prettier.svg) ![build: checked](././paradox/badges/build.svg) ![tests: checked](././paradox/badges/tests.svg) ![paradox: canonical](././paradox/badges/docs.svg)
+
 Framework-neutral executable API runtime for Ankhorage.
 
-It consumes portable API definitions from `@ankhorage/contracts`, resolves executable operation
-bindings, dispatches application handlers, and exposes a transport-adapter boundary without
-depending on Fastify, Next.js, React, or another server framework.
-
 ## Usage
+
+### CLI
+
+Ankhorage packages expose their command-line interface through `ankh`. Use `ankh --help` to discover available package commands, or run a package command with `--help` for package-specific usage.
+
+```zsh
+# Install the Ankhorage CLI
+bun add --global @ankhorage/ankh
+
+# Show usage information for api
+ankh api --help
+```
 
 ### Basic Usage
 
@@ -17,8 +27,37 @@ depending on Fastify, Next.js, React, or another server framework.
 handlers to Fastify, Next.js, or another HTTP framework. Framework packages adapt requests and
 responses at the transport edge while this runtime owns operation lookup and dispatch.
 
-See `examples/basic-usage/index.ts` for the executable example.
+```ts
+const definition = {
+  id: "health-api",
+  origin: "internal",
+  protocol: "rest",
+  basePath: "/api",
+  endpoints: {
+    health: {
+      id: "health",
+      kind: "http",
+      operations: {
+        "health.read": {
+          id: "health.read",
+          protocol: "http",
+          intent: "read",
+          method: "GET",
+          path: "/health",
+        },
+      },
+    },
+  },
+} satisfies InternalRestApiDefinition;
+```
 
 ## Generated documentation
 
-Generated Paradox documentation is published with package releases.
+- [Interactive documentation app](././paradox/index.html)
+- [Public API reference](././paradox/exports.md)
+- [Component registry](././paradox/components.md)
+- [Architecture overview](././paradox/diagrams/architecture-overview.mmd)
+- [Module relationships](././paradox/diagrams/module-relationships.mmd)
+- [Export graph](././paradox/diagrams/export-graph.mmd)
+- [createApiRuntime sequence](././paradox/diagrams/sequences/create-api-runtime.mmd)
+- [projectApiCapabilities sequence](././paradox/diagrams/sequences/project-api-capabilities.mmd)

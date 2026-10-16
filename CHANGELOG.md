@@ -1,5 +1,11 @@
 # @ankhorage/api
 
+## 0.3.1
+
+### Patch Changes
+
+- 683b338: Migrate API capabilities to the singular Contracts 26 declaration and the published standalone Capability ID validator.
+
 ## 0.3.0
 
 ### Minor Changes

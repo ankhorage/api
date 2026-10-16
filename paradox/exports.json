@@ -1,0 +1,579 @@
+[
+  {
+    "name": "ApiHandler",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "unknown",
+    "modulePath": "src/types/api.ts",
+    "sourceLocation": {
+      "filePath": "src/types/api.ts",
+      "line": 42,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "ApiHandlerContext",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/api.ts",
+    "sourceLocation": {
+      "filePath": "src/types/api.ts",
+      "line": 38,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [
+      "ApiOperationBinding"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "binding",
+        "kind": "property",
+        "type": "ApiOperationBinding",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ApiHandlerRegistry",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "unknown",
+    "modulePath": "src/types/api.ts",
+    "sourceLocation": {
+      "filePath": "src/types/api.ts",
+      "line": 47,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "ApiHandlerResponse",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/api.ts",
+    "sourceLocation": {
+      "filePath": "src/types/api.ts",
+      "line": 26,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "body",
+        "kind": "property",
+        "type": "unknown",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "headers",
+        "kind": "property",
+        "type": "Readonly<Record<string, string>>",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "status",
+        "kind": "property",
+        "type": "number",
+        "required": false,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ApiOperationBinding",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/api.ts",
+    "sourceLocation": {
+      "filePath": "src/types/api.ts",
+      "line": 8,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "definition",
+        "kind": "property",
+        "type": "InternalRestApiDefinition",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "endpoint",
+        "kind": "property",
+        "type": "DataEndpointConfig",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "method",
+        "kind": "property",
+        "type": "DataOperationMethod",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "operation",
+        "kind": "property",
+        "type": "DataOperationConfig",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "operationId",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "path",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ApiRequest",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/api.ts",
+    "sourceLocation": {
+      "filePath": "src/types/api.ts",
+      "line": 17,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "body",
+        "kind": "property",
+        "type": "unknown",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "headers",
+        "kind": "property",
+        "type": "Readonly<Record<string, string>>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "method",
+        "kind": "property",
+        "type": "DataOperationMethod",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "operationId",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "params",
+        "kind": "property",
+        "type": "Readonly<Record<string, string>>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "query",
+        "kind": "property",
+        "type": "Readonly<Record<string, string | readonly string[]>>",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ApiResponse",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/api.ts",
+    "sourceLocation": {
+      "filePath": "src/types/api.ts",
+      "line": 32,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "body",
+        "kind": "property",
+        "type": "unknown",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "headers",
+        "kind": "property",
+        "type": "Readonly<Record<string, string>>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "status",
+        "kind": "property",
+        "type": "number",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ApiRuntime",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/api.ts",
+    "sourceLocation": {
+      "filePath": "src/types/api.ts",
+      "line": 49,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [
+      "ApiOperationBinding",
+      "ApiRequest",
+      "ApiResponse"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "bindings",
+        "kind": "property",
+        "type": "readonly ApiOperationBinding[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "definition",
+        "kind": "property",
+        "type": "InternalRestApiDefinition",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "dispatchAsync",
+        "kind": "method",
+        "type": "(request: ApiRequest) => Promise<ApiResponse>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "getBinding",
+        "kind": "method",
+        "type": "(operationId: string) => ApiOperationBinding | undefined",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ApiTransportAdapter",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/api.ts",
+    "sourceLocation": {
+      "filePath": "src/types/api.ts",
+      "line": 56,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [
+      "ApiOperationBinding",
+      "ApiRequest",
+      "ApiResponse"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "fromApiResponseAsync",
+        "kind": "method",
+        "type": "(response: ApiResponse, request: TRequest, binding: ApiOperationBinding) => Promise<TResponse>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "toApiRequestAsync",
+        "kind": "method",
+        "type": "(request: TRequest, binding: ApiOperationBinding) => Promise<ApiRequest>",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "CAPABILITIES",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "value",
+    "modulePath": "src/capabilities/index.ts",
+    "sourceLocation": {
+      "filePath": "src/capabilities/index.ts",
+      "line": 9,
+      "column": 14
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "createApiRuntime",
+    "title": null,
+    "description": "Create the canonical executable API runtime for one portable internal REST definition.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "function",
+    "modulePath": "src/features/execution/createApiRuntime.ts",
+    "sourceLocation": {
+      "filePath": "src/features/execution/createApiRuntime.ts",
+      "line": 13,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [
+      "ApiHandlerRegistry",
+      "ApiRuntime"
+    ],
+    "signatures": [
+      {
+        "label": "(input: { readonly definition: InternalRestApiDefinition; readonly handlers: ApiHandlerRegistry; }) => ApiRuntime",
+        "parameters": [
+          {
+            "name": "input",
+            "type": "{ readonly definition: InternalRestApiDefinition; readonly handlers: ApiHandlerRegistry; }",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "ApiRuntime",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "createApiTransportHandler",
+    "title": null,
+    "description": "Compose one framework adapter with the canonical runtime for a single operation binding.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "function",
+    "modulePath": "src/features/execution/createApiTransportHandler.ts",
+    "sourceLocation": {
+      "filePath": "src/features/execution/createApiTransportHandler.ts",
+      "line": 8,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [
+      "ApiOperationBinding",
+      "ApiRuntime",
+      "ApiTransportAdapter"
+    ],
+    "signatures": [
+      {
+        "label": "(runtime: ApiRuntime, adapter: ApiTransportAdapter<TRequest, TResponse>, binding: ApiOperationBinding) => (request: TRequest) => Promise<TResponse>",
+        "parameters": [
+          {
+            "name": "adapter",
+            "type": "ApiTransportAdapter<TRequest, TResponse>",
+            "required": true,
+            "description": null
+          },
+          {
+            "name": "binding",
+            "type": "ApiOperationBinding",
+            "required": true,
+            "description": null
+          },
+          {
+            "name": "runtime",
+            "type": "ApiRuntime",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "(request: TRequest) => Promise<TResponse>",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "projectApiCapabilities",
+    "title": null,
+    "description": "Project one internal REST API definition into canonical invocable API capabilities.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "function",
+    "modulePath": "src/features/execution/projectApiCapabilities.ts",
+    "sourceLocation": {
+      "filePath": "src/features/execution/projectApiCapabilities.ts",
+      "line": 13,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [
+      {
+        "label": "(definition: InternalRestApiDefinition) => readonly Capability[]",
+        "parameters": [
+          {
+            "name": "definition",
+            "type": "InternalRestApiDefinition",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "readonly Capability[]",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "resolveApiOperationBindings",
+    "title": null,
+    "description": "Resolve one portable internal REST definition into deterministic executable operation bindings.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "function",
+    "modulePath": "src/features/execution/resolveApiOperationBindings.ts",
+    "sourceLocation": {
+      "filePath": "src/features/execution/resolveApiOperationBindings.ts",
+      "line": 11,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [
+      "ApiOperationBinding"
+    ],
+    "signatures": [
+      {
+        "label": "(definition: InternalRestApiDefinition) => readonly ApiOperationBinding[]",
+        "parameters": [
+          {
+            "name": "definition",
+            "type": "InternalRestApiDefinition",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "readonly ApiOperationBinding[]",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  }
+]

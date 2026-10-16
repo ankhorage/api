@@ -1,0 +1,36 @@
+graph TD
+  package__ankhorage_api["@ankhorage/api"]
+  entrypoint_src_api_ts["src/api.ts"]
+  package__ankhorage_api --> entrypoint_src_api_ts
+  module_src_api_test_ts["src/api.test.ts"]
+  package__ankhorage_api -.-> module_src_api_test_ts
+  module_src_api_test_ts --> module_src_api_ts
+  module_src_api_ts["src/api.ts"]
+  module_src_capabilities_index_ts["src/capabilities/index.ts"]
+  package__ankhorage_api -.-> module_src_capabilities_index_ts
+  module_src_features_execution_createApiRuntime_test_ts["src/features/execution/createApiRuntime.test.ts"]
+  package__ankhorage_api -.-> module_src_features_execution_createApiRuntime_test_ts
+  module_src_features_execution_createApiRuntime_test_ts --> module_src_features_execution_createApiRuntime_ts
+  module_src_features_execution_createApiRuntime_test_ts --> module_src_features_execution_resolveApiOperationBindings_ts
+  module_src_features_execution_createApiRuntime_ts["src/features/execution/createApiRuntime.ts"]
+  package__ankhorage_api -.-> module_src_features_execution_createApiRuntime_ts
+  module_src_features_execution_createApiRuntime_ts --> module_src_features_execution_resolveApiOperationBindings_ts
+  module_src_features_execution_createApiRuntime_ts --> module_src_types_api_ts
+  module_src_features_execution_createApiTransportHandler_test_ts["src/features/execution/createApiTransportHandler.test.ts"]
+  package__ankhorage_api -.-> module_src_features_execution_createApiTransportHandler_test_ts
+  module_src_features_execution_createApiTransportHandler_test_ts --> module_src_features_execution_createApiRuntime_ts
+  module_src_features_execution_createApiTransportHandler_test_ts --> module_src_features_execution_createApiTransportHandler_ts
+  module_src_features_execution_createApiTransportHandler_test_ts --> module_src_types_api_ts
+  module_src_features_execution_createApiTransportHandler_ts["src/features/execution/createApiTransportHandler.ts"]
+  package__ankhorage_api -.-> module_src_features_execution_createApiTransportHandler_ts
+  module_src_features_execution_createApiTransportHandler_ts --> module_src_types_api_ts
+  module_src_features_execution_projectApiCapabilities_test_ts["src/features/execution/projectApiCapabilities.test.ts"]
+  package__ankhorage_api -.-> module_src_features_execution_projectApiCapabilities_test_ts
+  module_src_features_execution_projectApiCapabilities_test_ts --> module_src_features_execution_projectApiCapabilities_ts
+  module_src_features_execution_projectApiCapabilities_ts["src/features/execution/projectApiCapabilities.ts"]
+  package__ankhorage_api -.-> module_src_features_execution_projectApiCapabilities_ts
+  module_src_features_execution_resolveApiOperationBindings_ts["src/features/execution/resolveApiOperationBindings.ts"]
+  package__ankhorage_api -.-> module_src_features_execution_resolveApiOperationBindings_ts
+  module_src_features_execution_resolveApiOperationBindings_ts --> module_src_types_api_ts
+  module_src_types_api_ts["src/types/api.ts"]
+  package__ankhorage_api -.-> module_src_types_api_ts

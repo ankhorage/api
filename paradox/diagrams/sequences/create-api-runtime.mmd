@@ -1,0 +1,5 @@
+sequenceDiagram
+  participant participant_createApiRuntime as createApiRuntime
+  participant participant_resolveApiOperationBindings as resolveApiOperationBindings
+  participant_createApiRuntime->>participant_resolveApiOperationBindings: resolveApiOperationBindings()
+  participant_resolveApiOperationBindings-->>participant_createApiRuntime: return

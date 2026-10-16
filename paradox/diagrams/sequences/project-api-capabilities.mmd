@@ -1,0 +1,5 @@
+sequenceDiagram
+  participant participant_assertUniqueCapabilityIds as assertUniqueCapabilityIds
+  participant participant_projectApiCapabilities as projectApiCapabilities
+  participant_projectApiCapabilities->>participant_assertUniqueCapabilityIds: assertUniqueCapabilityIds()
+  participant_assertUniqueCapabilityIds-->>participant_projectApiCapabilities: return

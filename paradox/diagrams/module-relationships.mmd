@@ -1,0 +1,23 @@
+graph LR
+  module_src_api_test_ts["src/api.test.ts"]
+  module_src_api_ts["src/api.ts"]
+  module_src_capabilities_index_ts["src/capabilities/index.ts"]
+  module_src_features_execution_createApiRuntime_test_ts["src/features/execution/createApiRuntime.test.ts"]
+  module_src_features_execution_createApiRuntime_ts["src/features/execution/createApiRuntime.ts"]
+  module_src_features_execution_createApiTransportHandler_test_ts["src/features/execution/createApiTransportHandler.test.ts"]
+  module_src_features_execution_createApiTransportHandler_ts["src/features/execution/createApiTransportHandler.ts"]
+  module_src_features_execution_projectApiCapabilities_test_ts["src/features/execution/projectApiCapabilities.test.ts"]
+  module_src_features_execution_projectApiCapabilities_ts["src/features/execution/projectApiCapabilities.ts"]
+  module_src_features_execution_resolveApiOperationBindings_ts["src/features/execution/resolveApiOperationBindings.ts"]
+  module_src_types_api_ts["src/types/api.ts"]
+  module_src_api_test_ts --> module_src_api_ts
+  module_src_features_execution_createApiRuntime_test_ts --> module_src_features_execution_createApiRuntime_ts
+  module_src_features_execution_createApiRuntime_test_ts --> module_src_features_execution_resolveApiOperationBindings_ts
+  module_src_features_execution_createApiRuntime_ts --> module_src_features_execution_resolveApiOperationBindings_ts
+  module_src_features_execution_createApiRuntime_ts --> module_src_types_api_ts
+  module_src_features_execution_createApiTransportHandler_test_ts --> module_src_features_execution_createApiRuntime_ts
+  module_src_features_execution_createApiTransportHandler_test_ts --> module_src_features_execution_createApiTransportHandler_ts
+  module_src_features_execution_createApiTransportHandler_test_ts --> module_src_types_api_ts
+  module_src_features_execution_createApiTransportHandler_ts --> module_src_types_api_ts
+  module_src_features_execution_projectApiCapabilities_test_ts --> module_src_features_execution_projectApiCapabilities_ts
+  module_src_features_execution_resolveApiOperationBindings_ts --> module_src_types_api_ts

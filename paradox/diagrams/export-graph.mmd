@@ -1,0 +1,53 @@
+graph LR
+  module_src_api_test_ts["src/api.test.ts"]
+  module_src_api_ts["src/api.ts"]
+  module_src_capabilities_index_ts["src/capabilities/index.ts"]
+  module_src_features_execution_createApiRuntime_test_ts["src/features/execution/createApiRuntime.test.ts"]
+  module_src_features_execution_createApiRuntime_ts["src/features/execution/createApiRuntime.ts"]
+  module_src_features_execution_createApiTransportHandler_test_ts["src/features/execution/createApiTransportHandler.test.ts"]
+  module_src_features_execution_createApiTransportHandler_ts["src/features/execution/createApiTransportHandler.ts"]
+  module_src_features_execution_projectApiCapabilities_test_ts["src/features/execution/projectApiCapabilities.test.ts"]
+  module_src_features_execution_projectApiCapabilities_ts["src/features/execution/projectApiCapabilities.ts"]
+  module_src_features_execution_resolveApiOperationBindings_ts["src/features/execution/resolveApiOperationBindings.ts"]
+  module_src_types_api_ts["src/types/api.ts"]
+  export_ApiHandler["ApiHandler"]
+  module_src_types_api_ts --> export_ApiHandler
+  export_ApiHandlerContext["ApiHandlerContext"]
+  module_src_types_api_ts --> export_ApiHandlerContext
+  export_ApiHandlerContext -.-> export_ApiOperationBinding
+  export_ApiHandlerRegistry["ApiHandlerRegistry"]
+  module_src_types_api_ts --> export_ApiHandlerRegistry
+  export_ApiHandlerResponse["ApiHandlerResponse"]
+  module_src_types_api_ts --> export_ApiHandlerResponse
+  export_ApiOperationBinding["ApiOperationBinding"]
+  module_src_types_api_ts --> export_ApiOperationBinding
+  export_ApiRequest["ApiRequest"]
+  module_src_types_api_ts --> export_ApiRequest
+  export_ApiResponse["ApiResponse"]
+  module_src_types_api_ts --> export_ApiResponse
+  export_ApiRuntime["ApiRuntime"]
+  module_src_types_api_ts --> export_ApiRuntime
+  export_ApiRuntime -.-> export_ApiOperationBinding
+  export_ApiRuntime -.-> export_ApiRequest
+  export_ApiRuntime -.-> export_ApiResponse
+  export_ApiTransportAdapter["ApiTransportAdapter"]
+  module_src_types_api_ts --> export_ApiTransportAdapter
+  export_ApiTransportAdapter -.-> export_ApiOperationBinding
+  export_ApiTransportAdapter -.-> export_ApiRequest
+  export_ApiTransportAdapter -.-> export_ApiResponse
+  export_CAPABILITIES["CAPABILITIES"]
+  module_src_capabilities_index_ts --> export_CAPABILITIES
+  export_createApiRuntime["createApiRuntime"]
+  module_src_features_execution_createApiRuntime_ts --> export_createApiRuntime
+  export_createApiRuntime -.-> export_ApiHandlerRegistry
+  export_createApiRuntime -.-> export_ApiRuntime
+  export_createApiTransportHandler["createApiTransportHandler"]
+  module_src_features_execution_createApiTransportHandler_ts --> export_createApiTransportHandler
+  export_createApiTransportHandler -.-> export_ApiOperationBinding
+  export_createApiTransportHandler -.-> export_ApiRuntime
+  export_createApiTransportHandler -.-> export_ApiTransportAdapter
+  export_projectApiCapabilities["projectApiCapabilities"]
+  module_src_features_execution_projectApiCapabilities_ts --> export_projectApiCapabilities
+  export_resolveApiOperationBindings["resolveApiOperationBindings"]
+  module_src_features_execution_resolveApiOperationBindings_ts --> export_resolveApiOperationBindings
+  export_resolveApiOperationBindings -.-> export_ApiOperationBinding

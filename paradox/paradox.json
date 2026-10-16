@@ -1,0 +1,1591 @@
+{
+  "packageName": "@ankhorage/api",
+  "packageId": "@ankhorage/api",
+  "description": "Framework-neutral executable API runtime for Ankhorage.",
+  "collaborators": null,
+  "donation": null,
+  "badges": [
+    {
+      "id": "license",
+      "label": "license",
+      "value": "MIT",
+      "color": "2563eb"
+    },
+    {
+      "id": "npm",
+      "label": "npm",
+      "value": "v0.3.1",
+      "color": "cb3837"
+    },
+    {
+      "id": "runtime",
+      "label": "runtime",
+      "value": "bun",
+      "color": "f59e0b"
+    },
+    {
+      "id": "typescript",
+      "label": "typescript",
+      "value": "strict",
+      "color": "2563eb"
+    },
+    {
+      "id": "eslint",
+      "label": "eslint",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "prettier",
+      "label": "prettier",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "build",
+      "label": "build",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "tests",
+      "label": "tests",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "docs",
+      "label": "paradox",
+      "value": "canonical",
+      "color": "0a7f3f"
+    }
+  ],
+  "usage": {
+    "packageName": "@ankhorage/api",
+    "command": "ankh api --help"
+  },
+  "usageEntries": [
+    {
+      "area": "examples",
+      "title": "Basic Usage",
+      "description": "`@ankhorage/api` executes portable internal REST API definitions without coupling application\nhandlers to Fastify, Next.js, or another HTTP framework. Framework packages adapt requests and\nresponses at the transport edge while this runtime owns operation lookup and dispatch.",
+      "language": "ts",
+      "code": "const definition = {\n  id: \"health-api\",\n  origin: \"internal\",\n  protocol: \"rest\",\n  basePath: \"/api\",\n  endpoints: {\n    health: {\n      id: \"health\",\n      kind: \"http\",\n      operations: {\n        \"health.read\": {\n          id: \"health.read\",\n          protocol: \"http\",\n          intent: \"read\",\n          method: \"GET\",\n          path: \"/health\",\n        },\n      },\n    },\n  },\n} satisfies InternalRestApiDefinition;",
+      "sourcePath": "examples/basic-usage/index.ts",
+      "isReadme": true,
+      "see": [],
+      "security": []
+    }
+  ],
+  "exampleCount": 1,
+  "findings": [],
+  "config": null,
+  "entrypoints": [
+    "src/api.ts"
+  ],
+  "modules": [
+    {
+      "path": "src/api.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/api.ts"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src/api.ts",
+      "isEntrypoint": true,
+      "dependencies": [],
+      "exports": [
+        "ApiHandler",
+        "ApiHandlerContext",
+        "ApiHandlerRegistry",
+        "ApiHandlerResponse",
+        "ApiOperationBinding",
+        "ApiRequest",
+        "ApiResponse",
+        "ApiRuntime",
+        "ApiTransportAdapter",
+        "CAPABILITIES",
+        "createApiRuntime",
+        "createApiTransportHandler",
+        "projectApiCapabilities",
+        "resolveApiOperationBindings"
+      ]
+    },
+    {
+      "path": "src/capabilities/index.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "CAPABILITIES"
+      ]
+    },
+    {
+      "path": "src/features/execution/createApiRuntime.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/execution/createApiRuntime.ts",
+        "src/features/execution/resolveApiOperationBindings.ts"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src/features/execution/createApiRuntime.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/execution/resolveApiOperationBindings.ts",
+        "src/types/api.ts"
+      ],
+      "exports": [
+        "createApiRuntime"
+      ]
+    },
+    {
+      "path": "src/features/execution/createApiTransportHandler.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/execution/createApiRuntime.ts",
+        "src/features/execution/createApiTransportHandler.ts",
+        "src/types/api.ts"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src/features/execution/createApiTransportHandler.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/types/api.ts"
+      ],
+      "exports": [
+        "createApiTransportHandler"
+      ]
+    },
+    {
+      "path": "src/features/execution/projectApiCapabilities.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/execution/projectApiCapabilities.ts"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src/features/execution/projectApiCapabilities.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "projectApiCapabilities"
+      ]
+    },
+    {
+      "path": "src/features/execution/resolveApiOperationBindings.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/types/api.ts"
+      ],
+      "exports": [
+        "resolveApiOperationBindings"
+      ]
+    },
+    {
+      "path": "src/types/api.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "ApiHandler",
+        "ApiHandlerContext",
+        "ApiHandlerRegistry",
+        "ApiHandlerResponse",
+        "ApiOperationBinding",
+        "ApiRequest",
+        "ApiResponse",
+        "ApiRuntime",
+        "ApiTransportAdapter"
+      ]
+    }
+  ],
+  "exports": [
+    {
+      "name": "ApiHandler",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "unknown",
+      "modulePath": "src/types/api.ts",
+      "sourceLocation": {
+        "filePath": "src/types/api.ts",
+        "line": 42,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/api.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "ApiHandlerContext",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/api.ts",
+      "sourceLocation": {
+        "filePath": "src/types/api.ts",
+        "line": 38,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/api.ts"
+      ],
+      "relatedSymbols": [
+        "ApiOperationBinding"
+      ],
+      "signatures": [],
+      "members": [
+        {
+          "name": "binding",
+          "kind": "property",
+          "type": "ApiOperationBinding",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "ApiHandlerRegistry",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "unknown",
+      "modulePath": "src/types/api.ts",
+      "sourceLocation": {
+        "filePath": "src/types/api.ts",
+        "line": 47,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/api.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "ApiHandlerResponse",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/api.ts",
+      "sourceLocation": {
+        "filePath": "src/types/api.ts",
+        "line": 26,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/api.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "body",
+          "kind": "property",
+          "type": "unknown",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "headers",
+          "kind": "property",
+          "type": "Readonly<Record<string, string>>",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "status",
+          "kind": "property",
+          "type": "number",
+          "required": false,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "ApiOperationBinding",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/api.ts",
+      "sourceLocation": {
+        "filePath": "src/types/api.ts",
+        "line": 8,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/api.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "definition",
+          "kind": "property",
+          "type": "InternalRestApiDefinition",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "endpoint",
+          "kind": "property",
+          "type": "DataEndpointConfig",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "method",
+          "kind": "property",
+          "type": "DataOperationMethod",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "operation",
+          "kind": "property",
+          "type": "DataOperationConfig",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "operationId",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "path",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "ApiRequest",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/api.ts",
+      "sourceLocation": {
+        "filePath": "src/types/api.ts",
+        "line": 17,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/api.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "body",
+          "kind": "property",
+          "type": "unknown",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "headers",
+          "kind": "property",
+          "type": "Readonly<Record<string, string>>",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "method",
+          "kind": "property",
+          "type": "DataOperationMethod",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "operationId",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "params",
+          "kind": "property",
+          "type": "Readonly<Record<string, string>>",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "query",
+          "kind": "property",
+          "type": "Readonly<Record<string, string | readonly string[]>>",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "ApiResponse",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/api.ts",
+      "sourceLocation": {
+        "filePath": "src/types/api.ts",
+        "line": 32,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/api.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "body",
+          "kind": "property",
+          "type": "unknown",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "headers",
+          "kind": "property",
+          "type": "Readonly<Record<string, string>>",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "status",
+          "kind": "property",
+          "type": "number",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "ApiRuntime",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/api.ts",
+      "sourceLocation": {
+        "filePath": "src/types/api.ts",
+        "line": 49,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/api.ts"
+      ],
+      "relatedSymbols": [
+        "ApiOperationBinding",
+        "ApiRequest",
+        "ApiResponse"
+      ],
+      "signatures": [],
+      "members": [
+        {
+          "name": "bindings",
+          "kind": "property",
+          "type": "readonly ApiOperationBinding[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "definition",
+          "kind": "property",
+          "type": "InternalRestApiDefinition",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "dispatchAsync",
+          "kind": "method",
+          "type": "(request: ApiRequest) => Promise<ApiResponse>",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "getBinding",
+          "kind": "method",
+          "type": "(operationId: string) => ApiOperationBinding | undefined",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "ApiTransportAdapter",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/api.ts",
+      "sourceLocation": {
+        "filePath": "src/types/api.ts",
+        "line": 56,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/api.ts"
+      ],
+      "relatedSymbols": [
+        "ApiOperationBinding",
+        "ApiRequest",
+        "ApiResponse"
+      ],
+      "signatures": [],
+      "members": [
+        {
+          "name": "fromApiResponseAsync",
+          "kind": "method",
+          "type": "(response: ApiResponse, request: TRequest, binding: ApiOperationBinding) => Promise<TResponse>",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "toApiRequestAsync",
+          "kind": "method",
+          "type": "(request: TRequest, binding: ApiOperationBinding) => Promise<ApiRequest>",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "CAPABILITIES",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "value",
+      "modulePath": "src/capabilities/index.ts",
+      "sourceLocation": {
+        "filePath": "src/capabilities/index.ts",
+        "line": 9,
+        "column": 14
+      },
+      "exportPaths": [
+        "src/api.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "createApiRuntime",
+      "title": null,
+      "description": "Create the canonical executable API runtime for one portable internal REST definition.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "function",
+      "modulePath": "src/features/execution/createApiRuntime.ts",
+      "sourceLocation": {
+        "filePath": "src/features/execution/createApiRuntime.ts",
+        "line": 13,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/api.ts"
+      ],
+      "relatedSymbols": [
+        "ApiHandlerRegistry",
+        "ApiRuntime"
+      ],
+      "signatures": [
+        {
+          "label": "(input: { readonly definition: InternalRestApiDefinition; readonly handlers: ApiHandlerRegistry; }) => ApiRuntime",
+          "parameters": [
+            {
+              "name": "input",
+              "type": "{ readonly definition: InternalRestApiDefinition; readonly handlers: ApiHandlerRegistry; }",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "ApiRuntime",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "createApiTransportHandler",
+      "title": null,
+      "description": "Compose one framework adapter with the canonical runtime for a single operation binding.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "function",
+      "modulePath": "src/features/execution/createApiTransportHandler.ts",
+      "sourceLocation": {
+        "filePath": "src/features/execution/createApiTransportHandler.ts",
+        "line": 8,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/api.ts"
+      ],
+      "relatedSymbols": [
+        "ApiOperationBinding",
+        "ApiRuntime",
+        "ApiTransportAdapter"
+      ],
+      "signatures": [
+        {
+          "label": "(runtime: ApiRuntime, adapter: ApiTransportAdapter<TRequest, TResponse>, binding: ApiOperationBinding) => (request: TRequest) => Promise<TResponse>",
+          "parameters": [
+            {
+              "name": "adapter",
+              "type": "ApiTransportAdapter<TRequest, TResponse>",
+              "required": true,
+              "description": null
+            },
+            {
+              "name": "binding",
+              "type": "ApiOperationBinding",
+              "required": true,
+              "description": null
+            },
+            {
+              "name": "runtime",
+              "type": "ApiRuntime",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "(request: TRequest) => Promise<TResponse>",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "projectApiCapabilities",
+      "title": null,
+      "description": "Project one internal REST API definition into canonical invocable API capabilities.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "function",
+      "modulePath": "src/features/execution/projectApiCapabilities.ts",
+      "sourceLocation": {
+        "filePath": "src/features/execution/projectApiCapabilities.ts",
+        "line": 13,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/api.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [
+        {
+          "label": "(definition: InternalRestApiDefinition) => readonly Capability[]",
+          "parameters": [
+            {
+              "name": "definition",
+              "type": "InternalRestApiDefinition",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "readonly Capability[]",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "resolveApiOperationBindings",
+      "title": null,
+      "description": "Resolve one portable internal REST definition into deterministic executable operation bindings.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "function",
+      "modulePath": "src/features/execution/resolveApiOperationBindings.ts",
+      "sourceLocation": {
+        "filePath": "src/features/execution/resolveApiOperationBindings.ts",
+        "line": 11,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/api.ts"
+      ],
+      "relatedSymbols": [
+        "ApiOperationBinding"
+      ],
+      "signatures": [
+        {
+          "label": "(definition: InternalRestApiDefinition) => readonly ApiOperationBinding[]",
+          "parameters": [
+            {
+              "name": "definition",
+              "type": "InternalRestApiDefinition",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "readonly ApiOperationBinding[]",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    }
+  ],
+  "components": [],
+  "sourceFunctions": [
+    {
+      "name": "request",
+      "description": "Build a normalized request for the fixture operation.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/createApiRuntime.test.ts",
+        "line": 93,
+        "column": 1
+      }
+    },
+    {
+      "name": "createApiRuntime",
+      "description": "Create the canonical executable API runtime for one portable internal REST definition.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/createApiRuntime.ts",
+        "line": 13,
+        "column": 1
+      }
+    },
+    {
+      "name": "dispatchApiRequestAsync",
+      "description": "Dispatch one normalized request to its registered operation handler.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/createApiRuntime.ts",
+        "line": 32,
+        "column": 1
+      }
+    },
+    {
+      "name": "normalizeResponse",
+      "description": "Normalize handler responses to the stable runtime response contract.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/createApiRuntime.ts",
+        "line": 61,
+        "column": 1
+      }
+    },
+    {
+      "name": "errorResponse",
+      "description": "Create one deterministic runtime error response.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/createApiRuntime.ts",
+        "line": 70,
+        "column": 1
+      }
+    },
+    {
+      "name": "createApiTransportHandler",
+      "description": "Compose one framework adapter with the canonical runtime for a single operation binding.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/createApiTransportHandler.ts",
+        "line": 8,
+        "column": 1
+      }
+    },
+    {
+      "name": "testProjection",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/projectApiCapabilities.test.ts",
+        "line": 78,
+        "column": 1
+      }
+    },
+    {
+      "name": "testBodyOnlySchemaRef",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/projectApiCapabilities.test.ts",
+        "line": 115,
+        "column": 1
+      }
+    },
+    {
+      "name": "testParameterOnlyInput",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/projectApiCapabilities.test.ts",
+        "line": 136,
+        "column": 1
+      }
+    },
+    {
+      "name": "testInvalidProjectedId",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/projectApiCapabilities.test.ts",
+        "line": 168,
+        "column": 1
+      }
+    },
+    {
+      "name": "testDuplicateProjectedId",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/projectApiCapabilities.test.ts",
+        "line": 179,
+        "column": 1
+      }
+    },
+    {
+      "name": "projectApiCapabilities",
+      "description": "Project one internal REST API definition into canonical invocable API capabilities.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/projectApiCapabilities.ts",
+        "line": 13,
+        "column": 1
+      }
+    },
+    {
+      "name": "projectApiOperationCapability",
+      "description": "Project one authored API operation into its stable semantic capability descriptor.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/projectApiCapabilities.ts",
+        "line": 29,
+        "column": 1
+      }
+    },
+    {
+      "name": "projectOperationInput",
+      "description": "Project request parameters and request body into the flat operation input value space.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/projectApiCapabilities.ts",
+        "line": 58,
+        "column": 1
+      }
+    },
+    {
+      "name": "projectOperationParameters",
+      "description": "Project transport parameters into the flat object consumed by Runtime operation bindings.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/projectApiCapabilities.ts",
+        "line": 81,
+        "column": 1
+      }
+    },
+    {
+      "name": "projectOperationParameterSchema",
+      "description": "Preserve one parameter's schema reference plus parameter-specific description/default metadata.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/projectApiCapabilities.ts",
+        "line": 106,
+        "column": 1
+      }
+    },
+    {
+      "name": "projectSchemaSlot",
+      "description": "Preserve exactly one portable schema slot when the operation already owns one.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/projectApiCapabilities.ts",
+        "line": 120,
+        "column": 1
+      }
+    },
+    {
+      "name": "projectSchemaSlotAsSchema",
+      "description": "Convert a schema slot to an embeddable schema while preserving authored schema references.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/projectApiCapabilities.ts",
+        "line": 129,
+        "column": 1
+      }
+    },
+    {
+      "name": "assertUniqueCapabilityIds",
+      "description": "Reject API definitions whose endpoint operations collide in the projected capability namespace.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/projectApiCapabilities.ts",
+        "line": 138,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveApiOperationBindings",
+      "description": "Resolve one portable internal REST definition into deterministic executable operation bindings.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/resolveApiOperationBindings.ts",
+        "line": 11,
+        "column": 1
+      }
+    },
+    {
+      "name": "inferMethod",
+      "description": "Infer the conventional HTTP method for an operation intent when the contract omits one.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/resolveApiOperationBindings.ts",
+        "line": 36,
+        "column": 1
+      }
+    },
+    {
+      "name": "joinRoutePath",
+      "description": "Join API, endpoint, and operation paths into one normalized absolute route path.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/resolveApiOperationBindings.ts",
+        "line": 52,
+        "column": 1
+      }
+    }
+  ],
+  "sequenceScenarios": [
+    {
+      "kind": "export",
+      "name": "createApiRuntime",
+      "sourcePath": "src/features/execution/createApiRuntime.ts",
+      "symbolName": "createApiRuntime",
+      "description": "Create the canonical executable API runtime for one portable internal REST definition.",
+      "isReadme": false
+    },
+    {
+      "kind": "export",
+      "name": "createApiTransportHandler",
+      "sourcePath": "src/features/execution/createApiTransportHandler.ts",
+      "symbolName": "createApiTransportHandler",
+      "description": "Compose one framework adapter with the canonical runtime for a single operation binding.",
+      "isReadme": false
+    },
+    {
+      "kind": "export",
+      "name": "projectApiCapabilities",
+      "sourcePath": "src/features/execution/projectApiCapabilities.ts",
+      "symbolName": "projectApiCapabilities",
+      "description": "Project one internal REST API definition into canonical invocable API capabilities.",
+      "isReadme": false
+    },
+    {
+      "kind": "export",
+      "name": "resolveApiOperationBindings",
+      "sourcePath": "src/features/execution/resolveApiOperationBindings.ts",
+      "symbolName": "resolveApiOperationBindings",
+      "description": "Resolve one portable internal REST definition into deterministic executable operation bindings.",
+      "isReadme": false
+    }
+  ],
+  "graphs": {
+    "imports": [
+      {
+        "fromPath": "src/api.test.ts",
+        "toPath": "src/api.ts",
+        "sourcePath": "src/api.test.ts"
+      },
+      {
+        "fromPath": "src/api.ts",
+        "toPath": "src/capabilities/index.ts",
+        "sourcePath": "src/api.ts"
+      },
+      {
+        "fromPath": "src/api.ts",
+        "toPath": "src/features/execution/createApiRuntime.ts",
+        "sourcePath": "src/api.ts"
+      },
+      {
+        "fromPath": "src/api.ts",
+        "toPath": "src/features/execution/createApiTransportHandler.ts",
+        "sourcePath": "src/api.ts"
+      },
+      {
+        "fromPath": "src/api.ts",
+        "toPath": "src/features/execution/projectApiCapabilities.ts",
+        "sourcePath": "src/api.ts"
+      },
+      {
+        "fromPath": "src/api.ts",
+        "toPath": "src/features/execution/resolveApiOperationBindings.ts",
+        "sourcePath": "src/api.ts"
+      },
+      {
+        "fromPath": "src/api.ts",
+        "toPath": "src/types/api.ts",
+        "sourcePath": "src/api.ts"
+      },
+      {
+        "fromPath": "src/features/execution/createApiRuntime.test.ts",
+        "toPath": "src/features/execution/createApiRuntime.ts",
+        "sourcePath": "src/features/execution/createApiRuntime.test.ts"
+      },
+      {
+        "fromPath": "src/features/execution/createApiRuntime.test.ts",
+        "toPath": "src/features/execution/resolveApiOperationBindings.ts",
+        "sourcePath": "src/features/execution/createApiRuntime.test.ts"
+      },
+      {
+        "fromPath": "src/features/execution/createApiRuntime.ts",
+        "toPath": "src/types/api.ts",
+        "sourcePath": "src/features/execution/createApiRuntime.ts"
+      },
+      {
+        "fromPath": "src/features/execution/createApiRuntime.ts",
+        "toPath": "src/features/execution/resolveApiOperationBindings.ts",
+        "sourcePath": "src/features/execution/createApiRuntime.ts"
+      },
+      {
+        "fromPath": "src/features/execution/createApiTransportHandler.test.ts",
+        "toPath": "src/types/api.ts",
+        "sourcePath": "src/features/execution/createApiTransportHandler.test.ts"
+      },
+      {
+        "fromPath": "src/features/execution/createApiTransportHandler.test.ts",
+        "toPath": "src/features/execution/createApiRuntime.ts",
+        "sourcePath": "src/features/execution/createApiTransportHandler.test.ts"
+      },
+      {
+        "fromPath": "src/features/execution/createApiTransportHandler.test.ts",
+        "toPath": "src/features/execution/createApiTransportHandler.ts",
+        "sourcePath": "src/features/execution/createApiTransportHandler.test.ts"
+      },
+      {
+        "fromPath": "src/features/execution/createApiTransportHandler.ts",
+        "toPath": "src/types/api.ts",
+        "sourcePath": "src/features/execution/createApiTransportHandler.ts"
+      },
+      {
+        "fromPath": "src/features/execution/projectApiCapabilities.test.ts",
+        "toPath": "src/features/execution/projectApiCapabilities.ts",
+        "sourcePath": "src/features/execution/projectApiCapabilities.test.ts"
+      },
+      {
+        "fromPath": "src/features/execution/resolveApiOperationBindings.ts",
+        "toPath": "src/types/api.ts",
+        "sourcePath": "src/features/execution/resolveApiOperationBindings.ts"
+      }
+    ],
+    "calls": [
+      {
+        "fromSymbol": "src/api.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/api.test.ts"
+      },
+      {
+        "fromSymbol": "src/api.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/api.test.ts"
+      },
+      {
+        "fromSymbol": "src/api.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/api.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/createApiRuntime.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/features/execution/createApiRuntime.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/createApiRuntime.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/features/execution/createApiRuntime.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/createApiRuntime.test.ts",
+        "toSymbol": "resolveApiOperationBindings",
+        "callExpression": "resolveApiOperationBindings",
+        "sourcePath": "src/features/execution/createApiRuntime.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/createApiRuntime.test.ts",
+        "toSymbol": "createApiRuntime",
+        "callExpression": "createApiRuntime",
+        "sourcePath": "src/features/execution/createApiRuntime.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/createApiRuntime.test.ts",
+        "toSymbol": "dispatchAsync",
+        "callExpression": "runtime.dispatchAsync",
+        "sourcePath": "src/features/execution/createApiRuntime.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/createApiRuntime.test.ts",
+        "toSymbol": "request",
+        "callExpression": "request",
+        "sourcePath": "src/features/execution/createApiRuntime.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/createApiRuntime.test.ts",
+        "toSymbol": "dispatchAsync",
+        "callExpression": "noHandlers.dispatchAsync",
+        "sourcePath": "src/features/execution/createApiRuntime.test.ts"
+      },
+      {
+        "fromSymbol": "createApiRuntime",
+        "toSymbol": "resolveApiOperationBindings",
+        "callExpression": "resolveApiOperationBindings",
+        "sourcePath": "src/features/execution/createApiRuntime.ts"
+      },
+      {
+        "fromSymbol": "dispatchAsync",
+        "toSymbol": "dispatchApiRequestAsync",
+        "callExpression": "dispatchApiRequestAsync",
+        "sourcePath": "src/features/execution/createApiRuntime.ts"
+      },
+      {
+        "fromSymbol": "dispatchApiRequestAsync",
+        "toSymbol": "errorResponse",
+        "callExpression": "errorResponse",
+        "sourcePath": "src/features/execution/createApiRuntime.ts"
+      },
+      {
+        "fromSymbol": "dispatchApiRequestAsync",
+        "toSymbol": "normalizeResponse",
+        "callExpression": "normalizeResponse",
+        "sourcePath": "src/features/execution/createApiRuntime.ts"
+      },
+      {
+        "fromSymbol": "dispatchApiRequestAsync",
+        "toSymbol": "handler",
+        "callExpression": "handler",
+        "sourcePath": "src/features/execution/createApiRuntime.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/createApiTransportHandler.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/features/execution/createApiTransportHandler.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/createApiTransportHandler.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/features/execution/createApiTransportHandler.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/createApiTransportHandler.test.ts",
+        "toSymbol": "createApiRuntime",
+        "callExpression": "createApiRuntime",
+        "sourcePath": "src/features/execution/createApiTransportHandler.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/createApiTransportHandler.test.ts",
+        "toSymbol": "createApiTransportHandler",
+        "callExpression": "createApiTransportHandler",
+        "sourcePath": "src/features/execution/createApiTransportHandler.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/createApiTransportHandler.test.ts",
+        "toSymbol": "handler",
+        "callExpression": "handler",
+        "sourcePath": "src/features/execution/createApiTransportHandler.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/createApiTransportHandler.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/features/execution/createApiTransportHandler.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/createApiTransportHandler.ts",
+        "toSymbol": "toApiRequestAsync",
+        "callExpression": "adapter.toApiRequestAsync",
+        "sourcePath": "src/features/execution/createApiTransportHandler.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/createApiTransportHandler.ts",
+        "toSymbol": "dispatchAsync",
+        "callExpression": "runtime.dispatchAsync",
+        "sourcePath": "src/features/execution/createApiTransportHandler.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/createApiTransportHandler.ts",
+        "toSymbol": "fromApiResponseAsync",
+        "callExpression": "adapter.fromApiResponseAsync",
+        "sourcePath": "src/features/execution/createApiTransportHandler.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/projectApiCapabilities.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/features/execution/projectApiCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/projectApiCapabilities.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/features/execution/projectApiCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "testProjection",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/features/execution/projectApiCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "testProjection",
+        "toSymbol": "projectApiCapabilities",
+        "callExpression": "projectApiCapabilities",
+        "sourcePath": "src/features/execution/projectApiCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "testBodyOnlySchemaRef",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/features/execution/projectApiCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "testBodyOnlySchemaRef",
+        "toSymbol": "projectApiCapabilities",
+        "callExpression": "projectApiCapabilities",
+        "sourcePath": "src/features/execution/projectApiCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "testParameterOnlyInput",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/features/execution/projectApiCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "testParameterOnlyInput",
+        "toSymbol": "projectApiCapabilities",
+        "callExpression": "projectApiCapabilities",
+        "sourcePath": "src/features/execution/projectApiCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "testInvalidProjectedId",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/features/execution/projectApiCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/projectApiCapabilities.test.ts",
+        "toSymbol": "projectApiCapabilities",
+        "callExpression": "projectApiCapabilities",
+        "sourcePath": "src/features/execution/projectApiCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "testDuplicateProjectedId",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/features/execution/projectApiCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/projectApiCapabilities.ts",
+        "toSymbol": "projectApiOperationCapability",
+        "callExpression": "projectApiOperationCapability",
+        "sourcePath": "src/features/execution/projectApiCapabilities.ts"
+      },
+      {
+        "fromSymbol": "projectApiCapabilities",
+        "toSymbol": "assertUniqueCapabilityIds",
+        "callExpression": "assertUniqueCapabilityIds",
+        "sourcePath": "src/features/execution/projectApiCapabilities.ts"
+      },
+      {
+        "fromSymbol": "projectApiOperationCapability",
+        "toSymbol": "isCapabilityId",
+        "callExpression": "isCapabilityId",
+        "sourcePath": "src/features/execution/projectApiCapabilities.ts"
+      },
+      {
+        "fromSymbol": "projectApiOperationCapability",
+        "toSymbol": "projectOperationInput",
+        "callExpression": "projectOperationInput",
+        "sourcePath": "src/features/execution/projectApiCapabilities.ts"
+      },
+      {
+        "fromSymbol": "projectApiOperationCapability",
+        "toSymbol": "projectSchemaSlot",
+        "callExpression": "projectSchemaSlot",
+        "sourcePath": "src/features/execution/projectApiCapabilities.ts"
+      },
+      {
+        "fromSymbol": "projectOperationInput",
+        "toSymbol": "projectSchemaSlotAsSchema",
+        "callExpression": "projectSchemaSlotAsSchema",
+        "sourcePath": "src/features/execution/projectApiCapabilities.ts"
+      },
+      {
+        "fromSymbol": "projectOperationInput",
+        "toSymbol": "projectOperationParameters",
+        "callExpression": "projectOperationParameters",
+        "sourcePath": "src/features/execution/projectApiCapabilities.ts"
+      },
+      {
+        "fromSymbol": "projectOperationInput",
+        "toSymbol": "projectSchemaSlot",
+        "callExpression": "projectSchemaSlot",
+        "sourcePath": "src/features/execution/projectApiCapabilities.ts"
+      },
+      {
+        "fromSymbol": "projectOperationParameters",
+        "toSymbol": "projectOperationParameterSchema",
+        "callExpression": "projectOperationParameterSchema",
+        "sourcePath": "src/features/execution/projectApiCapabilities.ts"
+      },
+      {
+        "fromSymbol": "projectOperationParameterSchema",
+        "toSymbol": "projectSchemaSlotAsSchema",
+        "callExpression": "projectSchemaSlotAsSchema",
+        "sourcePath": "src/features/execution/projectApiCapabilities.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/resolveApiOperationBindings.ts",
+        "toSymbol": "inferMethod",
+        "callExpression": "inferMethod",
+        "sourcePath": "src/features/execution/resolveApiOperationBindings.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/resolveApiOperationBindings.ts",
+        "toSymbol": "joinRoutePath",
+        "callExpression": "joinRoutePath",
+        "sourcePath": "src/features/execution/resolveApiOperationBindings.ts"
+      }
+    ],
+    "typeReferences": [
+      {
+        "fromSymbol": "createApiRuntime",
+        "toType": "ApiHandlerRegistry",
+        "sourcePath": "src/features/execution/createApiRuntime.ts"
+      },
+      {
+        "fromSymbol": "createApiRuntime",
+        "toType": "ApiRuntime",
+        "sourcePath": "src/features/execution/createApiRuntime.ts"
+      },
+      {
+        "fromSymbol": "createApiRuntime",
+        "toType": "InternalRestApiDefinition",
+        "sourcePath": "src/features/execution/createApiRuntime.ts"
+      },
+      {
+        "fromSymbol": "createApiTransportHandler",
+        "toType": "ApiOperationBinding",
+        "sourcePath": "src/features/execution/createApiTransportHandler.ts"
+      },
+      {
+        "fromSymbol": "createApiTransportHandler",
+        "toType": "ApiRuntime",
+        "sourcePath": "src/features/execution/createApiTransportHandler.ts"
+      },
+      {
+        "fromSymbol": "createApiTransportHandler",
+        "toType": "ApiTransportAdapter",
+        "sourcePath": "src/features/execution/createApiTransportHandler.ts"
+      },
+      {
+        "fromSymbol": "createApiTransportHandler",
+        "toType": "TRequest",
+        "sourcePath": "src/features/execution/createApiTransportHandler.ts"
+      },
+      {
+        "fromSymbol": "createApiTransportHandler",
+        "toType": "TResponse",
+        "sourcePath": "src/features/execution/createApiTransportHandler.ts"
+      },
+      {
+        "fromSymbol": "projectApiCapabilities",
+        "toType": "Capability",
+        "sourcePath": "src/features/execution/projectApiCapabilities.ts"
+      },
+      {
+        "fromSymbol": "projectApiCapabilities",
+        "toType": "InternalRestApiDefinition",
+        "sourcePath": "src/features/execution/projectApiCapabilities.ts"
+      },
+      {
+        "fromSymbol": "resolveApiOperationBindings",
+        "toType": "ApiOperationBinding",
+        "sourcePath": "src/features/execution/resolveApiOperationBindings.ts"
+      },
+      {
+        "fromSymbol": "resolveApiOperationBindings",
+        "toType": "InternalRestApiDefinition",
+        "sourcePath": "src/features/execution/resolveApiOperationBindings.ts"
+      },
+      {
+        "fromSymbol": "ApiHandlerContext",
+        "toType": "ApiOperationBinding",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "ApiHandlerResponse",
+        "toType": "Readonly",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "ApiOperationBinding",
+        "toType": "DataEndpointConfig",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "ApiOperationBinding",
+        "toType": "DataOperationConfig",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "ApiOperationBinding",
+        "toType": "DataOperationMethod",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "ApiOperationBinding",
+        "toType": "InternalRestApiDefinition",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "ApiRequest",
+        "toType": "DataOperationMethod",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "ApiRequest",
+        "toType": "Readonly",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "ApiResponse",
+        "toType": "Readonly",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "ApiRuntime",
+        "toType": "ApiOperationBinding",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "ApiRuntime",
+        "toType": "ApiRequest",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "ApiRuntime",
+        "toType": "ApiResponse",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "ApiRuntime",
+        "toType": "InternalRestApiDefinition",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "ApiTransportAdapter",
+        "toType": "ApiOperationBinding",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "ApiTransportAdapter",
+        "toType": "ApiRequest",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "ApiTransportAdapter",
+        "toType": "ApiResponse",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "ApiTransportAdapter",
+        "toType": "TRequest",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "ApiTransportAdapter",
+        "toType": "TResponse",
+        "sourcePath": "src/types/api.ts"
+      }
+    ],
+    "componentComposition": []
+  }
+}
