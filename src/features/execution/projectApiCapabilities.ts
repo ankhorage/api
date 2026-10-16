@@ -1,7 +1,5 @@
-import {
-  type Capability,
-  isCapabilityId,
-} from "@ankhorage/contracts/capabilities";
+import { isCapabilityId } from "@ankhorage/capability";
+import type { Capability } from "@ankhorage/contracts/capability";
 import type {
   DataOperationConfig,
   DataOperationParameter,
