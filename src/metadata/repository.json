@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "kind": "library",
+  "title": "Ankhorage API",
+  "summary": "Provides a framework-neutral executable API runtime and transport adapter contract.",
+  "purpose": "Execute portable API definitions consistently while allowing framework-specific transports to remain replaceable adapters.",
+  "domain": "internal REST API execution",
+  "responsibilities": [
+    "Normalize portable API requests and responses.",
+    "Register handlers and dispatch operations defined by portable API contracts.",
+    "Define the runtime boundary used by transport adapter packages."
+  ],
+  "boundaries": [
+    "Does not own portable serializable API definitions.",
+    "Does not depend on Fastify, Next.js, React, filesystem routing, process state, or provider SDKs.",
+    "Does not own framework-specific server or route integration."
+  ],
+  "audience": [
+    "Applications executing portable Ankhorage API definitions.",
+    "Transport adapters integrating the API runtime with web frameworks."
+  ],
+  "useCases": [
+    "Register operation handlers for a portable API definition.",
+    "Dispatch a normalized request to the matching operation handler.",
+    "Integrate the same API runtime through different transport adapters."
+  ],
+  "architecture": {
+    "role": "Framework-neutral runtime boundary between portable API Contracts and framework transport adapters.",
+    "invariants": [
+      "Portable serializable definitions remain owned by @ankhorage/contracts.",
+      "Framework-specific types and behavior remain outside the core runtime.",
+      "Transport adapters depend inward on this runtime boundary."
+    ]
+  }
+}
