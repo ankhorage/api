@@ -1,6 +1,7 @@
 import type { InternalRestApiDefinition } from "@ankhorage/contracts/data";
 import { expect, test } from "bun:test";
 
+import { composeAuthorizedApiRuntime } from "./composeAuthorizedApiRuntime.js";
 import { createApiRuntime } from "./createApiRuntime.js";
 import { resolveApiOperationBindings } from "./resolveApiOperationBindings.js";
 
@@ -27,66 +28,115 @@ const DEFINITION = {
   },
 } satisfies InternalRestApiDefinition;
 
-test("resolves normalized bindings and infers conventional methods", () => {
-  expect(resolveApiOperationBindings(DEFINITION)).toEqual([
-    expect.objectContaining({
+test("resolves normalized bindings and dispatches registered handlers", async () => {
+  const runtime = createApiRuntime({
+    definition: DEFINITION,
+    handlers: { "workspace.load": () => ({ body: { loaded: true } }) },
+  });
+
+  expect(resolveApiOperationBindings(DEFINITION)).toMatchObject([
+    {
       operationId: "workspace.load",
       method: "GET",
       path: "/api/workspaces/:id",
-    }),
+    },
   ]);
-});
-
-test("dispatches registered handlers and normalizes successful responses", async () => {
-  const runtime = createApiRuntime({
-    definition: DEFINITION,
-    handlers: {
-      "workspace.load": (request) => ({ body: { id: request.params.id } }),
-    },
-  });
-
-  const response = await runtime.dispatchAsync(request());
-  expect(response).toEqual({
+  expect(await runtime.dispatchAsync(request())).toMatchObject({
     status: 200,
-    headers: {},
-    body: { id: "one" },
+    body: { loaded: true },
   });
 });
 
-test("returns deterministic runtime errors", async () => {
-  const noHandlers = createApiRuntime({
-    definition: DEFINITION,
-    handlers: {},
-  });
+test("returns deterministic errors for invalid runtime dispatch", async () => {
+  const runtime = createApiRuntime({ definition: DEFINITION, handlers: {} });
 
-  const noHandlerResponse = await noHandlers.dispatchAsync(request());
-  expect(noHandlerResponse.status).toBe(501);
-
-  const missingResponse = await noHandlers.dispatchAsync({
-    ...request(),
-    operationId: "missing",
+  expect(await runtime.dispatchAsync(request())).toMatchObject({
+    status: 501,
+    body: { error: { code: "handler_not_registered" } },
   });
-  expect(missingResponse.status).toBe(404);
-
-  const wrongMethodResponse = await noHandlers.dispatchAsync({
-    ...request(),
-    method: "POST",
+  expect(
+    await runtime.dispatchAsync({ ...request(), method: "POST" }),
+  ).toMatchObject({
+    status: 405,
+    body: { error: { code: "method_not_allowed" } },
   });
-  expect(wrongMethodResponse.status).toBe(405);
 });
 
-test("contains handler failures at the API runtime boundary", async () => {
-  const runtime = createApiRuntime({
+test("composes each manifest operation with an approved handler and scoped authorization", async () => {
+  const resolved: string[] = [];
+  const runtime = composeAuthorizedApiRuntime({
     definition: DEFINITION,
-    handlers: {
-      "workspace.load": () => {
-        throw new Error("boom");
-      },
+    context: { appId: "app-a", projectId: "project-a" },
+    resolveHandler: ({ binding, context }) => {
+      resolved.push(
+        `${context.appId}:${context.projectId}:${binding.operationId}`,
+      );
+      return (_request, handlerContext) => ({
+        body: handlerContext.composition,
+      });
+    },
+    authorizeAsync: ({ context, request }) =>
+      context.projectId === "project-a" && request.params.id === "one",
+  });
+
+  expect(resolved).toEqual(["app-a:project-a:workspace.load"]);
+  expect(await runtime.dispatchAsync(request())).toMatchObject({
+    status: 200,
+    body: { appId: "app-a", projectId: "project-a" },
+  });
+});
+
+test("fails closed without a scoped context, approved handler, or authorization", async () => {
+  expect(() =>
+    composeAuthorizedApiRuntime({
+      definition: DEFINITION,
+      context: { appId: "", projectId: "project-a" },
+      resolveHandler: () => () => ({}),
+      authorizeAsync: () => true,
+    }),
+  ).toThrow("requires non-empty app and project ids");
+
+  expect(() =>
+    composeAuthorizedApiRuntime({
+      definition: DEFINITION,
+      context: { appId: "app-a", projectId: "project-a" },
+      resolveHandler: () => undefined,
+      authorizeAsync: () => true,
+    }),
+  ).toThrow("No approved handler");
+
+  const handled: string[] = [];
+  const handler = () => {
+    handled.push("called");
+    return { body: { unexpected: true } };
+  };
+  const runtime = composeAuthorizedApiRuntime({
+    definition: DEFINITION,
+    context: { appId: "app-a", projectId: "project-a" },
+    resolveHandler: () => handler,
+    authorizeAsync: () => false,
+  });
+
+  expect(await runtime.dispatchAsync(request())).toMatchObject({
+    status: 403,
+    body: { error: { code: "forbidden", operationId: "workspace.load" } },
+  });
+  expect(handled).toEqual([]);
+
+  const failingPolicyRuntime = composeAuthorizedApiRuntime({
+    definition: DEFINITION,
+    context: { appId: "app-a", projectId: "project-a" },
+    resolveHandler: () => handler,
+    authorizeAsync: () => {
+      throw new Error("unavailable");
     },
   });
 
-  const response = await runtime.dispatchAsync(request());
-  expect(response.status).toBe(500);
+  expect(await failingPolicyRuntime.dispatchAsync(request())).toMatchObject({
+    status: 403,
+    body: { error: { code: "forbidden", operationId: "workspace.load" } },
+  });
+  expect(handled).toEqual([]);
 });
 
 /*** Build a normalized request for the fixture operation. */
