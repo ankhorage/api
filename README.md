@@ -3,7 +3,7 @@
 
 # @ankhorage/api
 
-![license: MIT](././paradox/badges/license.svg) ![npm: v0.3.1](././paradox/badges/npm.svg) ![runtime: bun](././paradox/badges/runtime.svg) ![typescript: strict](././paradox/badges/typescript.svg) ![eslint: checked](././paradox/badges/eslint.svg) ![prettier: checked](././paradox/badges/prettier.svg) ![build: checked](././paradox/badges/build.svg) ![tests: checked](././paradox/badges/tests.svg) ![paradox: canonical](././paradox/badges/docs.svg)
+![license: MIT](././paradox/badges/license.svg) ![npm: v0.4.0](././paradox/badges/npm.svg) ![runtime: bun](././paradox/badges/runtime.svg) ![typescript: strict](././paradox/badges/typescript.svg) ![eslint: checked](././paradox/badges/eslint.svg) ![prettier: checked](././paradox/badges/prettier.svg) ![build: checked](././paradox/badges/build.svg) ![tests: checked](././paradox/badges/tests.svg) ![paradox: canonical](././paradox/badges/docs.svg)
 
 Framework-neutral executable API runtime for Ankhorage.
 
@@ -59,5 +59,6 @@ const definition = {
 - [Architecture overview](././paradox/diagrams/architecture-overview.mmd)
 - [Module relationships](././paradox/diagrams/module-relationships.mmd)
 - [Export graph](././paradox/diagrams/export-graph.mmd)
+- [composeAuthorizedApiRuntime sequence](././paradox/diagrams/sequences/compose-authorized-api-runtime.mmd)
 - [createApiRuntime sequence](././paradox/diagrams/sequences/create-api-runtime.mmd)
 - [projectApiCapabilities sequence](././paradox/diagrams/sequences/project-api-capabilities.mmd)

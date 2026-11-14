@@ -127,9 +127,14 @@
               </button>
             </li>
             <li>
+    <button class="nav-button" type="button" data-target="src/features/execution/composeAuthorizedApiRuntime.ts">
+      src/features/execution/composeAuthorizedApiRuntime.ts
+      <small>6 functions</small>
+    </button>
+  </li><li>
     <button class="nav-button" type="button" data-target="src/features/execution/createApiRuntime.test.ts">
       src/features/execution/createApiRuntime.test.ts
-      <small>1 function</small>
+      <small>3 functions</small>
     </button>
   </li><li>
     <button class="nav-button" type="button" data-target="src/features/execution/createApiRuntime.ts">
@@ -166,9 +171,9 @@
     <section class="panel">
       <h2>Package overview</h2>
       <div class="summary">
-        <div><strong>14</strong><span class="muted">public exports</span></div>
+        <div><strong>21</strong><span class="muted">public exports</span></div>
         <div><strong>0</strong><span class="muted">components</span></div>
-        <div><strong>11</strong><span class="muted">modules</span></div>
+        <div><strong>12</strong><span class="muted">modules</span></div>
         <div><strong>1</strong><span class="muted">entrypoints</span></div>
       </div>
       <h3>Entrypoints</h3>
@@ -220,20 +225,25 @@ responses at the transport edge while this runtime owns operation lookup and dis
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/api.ts</code></p>
     <p><strong>Exports:</strong> <span class="empty">None</span></p>
-  </article><article class="item" data-search="src/api.ts ApiHandler ApiHandlerContext ApiHandlerRegistry ApiHandlerResponse ApiOperationBinding ApiRequest ApiResponse ApiRuntime ApiTransportAdapter CAPABILITIES createApiRuntime createApiTransportHandler projectApiCapabilities resolveApiOperationBindings">
+  </article><article class="item" data-search="src/api.ts ApiAuthorizationPolicy ApiAuthorizationRequest ApiCompositionContext ApiHandler ApiHandlerContext ApiHandlerRegistry ApiHandlerResolutionRequest ApiHandlerResolver ApiHandlerResponse ApiOperationBinding ApiRequest ApiResponse ApiRuntime ApiTransportAdapter CAPABILITIES composeAuthorizedApiRuntime ComposeAuthorizedApiRuntimeOptions createApiRuntime createApiTransportHandler projectApiCapabilities resolveApiOperationBindings">
     <h3>src/api.ts</h3>
     <p class="muted">Configured entrypoint</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
-    <p><strong>Exports:</strong> <code>ApiHandler</code>, <code>ApiHandlerContext</code>, <code>ApiHandlerRegistry</code>, <code>ApiHandlerResponse</code>, <code>ApiOperationBinding</code>, <code>ApiRequest</code>, <code>ApiResponse</code>, <code>ApiRuntime</code>, <code>ApiTransportAdapter</code>, <code>CAPABILITIES</code>, <code>createApiRuntime</code>, <code>createApiTransportHandler</code>, <code>projectApiCapabilities</code>, <code>resolveApiOperationBindings</code></p>
+    <p><strong>Exports:</strong> <code>ApiAuthorizationPolicy</code>, <code>ApiAuthorizationRequest</code>, <code>ApiCompositionContext</code>, <code>ApiHandler</code>, <code>ApiHandlerContext</code>, <code>ApiHandlerRegistry</code>, <code>ApiHandlerResolutionRequest</code>, <code>ApiHandlerResolver</code>, <code>ApiHandlerResponse</code>, <code>ApiOperationBinding</code>, <code>ApiRequest</code>, <code>ApiResponse</code>, <code>ApiRuntime</code>, <code>ApiTransportAdapter</code>, <code>CAPABILITIES</code>, <code>composeAuthorizedApiRuntime</code>, <code>ComposeAuthorizedApiRuntimeOptions</code>, <code>createApiRuntime</code>, <code>createApiTransportHandler</code>, <code>projectApiCapabilities</code>, <code>resolveApiOperationBindings</code></p>
   </article><article class="item" data-search="src/capabilities/index.ts CAPABILITIES">
     <h3>src/capabilities/index.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
     <p><strong>Exports:</strong> <code>CAPABILITIES</code></p>
-  </article><article class="item" data-search="src/features/execution/createApiRuntime.test.ts src/features/execution/createApiRuntime.ts src/features/execution/resolveApiOperationBindings.ts">
+  </article><article class="item" data-search="src/features/execution/composeAuthorizedApiRuntime.ts src/features/execution/createApiRuntime.ts src/features/execution/resolveApiOperationBindings.ts src/types/api.ts composeAuthorizedApiRuntime">
+    <h3>src/features/execution/composeAuthorizedApiRuntime.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/features/execution/createApiRuntime.ts</code>, <code>src/features/execution/resolveApiOperationBindings.ts</code>, <code>src/types/api.ts</code></p>
+    <p><strong>Exports:</strong> <code>composeAuthorizedApiRuntime</code></p>
+  </article><article class="item" data-search="src/features/execution/createApiRuntime.test.ts src/features/execution/composeAuthorizedApiRuntime.ts src/features/execution/createApiRuntime.ts src/features/execution/resolveApiOperationBindings.ts">
     <h3>src/features/execution/createApiRuntime.test.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/features/execution/createApiRuntime.ts</code>, <code>src/features/execution/resolveApiOperationBindings.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/features/execution/composeAuthorizedApiRuntime.ts</code>, <code>src/features/execution/createApiRuntime.ts</code>, <code>src/features/execution/resolveApiOperationBindings.ts</code></p>
     <p><strong>Exports:</strong> <span class="empty">None</span></p>
   </article><article class="item" data-search="src/features/execution/createApiRuntime.ts src/features/execution/resolveApiOperationBindings.ts src/types/api.ts createApiRuntime">
     <h3>src/features/execution/createApiRuntime.ts</h3>
@@ -265,11 +275,11 @@ responses at the transport edge while this runtime owns operation lookup and dis
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/types/api.ts</code></p>
     <p><strong>Exports:</strong> <code>resolveApiOperationBindings</code></p>
-  </article><article class="item" data-search="src/types/api.ts ApiHandler ApiHandlerContext ApiHandlerRegistry ApiHandlerResponse ApiOperationBinding ApiRequest ApiResponse ApiRuntime ApiTransportAdapter">
+  </article><article class="item" data-search="src/types/api.ts ApiAuthorizationPolicy ApiAuthorizationRequest ApiCompositionContext ApiHandler ApiHandlerContext ApiHandlerRegistry ApiHandlerResolutionRequest ApiHandlerResolver ApiHandlerResponse ApiOperationBinding ApiRequest ApiResponse ApiRuntime ApiTransportAdapter ComposeAuthorizedApiRuntimeOptions">
     <h3>src/types/api.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
-    <p><strong>Exports:</strong> <code>ApiHandler</code>, <code>ApiHandlerContext</code>, <code>ApiHandlerRegistry</code>, <code>ApiHandlerResponse</code>, <code>ApiOperationBinding</code>, <code>ApiRequest</code>, <code>ApiResponse</code>, <code>ApiRuntime</code>, <code>ApiTransportAdapter</code></p>
+    <p><strong>Exports:</strong> <code>ApiAuthorizationPolicy</code>, <code>ApiAuthorizationRequest</code>, <code>ApiCompositionContext</code>, <code>ApiHandler</code>, <code>ApiHandlerContext</code>, <code>ApiHandlerRegistry</code>, <code>ApiHandlerResolutionRequest</code>, <code>ApiHandlerResolver</code>, <code>ApiHandlerResponse</code>, <code>ApiOperationBinding</code>, <code>ApiRequest</code>, <code>ApiResponse</code>, <code>ApiRuntime</code>, <code>ApiTransportAdapter</code>, <code>ComposeAuthorizedApiRuntimeOptions</code></p>
   </article>
     </section>
     <section class="panel">
@@ -286,6 +296,35 @@ responses at the transport edge while this runtime owns operation lookup and dis
     <p><strong>Export paths:</strong> <code>src/api.ts</code></p>
     <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
     
+    
+  </article>
+            </section>
+            <section>
+              <h3>src/features/execution/composeAuthorizedApiRuntime.ts</h3>
+              <article class="item" id="symbol-composeauthorizedapiruntime" data-search="composeAuthorizedApiRuntime  function src/features/execution/composeAuthorizedApiRuntime.ts Compose declared API operations with host-approved handlers and deny-by-default authorization. ApiRuntime ComposeAuthorizedApiRuntimeOptions (options: ComposeAuthorizedApiRuntimeOptions) =&gt; import(&quot;../../api.js&quot;).ApiRuntime">
+    <h4>composeAuthorizedApiRuntime</h4>
+    
+    <p class="muted">function • <code>src/features/execution/composeAuthorizedApiRuntime.ts:14:1</code></p>
+    <p>Compose declared API operations with host-approved handlers and deny-by-default authorization.</p>
+    
+    <p><strong>Export paths:</strong> <code>src/api.ts</code></p>
+    <div><strong>Related symbols:</strong> <ul class="chips"><li class="chip">ApiRuntime</li><li class="chip">ComposeAuthorizedApiRuntimeOptions</li></ul></div>
+    <div>
+        <h5>Signature</h5>
+        <pre>(options: ComposeAuthorizedApiRuntimeOptions) =&gt; import(&quot;../../api.js&quot;).ApiRuntime</pre>
+        <table>
+                <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                <tbody>
+                  <tr>
+                        <td><code>options</code></td>
+                        <td><code>ComposeAuthorizedApiRuntimeOptions</code></td>
+                        <td>yes</td>
+                        <td></td>
+                      </tr>
+                </tbody>
+              </table>
+        <p><strong>Returns:</strong> <code>import(&quot;../../api.js&quot;).ApiRuntime</code></p>
+      </div>
     
   </article>
             </section>
@@ -417,24 +456,24 @@ responses at the transport edge while this runtime owns operation lookup and dis
             </section>
             <section>
               <h3>src/types/api.ts</h3>
-              <article class="item" id="symbol-apihandler" data-search="ApiHandler  unknown src/types/api.ts ">
-    <h4>ApiHandler</h4>
+              <article class="item" id="symbol-apiauthorizationpolicy" data-search="ApiAuthorizationPolicy  unknown src/types/api.ts ">
+    <h4>ApiAuthorizationPolicy</h4>
     
-    <p class="muted">unknown • <code>src/types/api.ts:42:1</code></p>
+    <p class="muted">unknown • <code>src/types/api.ts:70:1</code></p>
     
     
     <p><strong>Export paths:</strong> <code>src/api.ts</code></p>
     <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
     
     
-  </article><article class="item" id="symbol-apihandlercontext" data-search="ApiHandlerContext  type src/types/api.ts  ApiOperationBinding">
-    <h4>ApiHandlerContext</h4>
+  </article><article class="item" id="symbol-apiauthorizationrequest" data-search="ApiAuthorizationRequest  type src/types/api.ts  ApiCompositionContext ApiOperationBinding ApiRequest">
+    <h4>ApiAuthorizationRequest</h4>
     
-    <p class="muted">type • <code>src/types/api.ts:38:1</code></p>
+    <p class="muted">type • <code>src/types/api.ts:64:1</code></p>
     
     
     <p><strong>Export paths:</strong> <code>src/api.ts</code></p>
-    <div><strong>Related symbols:</strong> <ul class="chips"><li class="chip">ApiOperationBinding</li></ul></div>
+    <div><strong>Related symbols:</strong> <ul class="chips"><li class="chip">ApiCompositionContext</li><li class="chip">ApiOperationBinding</li><li class="chip">ApiRequest</li></ul></div>
     
     <table>
     <thead><tr><th>Member</th><th>Kind</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
@@ -445,13 +484,126 @@ responses at the transport edge while this runtime owns operation lookup and dis
             <td><code>ApiOperationBinding</code></td>
             <td>yes</td>
             <td></td>
+          </tr><tr>
+            <td><code>context</code></td>
+            <td>property</td>
+            <td><code>ApiCompositionContext</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr><tr>
+            <td><code>request</code></td>
+            <td>property</td>
+            <td><code>ApiRequest</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr>
+    </tbody>
+  </table>
+  </article><article class="item" id="symbol-apicompositioncontext" data-search="ApiCompositionContext  type src/types/api.ts ">
+    <h4>ApiCompositionContext</h4>
+    
+    <p class="muted">type • <code>src/types/api.ts:50:1</code></p>
+    
+    
+    <p><strong>Export paths:</strong> <code>src/api.ts</code></p>
+    <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+    
+    <table>
+    <thead><tr><th>Member</th><th>Kind</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr>
+            <td><code>appId</code></td>
+            <td>property</td>
+            <td><code>string</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr><tr>
+            <td><code>projectId</code></td>
+            <td>property</td>
+            <td><code>string</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr>
+    </tbody>
+  </table>
+  </article><article class="item" id="symbol-apihandler" data-search="ApiHandler  unknown src/types/api.ts ">
+    <h4>ApiHandler</h4>
+    
+    <p class="muted">unknown • <code>src/types/api.ts:43:1</code></p>
+    
+    
+    <p><strong>Export paths:</strong> <code>src/api.ts</code></p>
+    <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+    
+    
+  </article><article class="item" id="symbol-apihandlercontext" data-search="ApiHandlerContext  type src/types/api.ts  ApiCompositionContext ApiOperationBinding">
+    <h4>ApiHandlerContext</h4>
+    
+    <p class="muted">type • <code>src/types/api.ts:38:1</code></p>
+    
+    
+    <p><strong>Export paths:</strong> <code>src/api.ts</code></p>
+    <div><strong>Related symbols:</strong> <ul class="chips"><li class="chip">ApiCompositionContext</li><li class="chip">ApiOperationBinding</li></ul></div>
+    
+    <table>
+    <thead><tr><th>Member</th><th>Kind</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr>
+            <td><code>binding</code></td>
+            <td>property</td>
+            <td><code>ApiOperationBinding</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr><tr>
+            <td><code>composition</code></td>
+            <td>property</td>
+            <td><code>ApiCompositionContext</code></td>
+            <td>no</td>
+            <td></td>
           </tr>
     </tbody>
   </table>
   </article><article class="item" id="symbol-apihandlerregistry" data-search="ApiHandlerRegistry  unknown src/types/api.ts ">
     <h4>ApiHandlerRegistry</h4>
     
-    <p class="muted">unknown • <code>src/types/api.ts:47:1</code></p>
+    <p class="muted">unknown • <code>src/types/api.ts:48:1</code></p>
+    
+    
+    <p><strong>Export paths:</strong> <code>src/api.ts</code></p>
+    <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+    
+    
+  </article><article class="item" id="symbol-apihandlerresolutionrequest" data-search="ApiHandlerResolutionRequest  type src/types/api.ts  ApiCompositionContext ApiOperationBinding">
+    <h4>ApiHandlerResolutionRequest</h4>
+    
+    <p class="muted">type • <code>src/types/api.ts:55:1</code></p>
+    
+    
+    <p><strong>Export paths:</strong> <code>src/api.ts</code></p>
+    <div><strong>Related symbols:</strong> <ul class="chips"><li class="chip">ApiCompositionContext</li><li class="chip">ApiOperationBinding</li></ul></div>
+    
+    <table>
+    <thead><tr><th>Member</th><th>Kind</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr>
+            <td><code>binding</code></td>
+            <td>property</td>
+            <td><code>ApiOperationBinding</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr><tr>
+            <td><code>context</code></td>
+            <td>property</td>
+            <td><code>ApiCompositionContext</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr>
+    </tbody>
+  </table>
+  </article><article class="item" id="symbol-apihandlerresolver" data-search="ApiHandlerResolver  unknown src/types/api.ts ">
+    <h4>ApiHandlerResolver</h4>
+    
+    <p class="muted">unknown • <code>src/types/api.ts:60:1</code></p>
     
     
     <p><strong>Export paths:</strong> <code>src/api.ts</code></p>
@@ -629,7 +781,7 @@ responses at the transport edge while this runtime owns operation lookup and dis
   </article><article class="item" id="symbol-apiruntime" data-search="ApiRuntime  type src/types/api.ts  ApiOperationBinding ApiRequest ApiResponse">
     <h4>ApiRuntime</h4>
     
-    <p class="muted">type • <code>src/types/api.ts:49:1</code></p>
+    <p class="muted">type • <code>src/types/api.ts:81:1</code></p>
     
     
     <p><strong>Export paths:</strong> <code>src/api.ts</code></p>
@@ -668,7 +820,7 @@ responses at the transport edge while this runtime owns operation lookup and dis
   </article><article class="item" id="symbol-apitransportadapter" data-search="ApiTransportAdapter  type src/types/api.ts  ApiOperationBinding ApiRequest ApiResponse">
     <h4>ApiTransportAdapter</h4>
     
-    <p class="muted">type • <code>src/types/api.ts:56:1</code></p>
+    <p class="muted">type • <code>src/types/api.ts:88:1</code></p>
     
     
     <p><strong>Export paths:</strong> <code>src/api.ts</code></p>
@@ -687,6 +839,45 @@ responses at the transport edge while this runtime owns operation lookup and dis
             <td><code>toApiRequestAsync</code></td>
             <td>method</td>
             <td><code>(request: TRequest, binding: ApiOperationBinding) =&gt; Promise&lt;ApiRequest&gt;</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr>
+    </tbody>
+  </table>
+  </article><article class="item" id="symbol-composeauthorizedapiruntimeoptions" data-search="ComposeAuthorizedApiRuntimeOptions  type src/types/api.ts  ApiAuthorizationPolicy ApiCompositionContext ApiHandlerResolver">
+    <h4>ComposeAuthorizedApiRuntimeOptions</h4>
+    
+    <p class="muted">type • <code>src/types/api.ts:74:1</code></p>
+    
+    
+    <p><strong>Export paths:</strong> <code>src/api.ts</code></p>
+    <div><strong>Related symbols:</strong> <ul class="chips"><li class="chip">ApiAuthorizationPolicy</li><li class="chip">ApiCompositionContext</li><li class="chip">ApiHandlerResolver</li></ul></div>
+    
+    <table>
+    <thead><tr><th>Member</th><th>Kind</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr>
+            <td><code>authorizeAsync</code></td>
+            <td>property</td>
+            <td><code>ApiAuthorizationPolicy</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr><tr>
+            <td><code>context</code></td>
+            <td>property</td>
+            <td><code>ApiCompositionContext</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr><tr>
+            <td><code>definition</code></td>
+            <td>property</td>
+            <td><code>InternalRestApiDefinition</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr><tr>
+            <td><code>resolveHandler</code></td>
+            <td>property</td>
+            <td><code>ApiHandlerResolver</code></td>
             <td>yes</td>
             <td></td>
           </tr>
@@ -714,8 +905,14 @@ responses at the transport edge while this runtime owns operation lookup and dis
   module_src_api_ts[&quot;src/api.ts&quot;]
   module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
   package__ankhorage_api -.-&gt; module_src_capabilities_index_ts
+  module_src_features_execution_composeAuthorizedApiRuntime_ts[&quot;src/features/execution/composeAuthorizedApiRuntime.ts&quot;]
+  package__ankhorage_api -.-&gt; module_src_features_execution_composeAuthorizedApiRuntime_ts
+  module_src_features_execution_composeAuthorizedApiRuntime_ts --&gt; module_src_features_execution_createApiRuntime_ts
+  module_src_features_execution_composeAuthorizedApiRuntime_ts --&gt; module_src_features_execution_resolveApiOperationBindings_ts
+  module_src_features_execution_composeAuthorizedApiRuntime_ts --&gt; module_src_types_api_ts
   module_src_features_execution_createApiRuntime_test_ts[&quot;src/features/execution/createApiRuntime.test.ts&quot;]
   package__ankhorage_api -.-&gt; module_src_features_execution_createApiRuntime_test_ts
+  module_src_features_execution_createApiRuntime_test_ts --&gt; module_src_features_execution_composeAuthorizedApiRuntime_ts
   module_src_features_execution_createApiRuntime_test_ts --&gt; module_src_features_execution_createApiRuntime_ts
   module_src_features_execution_createApiRuntime_test_ts --&gt; module_src_features_execution_resolveApiOperationBindings_ts
   module_src_features_execution_createApiRuntime_ts[&quot;src/features/execution/createApiRuntime.ts&quot;]
@@ -753,8 +950,14 @@ responses at the transport edge while this runtime owns operation lookup and dis
   module_src_api_ts[&quot;src/api.ts&quot;]
   module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
   package__ankhorage_api -.-&gt; module_src_capabilities_index_ts
+  module_src_features_execution_composeAuthorizedApiRuntime_ts[&quot;src/features/execution/composeAuthorizedApiRuntime.ts&quot;]
+  package__ankhorage_api -.-&gt; module_src_features_execution_composeAuthorizedApiRuntime_ts
+  module_src_features_execution_composeAuthorizedApiRuntime_ts --&gt; module_src_features_execution_createApiRuntime_ts
+  module_src_features_execution_composeAuthorizedApiRuntime_ts --&gt; module_src_features_execution_resolveApiOperationBindings_ts
+  module_src_features_execution_composeAuthorizedApiRuntime_ts --&gt; module_src_types_api_ts
   module_src_features_execution_createApiRuntime_test_ts[&quot;src/features/execution/createApiRuntime.test.ts&quot;]
   package__ankhorage_api -.-&gt; module_src_features_execution_createApiRuntime_test_ts
+  module_src_features_execution_createApiRuntime_test_ts --&gt; module_src_features_execution_composeAuthorizedApiRuntime_ts
   module_src_features_execution_createApiRuntime_test_ts --&gt; module_src_features_execution_createApiRuntime_ts
   module_src_features_execution_createApiRuntime_test_ts --&gt; module_src_features_execution_resolveApiOperationBindings_ts
   module_src_features_execution_createApiRuntime_ts[&quot;src/features/execution/createApiRuntime.ts&quot;]
@@ -788,6 +991,7 @@ responses at the transport edge while this runtime owns operation lookup and dis
   module_src_api_test_ts[&quot;src/api.test.ts&quot;]
   module_src_api_ts[&quot;src/api.ts&quot;]
   module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
+  module_src_features_execution_composeAuthorizedApiRuntime_ts[&quot;src/features/execution/composeAuthorizedApiRuntime.ts&quot;]
   module_src_features_execution_createApiRuntime_test_ts[&quot;src/features/execution/createApiRuntime.test.ts&quot;]
   module_src_features_execution_createApiRuntime_ts[&quot;src/features/execution/createApiRuntime.ts&quot;]
   module_src_features_execution_createApiTransportHandler_test_ts[&quot;src/features/execution/createApiTransportHandler.test.ts&quot;]
@@ -797,6 +1001,10 @@ responses at the transport edge while this runtime owns operation lookup and dis
   module_src_features_execution_resolveApiOperationBindings_ts[&quot;src/features/execution/resolveApiOperationBindings.ts&quot;]
   module_src_types_api_ts[&quot;src/types/api.ts&quot;]
   module_src_api_test_ts --&gt; module_src_api_ts
+  module_src_features_execution_composeAuthorizedApiRuntime_ts --&gt; module_src_features_execution_createApiRuntime_ts
+  module_src_features_execution_composeAuthorizedApiRuntime_ts --&gt; module_src_features_execution_resolveApiOperationBindings_ts
+  module_src_features_execution_composeAuthorizedApiRuntime_ts --&gt; module_src_types_api_ts
+  module_src_features_execution_createApiRuntime_test_ts --&gt; module_src_features_execution_composeAuthorizedApiRuntime_ts
   module_src_features_execution_createApiRuntime_test_ts --&gt; module_src_features_execution_createApiRuntime_ts
   module_src_features_execution_createApiRuntime_test_ts --&gt; module_src_features_execution_resolveApiOperationBindings_ts
   module_src_features_execution_createApiRuntime_ts --&gt; module_src_features_execution_resolveApiOperationBindings_ts
@@ -814,6 +1022,7 @@ responses at the transport edge while this runtime owns operation lookup and dis
   module_src_api_test_ts[&quot;src/api.test.ts&quot;]
   module_src_api_ts[&quot;src/api.ts&quot;]
   module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
+  module_src_features_execution_composeAuthorizedApiRuntime_ts[&quot;src/features/execution/composeAuthorizedApiRuntime.ts&quot;]
   module_src_features_execution_createApiRuntime_test_ts[&quot;src/features/execution/createApiRuntime.test.ts&quot;]
   module_src_features_execution_createApiRuntime_ts[&quot;src/features/execution/createApiRuntime.ts&quot;]
   module_src_features_execution_createApiTransportHandler_test_ts[&quot;src/features/execution/createApiTransportHandler.test.ts&quot;]
@@ -823,6 +1032,10 @@ responses at the transport edge while this runtime owns operation lookup and dis
   module_src_features_execution_resolveApiOperationBindings_ts[&quot;src/features/execution/resolveApiOperationBindings.ts&quot;]
   module_src_types_api_ts[&quot;src/types/api.ts&quot;]
   module_src_api_test_ts --&gt; module_src_api_ts
+  module_src_features_execution_composeAuthorizedApiRuntime_ts --&gt; module_src_features_execution_createApiRuntime_ts
+  module_src_features_execution_composeAuthorizedApiRuntime_ts --&gt; module_src_features_execution_resolveApiOperationBindings_ts
+  module_src_features_execution_composeAuthorizedApiRuntime_ts --&gt; module_src_types_api_ts
+  module_src_features_execution_createApiRuntime_test_ts --&gt; module_src_features_execution_composeAuthorizedApiRuntime_ts
   module_src_features_execution_createApiRuntime_test_ts --&gt; module_src_features_execution_createApiRuntime_ts
   module_src_features_execution_createApiRuntime_test_ts --&gt; module_src_features_execution_resolveApiOperationBindings_ts
   module_src_features_execution_createApiRuntime_ts --&gt; module_src_features_execution_resolveApiOperationBindings_ts
@@ -842,6 +1055,7 @@ responses at the transport edge while this runtime owns operation lookup and dis
   module_src_api_test_ts[&quot;src/api.test.ts&quot;]
   module_src_api_ts[&quot;src/api.ts&quot;]
   module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
+  module_src_features_execution_composeAuthorizedApiRuntime_ts[&quot;src/features/execution/composeAuthorizedApiRuntime.ts&quot;]
   module_src_features_execution_createApiRuntime_test_ts[&quot;src/features/execution/createApiRuntime.test.ts&quot;]
   module_src_features_execution_createApiRuntime_ts[&quot;src/features/execution/createApiRuntime.ts&quot;]
   module_src_features_execution_createApiTransportHandler_test_ts[&quot;src/features/execution/createApiTransportHandler.test.ts&quot;]
@@ -850,13 +1064,29 @@ responses at the transport edge while this runtime owns operation lookup and dis
   module_src_features_execution_projectApiCapabilities_ts[&quot;src/features/execution/projectApiCapabilities.ts&quot;]
   module_src_features_execution_resolveApiOperationBindings_ts[&quot;src/features/execution/resolveApiOperationBindings.ts&quot;]
   module_src_types_api_ts[&quot;src/types/api.ts&quot;]
+  export_ApiAuthorizationPolicy[&quot;ApiAuthorizationPolicy&quot;]
+  module_src_types_api_ts --&gt; export_ApiAuthorizationPolicy
+  export_ApiAuthorizationRequest[&quot;ApiAuthorizationRequest&quot;]
+  module_src_types_api_ts --&gt; export_ApiAuthorizationRequest
+  export_ApiAuthorizationRequest -.-&gt; export_ApiCompositionContext
+  export_ApiAuthorizationRequest -.-&gt; export_ApiOperationBinding
+  export_ApiAuthorizationRequest -.-&gt; export_ApiRequest
+  export_ApiCompositionContext[&quot;ApiCompositionContext&quot;]
+  module_src_types_api_ts --&gt; export_ApiCompositionContext
   export_ApiHandler[&quot;ApiHandler&quot;]
   module_src_types_api_ts --&gt; export_ApiHandler
   export_ApiHandlerContext[&quot;ApiHandlerContext&quot;]
   module_src_types_api_ts --&gt; export_ApiHandlerContext
+  export_ApiHandlerContext -.-&gt; export_ApiCompositionContext
   export_ApiHandlerContext -.-&gt; export_ApiOperationBinding
   export_ApiHandlerRegistry[&quot;ApiHandlerRegistry&quot;]
   module_src_types_api_ts --&gt; export_ApiHandlerRegistry
+  export_ApiHandlerResolutionRequest[&quot;ApiHandlerResolutionRequest&quot;]
+  module_src_types_api_ts --&gt; export_ApiHandlerResolutionRequest
+  export_ApiHandlerResolutionRequest -.-&gt; export_ApiCompositionContext
+  export_ApiHandlerResolutionRequest -.-&gt; export_ApiOperationBinding
+  export_ApiHandlerResolver[&quot;ApiHandlerResolver&quot;]
+  module_src_types_api_ts --&gt; export_ApiHandlerResolver
   export_ApiHandlerResponse[&quot;ApiHandlerResponse&quot;]
   module_src_types_api_ts --&gt; export_ApiHandlerResponse
   export_ApiOperationBinding[&quot;ApiOperationBinding&quot;]
@@ -877,6 +1107,15 @@ responses at the transport edge while this runtime owns operation lookup and dis
   export_ApiTransportAdapter -.-&gt; export_ApiResponse
   export_CAPABILITIES[&quot;CAPABILITIES&quot;]
   module_src_capabilities_index_ts --&gt; export_CAPABILITIES
+  export_composeAuthorizedApiRuntime[&quot;composeAuthorizedApiRuntime&quot;]
+  module_src_features_execution_composeAuthorizedApiRuntime_ts --&gt; export_composeAuthorizedApiRuntime
+  export_composeAuthorizedApiRuntime -.-&gt; export_ApiRuntime
+  export_composeAuthorizedApiRuntime -.-&gt; export_ComposeAuthorizedApiRuntimeOptions
+  export_ComposeAuthorizedApiRuntimeOptions[&quot;ComposeAuthorizedApiRuntimeOptions&quot;]
+  module_src_types_api_ts --&gt; export_ComposeAuthorizedApiRuntimeOptions
+  export_ComposeAuthorizedApiRuntimeOptions -.-&gt; export_ApiAuthorizationPolicy
+  export_ComposeAuthorizedApiRuntimeOptions -.-&gt; export_ApiCompositionContext
+  export_ComposeAuthorizedApiRuntimeOptions -.-&gt; export_ApiHandlerResolver
   export_createApiRuntime[&quot;createApiRuntime&quot;]
   module_src_features_execution_createApiRuntime_ts --&gt; export_createApiRuntime
   export_createApiRuntime -.-&gt; export_ApiHandlerRegistry
@@ -898,6 +1137,7 @@ responses at the transport edge while this runtime owns operation lookup and dis
   module_src_api_test_ts[&quot;src/api.test.ts&quot;]
   module_src_api_ts[&quot;src/api.ts&quot;]
   module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
+  module_src_features_execution_composeAuthorizedApiRuntime_ts[&quot;src/features/execution/composeAuthorizedApiRuntime.ts&quot;]
   module_src_features_execution_createApiRuntime_test_ts[&quot;src/features/execution/createApiRuntime.test.ts&quot;]
   module_src_features_execution_createApiRuntime_ts[&quot;src/features/execution/createApiRuntime.ts&quot;]
   module_src_features_execution_createApiTransportHandler_test_ts[&quot;src/features/execution/createApiTransportHandler.test.ts&quot;]
@@ -906,13 +1146,29 @@ responses at the transport edge while this runtime owns operation lookup and dis
   module_src_features_execution_projectApiCapabilities_ts[&quot;src/features/execution/projectApiCapabilities.ts&quot;]
   module_src_features_execution_resolveApiOperationBindings_ts[&quot;src/features/execution/resolveApiOperationBindings.ts&quot;]
   module_src_types_api_ts[&quot;src/types/api.ts&quot;]
+  export_ApiAuthorizationPolicy[&quot;ApiAuthorizationPolicy&quot;]
+  module_src_types_api_ts --&gt; export_ApiAuthorizationPolicy
+  export_ApiAuthorizationRequest[&quot;ApiAuthorizationRequest&quot;]
+  module_src_types_api_ts --&gt; export_ApiAuthorizationRequest
+  export_ApiAuthorizationRequest -.-&gt; export_ApiCompositionContext
+  export_ApiAuthorizationRequest -.-&gt; export_ApiOperationBinding
+  export_ApiAuthorizationRequest -.-&gt; export_ApiRequest
+  export_ApiCompositionContext[&quot;ApiCompositionContext&quot;]
+  module_src_types_api_ts --&gt; export_ApiCompositionContext
   export_ApiHandler[&quot;ApiHandler&quot;]
   module_src_types_api_ts --&gt; export_ApiHandler
   export_ApiHandlerContext[&quot;ApiHandlerContext&quot;]
   module_src_types_api_ts --&gt; export_ApiHandlerContext
+  export_ApiHandlerContext -.-&gt; export_ApiCompositionContext
   export_ApiHandlerContext -.-&gt; export_ApiOperationBinding
   export_ApiHandlerRegistry[&quot;ApiHandlerRegistry&quot;]
   module_src_types_api_ts --&gt; export_ApiHandlerRegistry
+  export_ApiHandlerResolutionRequest[&quot;ApiHandlerResolutionRequest&quot;]
+  module_src_types_api_ts --&gt; export_ApiHandlerResolutionRequest
+  export_ApiHandlerResolutionRequest -.-&gt; export_ApiCompositionContext
+  export_ApiHandlerResolutionRequest -.-&gt; export_ApiOperationBinding
+  export_ApiHandlerResolver[&quot;ApiHandlerResolver&quot;]
+  module_src_types_api_ts --&gt; export_ApiHandlerResolver
   export_ApiHandlerResponse[&quot;ApiHandlerResponse&quot;]
   module_src_types_api_ts --&gt; export_ApiHandlerResponse
   export_ApiOperationBinding[&quot;ApiOperationBinding&quot;]
@@ -933,6 +1189,15 @@ responses at the transport edge while this runtime owns operation lookup and dis
   export_ApiTransportAdapter -.-&gt; export_ApiResponse
   export_CAPABILITIES[&quot;CAPABILITIES&quot;]
   module_src_capabilities_index_ts --&gt; export_CAPABILITIES
+  export_composeAuthorizedApiRuntime[&quot;composeAuthorizedApiRuntime&quot;]
+  module_src_features_execution_composeAuthorizedApiRuntime_ts --&gt; export_composeAuthorizedApiRuntime
+  export_composeAuthorizedApiRuntime -.-&gt; export_ApiRuntime
+  export_composeAuthorizedApiRuntime -.-&gt; export_ComposeAuthorizedApiRuntimeOptions
+  export_ComposeAuthorizedApiRuntimeOptions[&quot;ComposeAuthorizedApiRuntimeOptions&quot;]
+  module_src_types_api_ts --&gt; export_ComposeAuthorizedApiRuntimeOptions
+  export_ComposeAuthorizedApiRuntimeOptions -.-&gt; export_ApiAuthorizationPolicy
+  export_ComposeAuthorizedApiRuntimeOptions -.-&gt; export_ApiCompositionContext
+  export_ComposeAuthorizedApiRuntimeOptions -.-&gt; export_ApiHandlerResolver
   export_createApiRuntime[&quot;createApiRuntime&quot;]
   module_src_features_execution_createApiRuntime_ts --&gt; export_createApiRuntime
   export_createApiRuntime -.-&gt; export_ApiHandlerRegistry
@@ -947,6 +1212,46 @@ responses at the transport edge while this runtime owns operation lookup and dis
   export_resolveApiOperationBindings[&quot;resolveApiOperationBindings&quot;]
   module_src_features_execution_resolveApiOperationBindings_ts --&gt; export_resolveApiOperationBindings
   export_resolveApiOperationBindings -.-&gt; export_ApiOperationBinding
+</pre>
+    </details>
+  </article><article class="item" data-search="composeAuthorizedApiRuntime sequence diagrams/sequences/compose-authorized-api-runtime.mmd">
+    <h3>composeAuthorizedApiRuntime sequence</h3>
+    <p class="muted"><code>diagrams/sequences/compose-authorized-api-runtime.mmd</code></p>
+    <div class="mermaid">sequenceDiagram
+  participant participant_assertCompositionContext as assertCompositionContext
+  participant participant_composeAuthorizedApiRuntime as composeAuthorizedApiRuntime
+  participant participant_createApiRuntime as createApiRuntime
+  participant participant_resolveApiOperationBindings as resolveApiOperationBindings
+  participant participant_resolveAuthorizedHandlers as resolveAuthorizedHandlers
+  participant_composeAuthorizedApiRuntime-&gt;&gt;participant_assertCompositionContext: assertCompositionContext()
+  participant_assertCompositionContext--&gt;&gt;participant_composeAuthorizedApiRuntime: return
+  participant_composeAuthorizedApiRuntime-&gt;&gt;participant_resolveAuthorizedHandlers: resolveAuthorizedHandlers()
+  participant_resolveAuthorizedHandlers-&gt;&gt;participant_resolveApiOperationBindings: resolveApiOperationBindings()
+  participant_resolveApiOperationBindings--&gt;&gt;participant_resolveAuthorizedHandlers: return
+  participant_resolveAuthorizedHandlers--&gt;&gt;participant_composeAuthorizedApiRuntime: return
+  participant_composeAuthorizedApiRuntime-&gt;&gt;participant_createApiRuntime: createApiRuntime()
+  participant_createApiRuntime-&gt;&gt;participant_resolveApiOperationBindings: resolveApiOperationBindings()
+  participant_resolveApiOperationBindings--&gt;&gt;participant_createApiRuntime: return
+  participant_createApiRuntime--&gt;&gt;participant_composeAuthorizedApiRuntime: return
+</div>
+    <details>
+      <summary>View Mermaid source</summary>
+      <pre>sequenceDiagram
+  participant participant_assertCompositionContext as assertCompositionContext
+  participant participant_composeAuthorizedApiRuntime as composeAuthorizedApiRuntime
+  participant participant_createApiRuntime as createApiRuntime
+  participant participant_resolveApiOperationBindings as resolveApiOperationBindings
+  participant participant_resolveAuthorizedHandlers as resolveAuthorizedHandlers
+  participant_composeAuthorizedApiRuntime-&gt;&gt;participant_assertCompositionContext: assertCompositionContext()
+  participant_assertCompositionContext--&gt;&gt;participant_composeAuthorizedApiRuntime: return
+  participant_composeAuthorizedApiRuntime-&gt;&gt;participant_resolveAuthorizedHandlers: resolveAuthorizedHandlers()
+  participant_resolveAuthorizedHandlers-&gt;&gt;participant_resolveApiOperationBindings: resolveApiOperationBindings()
+  participant_resolveApiOperationBindings--&gt;&gt;participant_resolveAuthorizedHandlers: return
+  participant_resolveAuthorizedHandlers--&gt;&gt;participant_composeAuthorizedApiRuntime: return
+  participant_composeAuthorizedApiRuntime-&gt;&gt;participant_createApiRuntime: createApiRuntime()
+  participant_createApiRuntime-&gt;&gt;participant_resolveApiOperationBindings: resolveApiOperationBindings()
+  participant_resolveApiOperationBindings--&gt;&gt;participant_createApiRuntime: return
+  participant_createApiRuntime--&gt;&gt;participant_composeAuthorizedApiRuntime: return
 </pre>
     </details>
   </article><article class="item" data-search="createApiRuntime sequence diagrams/sequences/create-api-runtime.mmd">
@@ -988,12 +1293,57 @@ responses at the transport edge while this runtime owns operation lookup and dis
   </article>
     </section>
         </section>
-        <section id="view-src-features-execution-createapiruntime-test-ts" class="view" data-view="src/features/execution/createApiRuntime.test.ts" hidden>
+        <section id="view-src-features-execution-composeauthorizedapiruntime-ts" class="view" data-view="src/features/execution/composeAuthorizedApiRuntime.ts" hidden>
+    <section class="panel">
+      <h2>src/features/execution/composeAuthorizedApiRuntime.ts</h2>
+      <article class="item" data-search="composeAuthorizedApiRuntime src/features/execution/composeAuthorizedApiRuntime.ts Compose declared API operations with host-approved handlers and deny-by-default authorization.">
+    <h3>composeAuthorizedApiRuntime</h3>
+    <p class="muted"><code>src/features/execution/composeAuthorizedApiRuntime.ts:14:1</code></p>
+    <p>Compose declared API operations with host-approved handlers and deny-by-default authorization.</p>
+    
+  </article><article class="item" data-search="resolveAuthorizedHandlers src/features/execution/composeAuthorizedApiRuntime.ts Resolve every declared operation before exposing the API runtime.">
+    <h3>resolveAuthorizedHandlers</h3>
+    <p class="muted"><code>src/features/execution/composeAuthorizedApiRuntime.ts:24:1</code></p>
+    <p>Resolve every declared operation before exposing the API runtime.</p>
+    
+  </article><article class="item" data-search="createAuthorizedHandler src/features/execution/composeAuthorizedApiRuntime.ts Deny a request unless the host authorization policy explicitly approves it.">
+    <h3>createAuthorizedHandler</h3>
+    <p class="muted"><code>src/features/execution/composeAuthorizedApiRuntime.ts:48:1</code></p>
+    <p>Deny a request unless the host authorization policy explicitly approves it.</p>
+    
+  </article><article class="item" data-search="isAuthorizedAsync src/features/execution/composeAuthorizedApiRuntime.ts Treat a failing authorization policy exactly like an explicit denial.">
+    <h3>isAuthorizedAsync</h3>
+    <p class="muted"><code>src/features/execution/composeAuthorizedApiRuntime.ts:62:1</code></p>
+    <p>Treat a failing authorization policy exactly like an explicit denial.</p>
+    
+  </article><article class="item" data-search="assertCompositionContext src/features/execution/composeAuthorizedApiRuntime.ts Reject incomplete composition scope before any HTTP route can be registered.">
+    <h3>assertCompositionContext</h3>
+    <p class="muted"><code>src/features/execution/composeAuthorizedApiRuntime.ts:79:1</code></p>
+    <p>Reject incomplete composition scope before any HTTP route can be registered.</p>
+    
+  </article><article class="item" data-search="forbiddenResponse src/features/execution/composeAuthorizedApiRuntime.ts Return a normalized authorization failure without invoking the selected handler.">
+    <h3>forbiddenResponse</h3>
+    <p class="muted"><code>src/features/execution/composeAuthorizedApiRuntime.ts:90:1</code></p>
+    <p>Return a normalized authorization failure without invoking the selected handler.</p>
+    
+  </article>
+    </section>
+  </section><section id="view-src-features-execution-createapiruntime-test-ts" class="view" data-view="src/features/execution/createApiRuntime.test.ts" hidden>
     <section class="panel">
       <h2>src/features/execution/createApiRuntime.test.ts</h2>
-      <article class="item" data-search="request src/features/execution/createApiRuntime.test.ts Build a normalized request for the fixture operation.">
+      <article class="item" data-search="handler src/features/execution/createApiRuntime.test.ts ">
+    <h3>handler</h3>
+    <p class="muted"><code>src/features/execution/createApiRuntime.test.ts:144:9</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="handler src/features/execution/createApiRuntime.test.ts ">
+    <h3>handler</h3>
+    <p class="muted"><code>src/features/execution/createApiRuntime.test.ts:164:9</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="request src/features/execution/createApiRuntime.test.ts Build a normalized request for the fixture operation.">
     <h3>request</h3>
-    <p class="muted"><code>src/features/execution/createApiRuntime.test.ts:93:1</code></p>
+    <p class="muted"><code>src/features/execution/createApiRuntime.test.ts:185:1</code></p>
     <p>Build a normalized request for the fixture operation.</p>
     
   </article>

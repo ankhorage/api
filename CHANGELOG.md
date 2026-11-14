@@ -1,5 +1,11 @@
 # @ankhorage/api
 
+## 0.4.0
+
+### Minor Changes
+
+- 0581f54: Compose manifest-declared API operations with approved handlers, explicit app/project scope, and fail-closed authorization.
+
 ## 0.3.1
 
 ### Patch Changes

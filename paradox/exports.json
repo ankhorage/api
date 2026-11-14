@@ -1,5 +1,112 @@
 [
   {
+    "name": "ApiAuthorizationPolicy",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "unknown",
+    "modulePath": "src/types/api.ts",
+    "sourceLocation": {
+      "filePath": "src/types/api.ts",
+      "line": 70,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "ApiAuthorizationRequest",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/api.ts",
+    "sourceLocation": {
+      "filePath": "src/types/api.ts",
+      "line": 64,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [
+      "ApiCompositionContext",
+      "ApiOperationBinding",
+      "ApiRequest"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "binding",
+        "kind": "property",
+        "type": "ApiOperationBinding",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "context",
+        "kind": "property",
+        "type": "ApiCompositionContext",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "request",
+        "kind": "property",
+        "type": "ApiRequest",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ApiCompositionContext",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/api.ts",
+    "sourceLocation": {
+      "filePath": "src/types/api.ts",
+      "line": 50,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "appId",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "projectId",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
     "name": "ApiHandler",
     "title": null,
     "description": null,
@@ -10,7 +117,7 @@
     "modulePath": "src/types/api.ts",
     "sourceLocation": {
       "filePath": "src/types/api.ts",
-      "line": 42,
+      "line": 43,
       "column": 1
     },
     "exportPaths": [
@@ -39,6 +146,7 @@
       "src/api.ts"
     ],
     "relatedSymbols": [
+      "ApiCompositionContext",
       "ApiOperationBinding"
     ],
     "signatures": [],
@@ -48,6 +156,13 @@
         "kind": "property",
         "type": "ApiOperationBinding",
         "required": true,
+        "description": null
+      },
+      {
+        "name": "composition",
+        "kind": "property",
+        "type": "ApiCompositionContext",
+        "required": false,
         "description": null
       }
     ],
@@ -64,7 +179,69 @@
     "modulePath": "src/types/api.ts",
     "sourceLocation": {
       "filePath": "src/types/api.ts",
-      "line": 47,
+      "line": 48,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "ApiHandlerResolutionRequest",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/api.ts",
+    "sourceLocation": {
+      "filePath": "src/types/api.ts",
+      "line": 55,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [
+      "ApiCompositionContext",
+      "ApiOperationBinding"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "binding",
+        "kind": "property",
+        "type": "ApiOperationBinding",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "context",
+        "kind": "property",
+        "type": "ApiCompositionContext",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ApiHandlerResolver",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "unknown",
+    "modulePath": "src/types/api.ts",
+    "sourceLocation": {
+      "filePath": "src/types/api.ts",
+      "line": 60,
       "column": 1
     },
     "exportPaths": [
@@ -304,7 +481,7 @@
     "modulePath": "src/types/api.ts",
     "sourceLocation": {
       "filePath": "src/types/api.ts",
-      "line": 49,
+      "line": 81,
       "column": 1
     },
     "exportPaths": [
@@ -359,7 +536,7 @@
     "modulePath": "src/types/api.ts",
     "sourceLocation": {
       "filePath": "src/types/api.ts",
-      "line": 56,
+      "line": 88,
       "column": 1
     },
     "exportPaths": [
@@ -409,6 +586,100 @@
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "composeAuthorizedApiRuntime",
+    "title": null,
+    "description": "Compose declared API operations with host-approved handlers and deny-by-default authorization.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "function",
+    "modulePath": "src/features/execution/composeAuthorizedApiRuntime.ts",
+    "sourceLocation": {
+      "filePath": "src/features/execution/composeAuthorizedApiRuntime.ts",
+      "line": 14,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [
+      "ApiRuntime",
+      "ComposeAuthorizedApiRuntimeOptions"
+    ],
+    "signatures": [
+      {
+        "label": "(options: ComposeAuthorizedApiRuntimeOptions) => import(\"../../api.js\").ApiRuntime",
+        "parameters": [
+          {
+            "name": "options",
+            "type": "ComposeAuthorizedApiRuntimeOptions",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "import(\"../../api.js\").ApiRuntime",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "ComposeAuthorizedApiRuntimeOptions",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/api.ts",
+    "sourceLocation": {
+      "filePath": "src/types/api.ts",
+      "line": 74,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [
+      "ApiAuthorizationPolicy",
+      "ApiCompositionContext",
+      "ApiHandlerResolver"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "authorizeAsync",
+        "kind": "property",
+        "type": "ApiAuthorizationPolicy",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "context",
+        "kind": "property",
+        "type": "ApiCompositionContext",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "definition",
+        "kind": "property",
+        "type": "InternalRestApiDefinition",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "resolveHandler",
+        "kind": "property",
+        "type": "ApiHandlerResolver",
+        "required": true,
+        "description": null
+      }
+    ],
     "structuredRows": []
   },
   {

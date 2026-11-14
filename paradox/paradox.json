@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v0.3.1",
+      "value": "v0.4.0",
       "color": "cb3837"
     },
     {
@@ -97,9 +97,14 @@
       "isEntrypoint": true,
       "dependencies": [],
       "exports": [
+        "ApiAuthorizationPolicy",
+        "ApiAuthorizationRequest",
+        "ApiCompositionContext",
         "ApiHandler",
         "ApiHandlerContext",
         "ApiHandlerRegistry",
+        "ApiHandlerResolutionRequest",
+        "ApiHandlerResolver",
         "ApiHandlerResponse",
         "ApiOperationBinding",
         "ApiRequest",
@@ -107,6 +112,8 @@
         "ApiRuntime",
         "ApiTransportAdapter",
         "CAPABILITIES",
+        "composeAuthorizedApiRuntime",
+        "ComposeAuthorizedApiRuntimeOptions",
         "createApiRuntime",
         "createApiTransportHandler",
         "projectApiCapabilities",
@@ -122,9 +129,22 @@
       ]
     },
     {
+      "path": "src/features/execution/composeAuthorizedApiRuntime.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/execution/createApiRuntime.ts",
+        "src/features/execution/resolveApiOperationBindings.ts",
+        "src/types/api.ts"
+      ],
+      "exports": [
+        "composeAuthorizedApiRuntime"
+      ]
+    },
+    {
       "path": "src/features/execution/createApiRuntime.test.ts",
       "isEntrypoint": false,
       "dependencies": [
+        "src/features/execution/composeAuthorizedApiRuntime.ts",
         "src/features/execution/createApiRuntime.ts",
         "src/features/execution/resolveApiOperationBindings.ts"
       ],
@@ -192,19 +212,132 @@
       "isEntrypoint": false,
       "dependencies": [],
       "exports": [
+        "ApiAuthorizationPolicy",
+        "ApiAuthorizationRequest",
+        "ApiCompositionContext",
         "ApiHandler",
         "ApiHandlerContext",
         "ApiHandlerRegistry",
+        "ApiHandlerResolutionRequest",
+        "ApiHandlerResolver",
         "ApiHandlerResponse",
         "ApiOperationBinding",
         "ApiRequest",
         "ApiResponse",
         "ApiRuntime",
-        "ApiTransportAdapter"
+        "ApiTransportAdapter",
+        "ComposeAuthorizedApiRuntimeOptions"
       ]
     }
   ],
   "exports": [
+    {
+      "name": "ApiAuthorizationPolicy",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "unknown",
+      "modulePath": "src/types/api.ts",
+      "sourceLocation": {
+        "filePath": "src/types/api.ts",
+        "line": 70,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/api.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "ApiAuthorizationRequest",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/api.ts",
+      "sourceLocation": {
+        "filePath": "src/types/api.ts",
+        "line": 64,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/api.ts"
+      ],
+      "relatedSymbols": [
+        "ApiCompositionContext",
+        "ApiOperationBinding",
+        "ApiRequest"
+      ],
+      "signatures": [],
+      "members": [
+        {
+          "name": "binding",
+          "kind": "property",
+          "type": "ApiOperationBinding",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "context",
+          "kind": "property",
+          "type": "ApiCompositionContext",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "request",
+          "kind": "property",
+          "type": "ApiRequest",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "ApiCompositionContext",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/api.ts",
+      "sourceLocation": {
+        "filePath": "src/types/api.ts",
+        "line": 50,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/api.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "appId",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "projectId",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
     {
       "name": "ApiHandler",
       "title": null,
@@ -216,7 +349,7 @@
       "modulePath": "src/types/api.ts",
       "sourceLocation": {
         "filePath": "src/types/api.ts",
-        "line": 42,
+        "line": 43,
         "column": 1
       },
       "exportPaths": [
@@ -245,6 +378,7 @@
         "src/api.ts"
       ],
       "relatedSymbols": [
+        "ApiCompositionContext",
         "ApiOperationBinding"
       ],
       "signatures": [],
@@ -254,6 +388,13 @@
           "kind": "property",
           "type": "ApiOperationBinding",
           "required": true,
+          "description": null
+        },
+        {
+          "name": "composition",
+          "kind": "property",
+          "type": "ApiCompositionContext",
+          "required": false,
           "description": null
         }
       ],
@@ -270,7 +411,69 @@
       "modulePath": "src/types/api.ts",
       "sourceLocation": {
         "filePath": "src/types/api.ts",
-        "line": 47,
+        "line": 48,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/api.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "ApiHandlerResolutionRequest",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/api.ts",
+      "sourceLocation": {
+        "filePath": "src/types/api.ts",
+        "line": 55,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/api.ts"
+      ],
+      "relatedSymbols": [
+        "ApiCompositionContext",
+        "ApiOperationBinding"
+      ],
+      "signatures": [],
+      "members": [
+        {
+          "name": "binding",
+          "kind": "property",
+          "type": "ApiOperationBinding",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "context",
+          "kind": "property",
+          "type": "ApiCompositionContext",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "ApiHandlerResolver",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "unknown",
+      "modulePath": "src/types/api.ts",
+      "sourceLocation": {
+        "filePath": "src/types/api.ts",
+        "line": 60,
         "column": 1
       },
       "exportPaths": [
@@ -510,7 +713,7 @@
       "modulePath": "src/types/api.ts",
       "sourceLocation": {
         "filePath": "src/types/api.ts",
-        "line": 49,
+        "line": 81,
         "column": 1
       },
       "exportPaths": [
@@ -565,7 +768,7 @@
       "modulePath": "src/types/api.ts",
       "sourceLocation": {
         "filePath": "src/types/api.ts",
-        "line": 56,
+        "line": 88,
         "column": 1
       },
       "exportPaths": [
@@ -615,6 +818,100 @@
       "relatedSymbols": [],
       "signatures": [],
       "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "composeAuthorizedApiRuntime",
+      "title": null,
+      "description": "Compose declared API operations with host-approved handlers and deny-by-default authorization.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "function",
+      "modulePath": "src/features/execution/composeAuthorizedApiRuntime.ts",
+      "sourceLocation": {
+        "filePath": "src/features/execution/composeAuthorizedApiRuntime.ts",
+        "line": 14,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/api.ts"
+      ],
+      "relatedSymbols": [
+        "ApiRuntime",
+        "ComposeAuthorizedApiRuntimeOptions"
+      ],
+      "signatures": [
+        {
+          "label": "(options: ComposeAuthorizedApiRuntimeOptions) => import(\"../../api.js\").ApiRuntime",
+          "parameters": [
+            {
+              "name": "options",
+              "type": "ComposeAuthorizedApiRuntimeOptions",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "import(\"../../api.js\").ApiRuntime",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "ComposeAuthorizedApiRuntimeOptions",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/api.ts",
+      "sourceLocation": {
+        "filePath": "src/types/api.ts",
+        "line": 74,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/api.ts"
+      ],
+      "relatedSymbols": [
+        "ApiAuthorizationPolicy",
+        "ApiCompositionContext",
+        "ApiHandlerResolver"
+      ],
+      "signatures": [],
+      "members": [
+        {
+          "name": "authorizeAsync",
+          "kind": "property",
+          "type": "ApiAuthorizationPolicy",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "context",
+          "kind": "property",
+          "type": "ApiCompositionContext",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "definition",
+          "kind": "property",
+          "type": "InternalRestApiDefinition",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "resolveHandler",
+          "kind": "property",
+          "type": "ApiHandlerResolver",
+          "required": true,
+          "description": null
+        }
+      ],
       "structuredRows": []
     },
     {
@@ -786,13 +1083,101 @@
   "components": [],
   "sourceFunctions": [
     {
+      "name": "composeAuthorizedApiRuntime",
+      "description": "Compose declared API operations with host-approved handlers and deny-by-default authorization.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/composeAuthorizedApiRuntime.ts",
+        "line": 14,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveAuthorizedHandlers",
+      "description": "Resolve every declared operation before exposing the API runtime.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/composeAuthorizedApiRuntime.ts",
+        "line": 24,
+        "column": 1
+      }
+    },
+    {
+      "name": "createAuthorizedHandler",
+      "description": "Deny a request unless the host authorization policy explicitly approves it.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/composeAuthorizedApiRuntime.ts",
+        "line": 48,
+        "column": 1
+      }
+    },
+    {
+      "name": "isAuthorizedAsync",
+      "description": "Treat a failing authorization policy exactly like an explicit denial.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/composeAuthorizedApiRuntime.ts",
+        "line": 62,
+        "column": 1
+      }
+    },
+    {
+      "name": "assertCompositionContext",
+      "description": "Reject incomplete composition scope before any HTTP route can be registered.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/composeAuthorizedApiRuntime.ts",
+        "line": 79,
+        "column": 1
+      }
+    },
+    {
+      "name": "forbiddenResponse",
+      "description": "Return a normalized authorization failure without invoking the selected handler.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/composeAuthorizedApiRuntime.ts",
+        "line": 90,
+        "column": 1
+      }
+    },
+    {
+      "name": "handler",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/createApiRuntime.test.ts",
+        "line": 144,
+        "column": 9
+      }
+    },
+    {
+      "name": "handler",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/createApiRuntime.test.ts",
+        "line": 164,
+        "column": 9
+      }
+    },
+    {
       "name": "request",
       "description": "Build a normalized request for the fixture operation.",
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/features/execution/createApiRuntime.test.ts",
-        "line": 93,
+        "line": 185,
         "column": 1
       }
     },
@@ -1031,6 +1416,14 @@
   "sequenceScenarios": [
     {
       "kind": "export",
+      "name": "composeAuthorizedApiRuntime",
+      "sourcePath": "src/features/execution/composeAuthorizedApiRuntime.ts",
+      "symbolName": "composeAuthorizedApiRuntime",
+      "description": "Compose declared API operations with host-approved handlers and deny-by-default authorization.",
+      "isReadme": false
+    },
+    {
+      "kind": "export",
       "name": "createApiRuntime",
       "sourcePath": "src/features/execution/createApiRuntime.ts",
       "symbolName": "createApiRuntime",
@@ -1076,6 +1469,11 @@
       },
       {
         "fromPath": "src/api.ts",
+        "toPath": "src/features/execution/composeAuthorizedApiRuntime.ts",
+        "sourcePath": "src/api.ts"
+      },
+      {
+        "fromPath": "src/api.ts",
         "toPath": "src/features/execution/createApiRuntime.ts",
         "sourcePath": "src/api.ts"
       },
@@ -1098,6 +1496,26 @@
         "fromPath": "src/api.ts",
         "toPath": "src/types/api.ts",
         "sourcePath": "src/api.ts"
+      },
+      {
+        "fromPath": "src/features/execution/composeAuthorizedApiRuntime.ts",
+        "toPath": "src/types/api.ts",
+        "sourcePath": "src/features/execution/composeAuthorizedApiRuntime.ts"
+      },
+      {
+        "fromPath": "src/features/execution/composeAuthorizedApiRuntime.ts",
+        "toPath": "src/features/execution/createApiRuntime.ts",
+        "sourcePath": "src/features/execution/composeAuthorizedApiRuntime.ts"
+      },
+      {
+        "fromPath": "src/features/execution/composeAuthorizedApiRuntime.ts",
+        "toPath": "src/features/execution/resolveApiOperationBindings.ts",
+        "sourcePath": "src/features/execution/composeAuthorizedApiRuntime.ts"
+      },
+      {
+        "fromPath": "src/features/execution/createApiRuntime.test.ts",
+        "toPath": "src/features/execution/composeAuthorizedApiRuntime.ts",
+        "sourcePath": "src/features/execution/createApiRuntime.test.ts"
       },
       {
         "fromPath": "src/features/execution/createApiRuntime.test.ts",
@@ -1170,9 +1588,75 @@
         "sourcePath": "src/api.test.ts"
       },
       {
+        "fromSymbol": "composeAuthorizedApiRuntime",
+        "toSymbol": "assertCompositionContext",
+        "callExpression": "assertCompositionContext",
+        "sourcePath": "src/features/execution/composeAuthorizedApiRuntime.ts"
+      },
+      {
+        "fromSymbol": "composeAuthorizedApiRuntime",
+        "toSymbol": "resolveAuthorizedHandlers",
+        "callExpression": "resolveAuthorizedHandlers",
+        "sourcePath": "src/features/execution/composeAuthorizedApiRuntime.ts"
+      },
+      {
+        "fromSymbol": "composeAuthorizedApiRuntime",
+        "toSymbol": "createApiRuntime",
+        "callExpression": "createApiRuntime",
+        "sourcePath": "src/features/execution/composeAuthorizedApiRuntime.ts"
+      },
+      {
+        "fromSymbol": "resolveAuthorizedHandlers",
+        "toSymbol": "resolveApiOperationBindings",
+        "callExpression": "resolveApiOperationBindings",
+        "sourcePath": "src/features/execution/composeAuthorizedApiRuntime.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/composeAuthorizedApiRuntime.ts",
+        "toSymbol": "resolveHandler",
+        "callExpression": "options.resolveHandler",
+        "sourcePath": "src/features/execution/composeAuthorizedApiRuntime.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/composeAuthorizedApiRuntime.ts",
+        "toSymbol": "createAuthorizedHandler",
+        "callExpression": "createAuthorizedHandler",
+        "sourcePath": "src/features/execution/composeAuthorizedApiRuntime.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/composeAuthorizedApiRuntime.ts",
+        "toSymbol": "isAuthorizedAsync",
+        "callExpression": "isAuthorizedAsync",
+        "sourcePath": "src/features/execution/composeAuthorizedApiRuntime.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/composeAuthorizedApiRuntime.ts",
+        "toSymbol": "forbiddenResponse",
+        "callExpression": "forbiddenResponse",
+        "sourcePath": "src/features/execution/composeAuthorizedApiRuntime.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/composeAuthorizedApiRuntime.ts",
+        "toSymbol": "handler",
+        "callExpression": "handler",
+        "sourcePath": "src/features/execution/composeAuthorizedApiRuntime.ts"
+      },
+      {
+        "fromSymbol": "isAuthorizedAsync",
+        "toSymbol": "authorizeAsync",
+        "callExpression": "options.authorizeAsync",
+        "sourcePath": "src/features/execution/composeAuthorizedApiRuntime.ts"
+      },
+      {
         "fromSymbol": "src/features/execution/createApiRuntime.test.ts",
         "toSymbol": "test",
         "callExpression": "test",
+        "sourcePath": "src/features/execution/createApiRuntime.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/createApiRuntime.test.ts",
+        "toSymbol": "createApiRuntime",
+        "callExpression": "createApiRuntime",
         "sourcePath": "src/features/execution/createApiRuntime.test.ts"
       },
       {
@@ -1189,12 +1673,6 @@
       },
       {
         "fromSymbol": "src/features/execution/createApiRuntime.test.ts",
-        "toSymbol": "createApiRuntime",
-        "callExpression": "createApiRuntime",
-        "sourcePath": "src/features/execution/createApiRuntime.test.ts"
-      },
-      {
-        "fromSymbol": "src/features/execution/createApiRuntime.test.ts",
         "toSymbol": "dispatchAsync",
         "callExpression": "runtime.dispatchAsync",
         "sourcePath": "src/features/execution/createApiRuntime.test.ts"
@@ -1207,8 +1685,14 @@
       },
       {
         "fromSymbol": "src/features/execution/createApiRuntime.test.ts",
+        "toSymbol": "composeAuthorizedApiRuntime",
+        "callExpression": "composeAuthorizedApiRuntime",
+        "sourcePath": "src/features/execution/createApiRuntime.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/createApiRuntime.test.ts",
         "toSymbol": "dispatchAsync",
-        "callExpression": "noHandlers.dispatchAsync",
+        "callExpression": "failingPolicyRuntime.dispatchAsync",
         "sourcePath": "src/features/execution/createApiRuntime.test.ts"
       },
       {
@@ -1436,6 +1920,16 @@
     ],
     "typeReferences": [
       {
+        "fromSymbol": "composeAuthorizedApiRuntime",
+        "toType": "ApiRuntime",
+        "sourcePath": "src/features/execution/composeAuthorizedApiRuntime.ts"
+      },
+      {
+        "fromSymbol": "composeAuthorizedApiRuntime",
+        "toType": "ComposeAuthorizedApiRuntimeOptions",
+        "sourcePath": "src/features/execution/composeAuthorizedApiRuntime.ts"
+      },
+      {
         "fromSymbol": "createApiRuntime",
         "toType": "ApiHandlerRegistry",
         "sourcePath": "src/features/execution/createApiRuntime.ts"
@@ -1496,7 +1990,37 @@
         "sourcePath": "src/features/execution/resolveApiOperationBindings.ts"
       },
       {
+        "fromSymbol": "ApiAuthorizationRequest",
+        "toType": "ApiCompositionContext",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "ApiAuthorizationRequest",
+        "toType": "ApiOperationBinding",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "ApiAuthorizationRequest",
+        "toType": "ApiRequest",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
         "fromSymbol": "ApiHandlerContext",
+        "toType": "ApiCompositionContext",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "ApiHandlerContext",
+        "toType": "ApiOperationBinding",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "ApiHandlerResolutionRequest",
+        "toType": "ApiCompositionContext",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "ApiHandlerResolutionRequest",
         "toType": "ApiOperationBinding",
         "sourcePath": "src/types/api.ts"
       },
@@ -1583,6 +2107,26 @@
       {
         "fromSymbol": "ApiTransportAdapter",
         "toType": "TResponse",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "ComposeAuthorizedApiRuntimeOptions",
+        "toType": "ApiAuthorizationPolicy",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "ComposeAuthorizedApiRuntimeOptions",
+        "toType": "ApiCompositionContext",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "ComposeAuthorizedApiRuntimeOptions",
+        "toType": "ApiHandlerResolver",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "ComposeAuthorizedApiRuntimeOptions",
+        "toType": "InternalRestApiDefinition",
         "sourcePath": "src/types/api.ts"
       }
     ],

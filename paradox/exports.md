@@ -1,10 +1,43 @@
 # Public API
 
+## ApiAuthorizationPolicy
+
+Kind: `unknown`
+Module: `src/types/api.ts`
+Source: `src/types/api.ts:70:1`
+
+## ApiAuthorizationRequest
+
+Kind: `type`
+Module: `src/types/api.ts`
+Source: `src/types/api.ts:64:1`
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| binding | property | `ApiOperationBinding` | yes |  |
+| context | property | `ApiCompositionContext` | yes |  |
+| request | property | `ApiRequest` | yes |  |
+
+## ApiCompositionContext
+
+Kind: `type`
+Module: `src/types/api.ts`
+Source: `src/types/api.ts:50:1`
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| appId | property | `string` | yes |  |
+| projectId | property | `string` | yes |  |
+
 ## ApiHandler
 
 Kind: `unknown`
 Module: `src/types/api.ts`
-Source: `src/types/api.ts:42:1`
+Source: `src/types/api.ts:43:1`
 
 ## ApiHandlerContext
 
@@ -17,12 +50,32 @@ Source: `src/types/api.ts:38:1`
 | Name | Kind | Type | Required | Description |
 | --- | --- | --- | --- | --- |
 | binding | property | `ApiOperationBinding` | yes |  |
+| composition | property | `ApiCompositionContext` | no |  |
 
 ## ApiHandlerRegistry
 
 Kind: `unknown`
 Module: `src/types/api.ts`
-Source: `src/types/api.ts:47:1`
+Source: `src/types/api.ts:48:1`
+
+## ApiHandlerResolutionRequest
+
+Kind: `type`
+Module: `src/types/api.ts`
+Source: `src/types/api.ts:55:1`
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| binding | property | `ApiOperationBinding` | yes |  |
+| context | property | `ApiCompositionContext` | yes |  |
+
+## ApiHandlerResolver
+
+Kind: `unknown`
+Module: `src/types/api.ts`
+Source: `src/types/api.ts:60:1`
 
 ## ApiHandlerResponse
 
@@ -90,7 +143,7 @@ Source: `src/types/api.ts:32:1`
 
 Kind: `type`
 Module: `src/types/api.ts`
-Source: `src/types/api.ts:49:1`
+Source: `src/types/api.ts:81:1`
 
 ### Members
 
@@ -105,7 +158,7 @@ Source: `src/types/api.ts:49:1`
 
 Kind: `type`
 Module: `src/types/api.ts`
-Source: `src/types/api.ts:56:1`
+Source: `src/types/api.ts:88:1`
 
 ### Members
 
@@ -119,6 +172,35 @@ Source: `src/types/api.ts:56:1`
 Kind: `value`
 Module: `src/capabilities/index.ts`
 Source: `src/capabilities/index.ts:9:14`
+
+## composeAuthorizedApiRuntime
+
+Kind: `function`
+Module: `src/features/execution/composeAuthorizedApiRuntime.ts`
+Source: `src/features/execution/composeAuthorizedApiRuntime.ts:14:1`
+
+Compose declared API operations with host-approved handlers and deny-by-default authorization.
+
+### Signatures
+
+- `(options: ComposeAuthorizedApiRuntimeOptions) => import("../../api.js").ApiRuntime`
+  - options: `ComposeAuthorizedApiRuntimeOptions`
+  - returns: `import("../../api.js").ApiRuntime`
+
+## ComposeAuthorizedApiRuntimeOptions
+
+Kind: `type`
+Module: `src/types/api.ts`
+Source: `src/types/api.ts:74:1`
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| authorizeAsync | property | `ApiAuthorizationPolicy` | yes |  |
+| context | property | `ApiCompositionContext` | yes |  |
+| definition | property | `InternalRestApiDefinition` | yes |  |
+| resolveHandler | property | `ApiHandlerResolver` | yes |  |
 
 ## createApiRuntime
 

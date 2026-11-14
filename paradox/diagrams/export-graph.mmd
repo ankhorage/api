@@ -2,6 +2,7 @@ graph LR
   module_src_api_test_ts["src/api.test.ts"]
   module_src_api_ts["src/api.ts"]
   module_src_capabilities_index_ts["src/capabilities/index.ts"]
+  module_src_features_execution_composeAuthorizedApiRuntime_ts["src/features/execution/composeAuthorizedApiRuntime.ts"]
   module_src_features_execution_createApiRuntime_test_ts["src/features/execution/createApiRuntime.test.ts"]
   module_src_features_execution_createApiRuntime_ts["src/features/execution/createApiRuntime.ts"]
   module_src_features_execution_createApiTransportHandler_test_ts["src/features/execution/createApiTransportHandler.test.ts"]
@@ -10,13 +11,29 @@ graph LR
   module_src_features_execution_projectApiCapabilities_ts["src/features/execution/projectApiCapabilities.ts"]
   module_src_features_execution_resolveApiOperationBindings_ts["src/features/execution/resolveApiOperationBindings.ts"]
   module_src_types_api_ts["src/types/api.ts"]
+  export_ApiAuthorizationPolicy["ApiAuthorizationPolicy"]
+  module_src_types_api_ts --> export_ApiAuthorizationPolicy
+  export_ApiAuthorizationRequest["ApiAuthorizationRequest"]
+  module_src_types_api_ts --> export_ApiAuthorizationRequest
+  export_ApiAuthorizationRequest -.-> export_ApiCompositionContext
+  export_ApiAuthorizationRequest -.-> export_ApiOperationBinding
+  export_ApiAuthorizationRequest -.-> export_ApiRequest
+  export_ApiCompositionContext["ApiCompositionContext"]
+  module_src_types_api_ts --> export_ApiCompositionContext
   export_ApiHandler["ApiHandler"]
   module_src_types_api_ts --> export_ApiHandler
   export_ApiHandlerContext["ApiHandlerContext"]
   module_src_types_api_ts --> export_ApiHandlerContext
+  export_ApiHandlerContext -.-> export_ApiCompositionContext
   export_ApiHandlerContext -.-> export_ApiOperationBinding
   export_ApiHandlerRegistry["ApiHandlerRegistry"]
   module_src_types_api_ts --> export_ApiHandlerRegistry
+  export_ApiHandlerResolutionRequest["ApiHandlerResolutionRequest"]
+  module_src_types_api_ts --> export_ApiHandlerResolutionRequest
+  export_ApiHandlerResolutionRequest -.-> export_ApiCompositionContext
+  export_ApiHandlerResolutionRequest -.-> export_ApiOperationBinding
+  export_ApiHandlerResolver["ApiHandlerResolver"]
+  module_src_types_api_ts --> export_ApiHandlerResolver
   export_ApiHandlerResponse["ApiHandlerResponse"]
   module_src_types_api_ts --> export_ApiHandlerResponse
   export_ApiOperationBinding["ApiOperationBinding"]
@@ -37,6 +54,15 @@ graph LR
   export_ApiTransportAdapter -.-> export_ApiResponse
   export_CAPABILITIES["CAPABILITIES"]
   module_src_capabilities_index_ts --> export_CAPABILITIES
+  export_composeAuthorizedApiRuntime["composeAuthorizedApiRuntime"]
+  module_src_features_execution_composeAuthorizedApiRuntime_ts --> export_composeAuthorizedApiRuntime
+  export_composeAuthorizedApiRuntime -.-> export_ApiRuntime
+  export_composeAuthorizedApiRuntime -.-> export_ComposeAuthorizedApiRuntimeOptions
+  export_ComposeAuthorizedApiRuntimeOptions["ComposeAuthorizedApiRuntimeOptions"]
+  module_src_types_api_ts --> export_ComposeAuthorizedApiRuntimeOptions
+  export_ComposeAuthorizedApiRuntimeOptions -.-> export_ApiAuthorizationPolicy
+  export_ComposeAuthorizedApiRuntimeOptions -.-> export_ApiCompositionContext
+  export_ComposeAuthorizedApiRuntimeOptions -.-> export_ApiHandlerResolver
   export_createApiRuntime["createApiRuntime"]
   module_src_features_execution_createApiRuntime_ts --> export_createApiRuntime
   export_createApiRuntime -.-> export_ApiHandlerRegistry
