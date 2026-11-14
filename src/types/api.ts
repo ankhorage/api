@@ -37,6 +37,7 @@ export interface ApiResponse {
 
 export interface ApiHandlerContext {
   readonly binding: ApiOperationBinding;
+  readonly composition?: ApiCompositionContext;
 }
 
 export type ApiHandler = (
@@ -45,6 +46,37 @@ export type ApiHandler = (
 ) => ApiHandlerResponse | Promise<ApiHandlerResponse>;
 
 export type ApiHandlerRegistry = Readonly<Record<string, ApiHandler>>;
+
+export interface ApiCompositionContext {
+  readonly appId: string;
+  readonly projectId: string;
+}
+
+export interface ApiHandlerResolutionRequest {
+  readonly binding: ApiOperationBinding;
+  readonly context: ApiCompositionContext;
+}
+
+export type ApiHandlerResolver = (
+  request: ApiHandlerResolutionRequest,
+) => ApiHandler | undefined;
+
+export interface ApiAuthorizationRequest {
+  readonly binding: ApiOperationBinding;
+  readonly context: ApiCompositionContext;
+  readonly request: ApiRequest;
+}
+
+export type ApiAuthorizationPolicy = (
+  request: ApiAuthorizationRequest,
+) => boolean | Promise<boolean>;
+
+export interface ComposeAuthorizedApiRuntimeOptions {
+  readonly definition: InternalRestApiDefinition;
+  readonly context: ApiCompositionContext;
+  readonly resolveHandler: ApiHandlerResolver;
+  readonly authorizeAsync: ApiAuthorizationPolicy;
+}
 
 export interface ApiRuntime {
   readonly definition: InternalRestApiDefinition;
