@@ -1,6 +1,8 @@
 import type { InternalRestApiDefinition } from "@ankhorage/contracts/data";
+import { CAPABILITIES } from "@ankhorage/projects/capabilities";
 import { expect, test } from "bun:test";
 
+import type { ApiApprovedHandler, ApiHandler } from "../../types/api.js";
 import { composeAuthorizedApiRuntime } from "./composeAuthorizedApiRuntime.js";
 import { createApiRuntime } from "./createApiRuntime.js";
 import { resolveApiOperationBindings } from "./resolveApiOperationBindings.js";
@@ -24,6 +26,12 @@ const DEFINITION = {
           path: "/:id",
         },
       },
+    },
+  },
+  handlers: {
+    "workspace.load": {
+      operationId: "workspace.load",
+      capability: "projects.read",
     },
   },
 } satisfies InternalRestApiDefinition;
@@ -93,36 +101,12 @@ test("returns deterministic errors for missing handlers and wrong methods", asyn
   });
 });
 
-test("composes each manifest operation with an approved handler and scoped authorization", async () => {
-  const resolved: string[] = [];
-  const runtime = composeAuthorizedApiRuntime({
-    definition: DEFINITION,
-    context: { appId: "app-a", projectId: "project-a" },
-    resolveHandler: ({ binding, context }) => {
-      resolved.push(
-        `${context.appId}:${context.projectId}:${binding.operationId}`,
-      );
-      return (_request, handlerContext) => ({
-        body: handlerContext.composition,
-      });
-    },
-    authorizeAsync: ({ context, request }) =>
-      context.projectId === "project-a" && request.params.id === "one",
-  });
-
-  expect(resolved).toEqual(["app-a:project-a:workspace.load"]);
-  expect(await runtime.dispatchAsync(request())).toMatchObject({
-    status: 200,
-    body: { appId: "app-a", projectId: "project-a" },
-  });
-});
-
 test("fails closed without a scoped context", () => {
   expect(() =>
     composeAuthorizedApiRuntime({
       definition: DEFINITION,
       context: { appId: "", projectId: "project-a" },
-      resolveHandler: () => () => ({}),
+      resolveHandler: () => approvedHandler("projects.read"),
       authorizeAsync: () => true,
     }),
   ).toThrow("requires non-empty app and project ids");
@@ -148,7 +132,7 @@ test("fails closed when authorization denies a request", async () => {
   const runtime = composeAuthorizedApiRuntime({
     definition: DEFINITION,
     context: { appId: "app-a", projectId: "project-a" },
-    resolveHandler: () => handler,
+    resolveHandler: () => approvedHandler("projects.read", handler),
     authorizeAsync: () => false,
   });
 
@@ -168,7 +152,7 @@ test("fails closed when authorization throws", async () => {
   const failingPolicyRuntime = composeAuthorizedApiRuntime({
     definition: DEFINITION,
     context: { appId: "app-a", projectId: "project-a" },
-    resolveHandler: () => handler,
+    resolveHandler: () => approvedHandler("projects.read", handler),
     authorizeAsync: () => {
       throw new Error("unavailable");
     },
@@ -181,6 +165,86 @@ test("fails closed when authorization throws", async () => {
   expect(handled).toEqual([]);
 });
 
+test("fails closed before route exposure for incomplete or invalid declarations", () => {
+  expect(() =>
+    composeAuthorizedApiRuntime({
+      definition: { ...DEFINITION, handlers: {} },
+      context: { appId: "app-a", projectId: "project-a" },
+      resolveHandler: () => approvedHandler("projects.read"),
+      authorizeAsync: () => true,
+    }),
+  ).toThrow("Every API operation requires exactly one handler declaration");
+
+  expect(() =>
+    composeAuthorizedApiRuntime({
+      definition: {
+        ...DEFINITION,
+        handlers: {
+          "workspace.missing": {
+            operationId: "workspace.missing",
+            capability: "projects.read",
+          },
+        },
+      },
+      context: { appId: "app-a", projectId: "project-a" },
+      resolveHandler: () => approvedHandler("projects.read"),
+      authorizeAsync: () => true,
+    }),
+  ).toThrow("targets unknown API operation workspace.missing");
+
+  expect(() =>
+    composeAuthorizedApiRuntime({
+      definition: {
+        ...DEFINITION,
+        handlers: {
+          "workspace.alias": {
+            operationId: "workspace.load",
+            capability: "projects.read",
+          },
+        },
+      },
+      context: { appId: "app-a", projectId: "project-a" },
+      resolveHandler: () => approvedHandler("projects.read"),
+      authorizeAsync: () => true,
+    }),
+  ).toThrow("Handler declaration key does not match its operation id");
+});
+
+test("fails closed for duplicate declared capabilities", () => {
+  const definition = {
+    ...DEFINITION,
+    endpoints: {
+      ...DEFINITION.endpoints,
+      listing: {
+        id: "listing",
+        kind: "http",
+        operations: {
+          "workspace.list": {
+            id: "workspace.list",
+            protocol: "http",
+            intent: "read",
+          },
+        },
+      },
+    },
+    handlers: {
+      ...DEFINITION.handlers,
+      "workspace.list": {
+        operationId: "workspace.list",
+        capability: "projects.read",
+      },
+    },
+  } satisfies InternalRestApiDefinition;
+
+  expect(() =>
+    composeAuthorizedApiRuntime({
+      definition,
+      context: { appId: "app-a", projectId: "project-a" },
+      resolveHandler: () => approvedHandler("projects.read"),
+      authorizeAsync: () => true,
+    }),
+  ).toThrow("Duplicate handler declaration for capability projects.read");
+});
 /*** Build a normalized request for the fixture operation. */
 function request() {
   return {
@@ -190,4 +254,32 @@ function request() {
     query: {},
     headers: {},
   };
+}
+
+/*** Build a host-approved executable handler owned by the declared capability provider. */
+function approvedHandler(
+  id: (typeof CAPABILITIES)[number]["id"],
+  handler: ApiHandler = () => ({ body: { handled: true } }),
+): ApiApprovedHandler {
+  const capability = capabilityById(id);
+  return {
+    capability,
+    approval: {
+      operationId: "workspace.load",
+      intent: "read",
+      method: "GET",
+      capabilityId: id,
+      owner: capability.owner,
+      scope: { appId: "app-a", projectId: "project-a" },
+    },
+    handler,
+  };
+}
+
+/*** Resolve a published owner descriptor by its stable capability identity. */
+function capabilityById(id: (typeof CAPABILITIES)[number]["id"]) {
+  const capability = CAPABILITIES.find((candidate) => candidate.id === id);
+  if (!capability)
+    throw new Error(`Missing published projects capability ${id}.`);
+  return capability;
 }
