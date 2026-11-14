@@ -42,7 +42,12 @@ function resolveAuthorizedHandlers(
         declaration,
         context: options.context,
       });
-      assertApprovedHandler(binding, declaration.capability, approvedHandler);
+      assertApprovedHandler(
+        binding,
+        declaration.capability,
+        options.context,
+        approvedHandler,
+      );
 
       return [
         binding.operationId,
@@ -110,6 +115,7 @@ function resolveHandlerDeclarations(
 function assertApprovedHandler(
   binding: ApiOperationBinding,
   capabilityId: string,
+  context: ComposeAuthorizedApiRuntimeOptions["context"],
   approvedHandler: ApiApprovedHandler | undefined,
 ): asserts approvedHandler is ApiApprovedHandler {
   if (!approvedHandler || typeof approvedHandler.handler !== "function") {
@@ -127,10 +133,40 @@ function assertApprovedHandler(
       `Approved handler has no owner for API operation ${binding.operationId}.`,
     );
   }
-  if (!approvedHandler.capability.access.includes("invoke")) {
+  if (
+    approvedHandler.approval.operationId !== binding.operationId ||
+    approvedHandler.approval.intent !== binding.operation.intent ||
+    approvedHandler.approval.method !== binding.method ||
+    approvedHandler.approval.capabilityId !== capabilityId ||
+    approvedHandler.approval.owner !== approvedHandler.capability.owner ||
+    approvedHandler.approval.scope.appId !== context.appId ||
+    approvedHandler.approval.scope.projectId !== context.projectId
+  ) {
     throw new Error(
-      `Approved handler is not executable for API operation ${binding.operationId}.`,
+      `Approved handler does not authorize API operation ${binding.operationId}.`,
     );
+  }
+  const requiredAccess = accessForIntent(binding.operation.intent);
+  if (!approvedHandler.capability.access.includes(requiredAccess)) {
+    throw new Error(
+      `Approved handler does not grant ${requiredAccess} access for API operation ${binding.operationId}.`,
+    );
+  }
+}
+
+/*** Resolve the one capability access verb that may execute a declared API intent. */
+function accessForIntent(
+  intent: ApiOperationBinding["operation"]["intent"],
+): "invoke" | "read" | "write" {
+  switch (intent) {
+    case "action":
+      return "invoke";
+    case "read":
+      return "read";
+    case "create":
+    case "delete":
+    case "update":
+      return "write";
   }
 }
 

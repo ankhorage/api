@@ -10,6 +10,7 @@ export type {
   ApiAuthorizationRequest,
   ApiCompositionContext,
   ApiHandler,
+  ApiHandlerApproval,
   ApiHandlerContext,
   ApiHandlerRegistry,
   ApiHandlerResolutionRequest,

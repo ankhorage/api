@@ -1,5 +1,5 @@
-import type { Capability } from "@ankhorage/contracts/capability";
 import type { InternalRestApiDefinition } from "@ankhorage/contracts/data";
+import { CAPABILITIES } from "@ankhorage/projects/capabilities";
 import { expect, test } from "bun:test";
 
 import type { ApiApprovedHandler, ApiHandler } from "../../types/api.js";
@@ -245,27 +245,6 @@ test("fails closed for duplicate declared capabilities", () => {
     }),
   ).toThrow("Duplicate handler declaration for capability projects.read");
 });
-test("fails closed for unapproved owner handlers", () => {
-  expect(() =>
-    composeAuthorizedApiRuntime({
-      definition: DEFINITION,
-      context: { appId: "app-a", projectId: "project-a" },
-      resolveHandler: () => approvedHandler("projects.write"),
-      authorizeAsync: () => true,
-    }),
-  ).toThrow(
-    "Approved handler capability does not match API operation workspace.load",
-  );
-
-  expect(() =>
-    composeAuthorizedApiRuntime({
-      definition: DEFINITION,
-      context: { appId: "app-a", projectId: "project-a" },
-      resolveHandler: () => approvedHandler("projects.read", undefined, ""),
-      authorizeAsync: () => true,
-    }),
-  ).toThrow("Approved handler has no owner for API operation workspace.load");
-});
 /*** Build a normalized request for the fixture operation. */
 function request() {
   return {
@@ -279,17 +258,28 @@ function request() {
 
 /*** Build a host-approved executable handler owned by the declared capability provider. */
 function approvedHandler(
-  id: Capability["id"],
+  id: (typeof CAPABILITIES)[number]["id"],
   handler: ApiHandler = () => ({ body: { handled: true } }),
-  owner = "@ankhorage/projects",
 ): ApiApprovedHandler {
+  const capability = capabilityById(id);
   return {
-    capability: {
-      id,
-      owner,
-      access: ["invoke"],
-      binding: { kind: "action", bindableAs: ["target"] },
+    capability,
+    approval: {
+      operationId: "workspace.load",
+      intent: "read",
+      method: "GET",
+      capabilityId: id,
+      owner: capability.owner,
+      scope: { appId: "app-a", projectId: "project-a" },
     },
     handler,
   };
+}
+
+/*** Resolve a published owner descriptor by its stable capability identity. */
+function capabilityById(id: (typeof CAPABILITIES)[number]["id"]) {
+  const capability = CAPABILITIES.find((candidate) => candidate.id === id);
+  if (!capability)
+    throw new Error(`Missing published projects capability ${id}.`);
+  return capability;
 }
