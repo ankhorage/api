@@ -1,5 +1,11 @@
 # @ankhorage/api
 
+## 0.5.1
+
+### Patch Changes
+
+- 6aa2056: Add canonical repository metadata.
+
 ## 0.5.0
 
 ### Minor Changes
