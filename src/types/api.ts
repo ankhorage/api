@@ -1,7 +1,9 @@
+import type { Capability } from "@ankhorage/contracts/capability";
 import type {
   DataEndpointConfig,
   DataOperationConfig,
   DataOperationMethod,
+  InternalApiOperationHandlerDeclaration,
   InternalRestApiDefinition,
 } from "@ankhorage/contracts/data";
 
@@ -38,6 +40,7 @@ export interface ApiResponse {
 export interface ApiHandlerContext {
   readonly binding: ApiOperationBinding;
   readonly composition?: ApiCompositionContext;
+  readonly capability?: Capability;
 }
 
 export type ApiHandler = (
@@ -54,12 +57,18 @@ export interface ApiCompositionContext {
 
 export interface ApiHandlerResolutionRequest {
   readonly binding: ApiOperationBinding;
+  readonly declaration: InternalApiOperationHandlerDeclaration;
   readonly context: ApiCompositionContext;
+}
+
+export interface ApiApprovedHandler {
+  readonly capability: Capability;
+  readonly handler: ApiHandler;
 }
 
 export type ApiHandlerResolver = (
   request: ApiHandlerResolutionRequest,
-) => ApiHandler | undefined;
+) => ApiApprovedHandler | undefined;
 
 export interface ApiAuthorizationRequest {
   readonly binding: ApiOperationBinding;

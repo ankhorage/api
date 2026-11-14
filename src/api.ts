@@ -5,6 +5,7 @@ export { createApiTransportHandler } from "./features/execution/createApiTranspo
 export { projectApiCapabilities } from "./features/execution/projectApiCapabilities.js";
 export { resolveApiOperationBindings } from "./features/execution/resolveApiOperationBindings.js";
 export type {
+  ApiApprovedHandler,
   ApiAuthorizationPolicy,
   ApiAuthorizationRequest,
   ApiCompositionContext,
