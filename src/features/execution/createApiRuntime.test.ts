@@ -47,7 +47,38 @@ test("resolves normalized bindings and dispatches registered handlers", async ()
   });
 });
 
-test("returns deterministic errors for invalid runtime dispatch", async () => {
+test("returns 404 for unknown operations", async () => {
+  const runtime = createApiRuntime({ definition: DEFINITION, handlers: {} });
+
+  expect(
+    await runtime.dispatchAsync({ ...request(), operationId: "missing" }),
+  ).toEqual({
+    status: 404,
+    headers: { "content-type": "application/json" },
+    body: { error: { code: "operation_not_found", operationId: "missing" } },
+  });
+});
+
+test("returns 500 when a handler throws", async () => {
+  const runtime = createApiRuntime({
+    definition: DEFINITION,
+    handlers: {
+      "workspace.load": () => {
+        throw new Error("boom");
+      },
+    },
+  });
+
+  expect(await runtime.dispatchAsync(request())).toEqual({
+    status: 500,
+    headers: { "content-type": "application/json" },
+    body: {
+      error: { code: "handler_failed", operationId: "workspace.load" },
+    },
+  });
+});
+
+test("returns deterministic errors for missing handlers and wrong methods", async () => {
   const runtime = createApiRuntime({ definition: DEFINITION, handlers: {} });
 
   expect(await runtime.dispatchAsync(request())).toMatchObject({
@@ -86,7 +117,7 @@ test("composes each manifest operation with an approved handler and scoped autho
   });
 });
 
-test("fails closed without a scoped context, approved handler, or authorization", async () => {
+test("fails closed without a scoped context", () => {
   expect(() =>
     composeAuthorizedApiRuntime({
       definition: DEFINITION,
@@ -95,7 +126,9 @@ test("fails closed without a scoped context, approved handler, or authorization"
       authorizeAsync: () => true,
     }),
   ).toThrow("requires non-empty app and project ids");
+});
 
+test("fails closed when no approved handler resolves", () => {
   expect(() =>
     composeAuthorizedApiRuntime({
       definition: DEFINITION,
@@ -104,7 +137,9 @@ test("fails closed without a scoped context, approved handler, or authorization"
       authorizeAsync: () => true,
     }),
   ).toThrow("No approved handler");
+});
 
+test("fails closed when authorization denies a request", async () => {
   const handled: string[] = [];
   const handler = () => {
     handled.push("called");
@@ -122,7 +157,14 @@ test("fails closed without a scoped context, approved handler, or authorization"
     body: { error: { code: "forbidden", operationId: "workspace.load" } },
   });
   expect(handled).toEqual([]);
+});
 
+test("fails closed when authorization throws", async () => {
+  const handled: string[] = [];
+  const handler = () => {
+    handled.push("called");
+    return { body: { unexpected: true } };
+  };
   const failingPolicyRuntime = composeAuthorizedApiRuntime({
     definition: DEFINITION,
     context: { appId: "app-a", projectId: "project-a" },
