@@ -2,6 +2,7 @@ graph LR
   module_src_api_test_ts["src/api.test.ts"]
   module_src_api_ts["src/api.ts"]
   module_src_capabilities_index_ts["src/capabilities/index.ts"]
+  module_src_features_execution_composeAuthorizedApiRuntime_test_ts["src/features/execution/composeAuthorizedApiRuntime.test.ts"]
   module_src_features_execution_composeAuthorizedApiRuntime_ts["src/features/execution/composeAuthorizedApiRuntime.ts"]
   module_src_features_execution_createApiRuntime_test_ts["src/features/execution/createApiRuntime.test.ts"]
   module_src_features_execution_createApiRuntime_ts["src/features/execution/createApiRuntime.ts"]
@@ -11,6 +12,10 @@ graph LR
   module_src_features_execution_projectApiCapabilities_ts["src/features/execution/projectApiCapabilities.ts"]
   module_src_features_execution_resolveApiOperationBindings_ts["src/features/execution/resolveApiOperationBindings.ts"]
   module_src_types_api_ts["src/types/api.ts"]
+  export_ApiApprovedHandler["ApiApprovedHandler"]
+  module_src_types_api_ts --> export_ApiApprovedHandler
+  export_ApiApprovedHandler -.-> export_ApiHandler
+  export_ApiApprovedHandler -.-> export_ApiHandlerApproval
   export_ApiAuthorizationPolicy["ApiAuthorizationPolicy"]
   module_src_types_api_ts --> export_ApiAuthorizationPolicy
   export_ApiAuthorizationRequest["ApiAuthorizationRequest"]
@@ -22,6 +27,9 @@ graph LR
   module_src_types_api_ts --> export_ApiCompositionContext
   export_ApiHandler["ApiHandler"]
   module_src_types_api_ts --> export_ApiHandler
+  export_ApiHandlerApproval["ApiHandlerApproval"]
+  module_src_types_api_ts --> export_ApiHandlerApproval
+  export_ApiHandlerApproval -.-> export_ApiCompositionContext
   export_ApiHandlerContext["ApiHandlerContext"]
   module_src_types_api_ts --> export_ApiHandlerContext
   export_ApiHandlerContext -.-> export_ApiCompositionContext

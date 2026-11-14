@@ -1,5 +1,11 @@
 # @ankhorage/api
 
+## 0.5.0
+
+### Minor Changes
+
+- aff38ca: Resolve declared internal API operation capabilities through host-approved executable owner handlers before exposing routes.
+
 ## 0.4.0
 
 ### Minor Changes

@@ -8,6 +8,10 @@ graph TD
   module_src_api_ts["src/api.ts"]
   module_src_capabilities_index_ts["src/capabilities/index.ts"]
   package__ankhorage_api -.-> module_src_capabilities_index_ts
+  module_src_features_execution_composeAuthorizedApiRuntime_test_ts["src/features/execution/composeAuthorizedApiRuntime.test.ts"]
+  package__ankhorage_api -.-> module_src_features_execution_composeAuthorizedApiRuntime_test_ts
+  module_src_features_execution_composeAuthorizedApiRuntime_test_ts --> module_src_features_execution_composeAuthorizedApiRuntime_ts
+  module_src_features_execution_composeAuthorizedApiRuntime_test_ts --> module_src_types_api_ts
   module_src_features_execution_composeAuthorizedApiRuntime_ts["src/features/execution/composeAuthorizedApiRuntime.ts"]
   package__ankhorage_api -.-> module_src_features_execution_composeAuthorizedApiRuntime_ts
   module_src_features_execution_composeAuthorizedApiRuntime_ts --> module_src_features_execution_createApiRuntime_ts
@@ -18,6 +22,7 @@ graph TD
   module_src_features_execution_createApiRuntime_test_ts --> module_src_features_execution_composeAuthorizedApiRuntime_ts
   module_src_features_execution_createApiRuntime_test_ts --> module_src_features_execution_createApiRuntime_ts
   module_src_features_execution_createApiRuntime_test_ts --> module_src_features_execution_resolveApiOperationBindings_ts
+  module_src_features_execution_createApiRuntime_test_ts --> module_src_types_api_ts
   module_src_features_execution_createApiRuntime_ts["src/features/execution/createApiRuntime.ts"]
   package__ankhorage_api -.-> module_src_features_execution_createApiRuntime_ts
   module_src_features_execution_createApiRuntime_ts --> module_src_features_execution_resolveApiOperationBindings_ts

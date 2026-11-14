@@ -1,16 +1,30 @@
 # Public API
 
+## ApiApprovedHandler
+
+Kind: `type`
+Module: `src/types/api.ts`
+Source: `src/types/api.ts:65:1`
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| approval | property | `ApiHandlerApproval` | yes |  |
+| capability | property | `Capability` | yes |  |
+| handler | property | `ApiHandler` | yes |  |
+
 ## ApiAuthorizationPolicy
 
 Kind: `unknown`
 Module: `src/types/api.ts`
-Source: `src/types/api.ts:70:1`
+Source: `src/types/api.ts:91:1`
 
 ## ApiAuthorizationRequest
 
 Kind: `type`
 Module: `src/types/api.ts`
-Source: `src/types/api.ts:64:1`
+Source: `src/types/api.ts:85:1`
 
 ### Members
 
@@ -24,7 +38,7 @@ Source: `src/types/api.ts:64:1`
 
 Kind: `type`
 Module: `src/types/api.ts`
-Source: `src/types/api.ts:50:1`
+Source: `src/types/api.ts:54:1`
 
 ### Members
 
@@ -37,32 +51,52 @@ Source: `src/types/api.ts:50:1`
 
 Kind: `unknown`
 Module: `src/types/api.ts`
-Source: `src/types/api.ts:43:1`
+Source: `src/types/api.ts:47:1`
+
+## ApiHandlerApproval
+
+Kind: `type`
+Module: `src/types/api.ts`
+Source: `src/types/api.ts:72:1`
+
+Bind one host-approved owner handler to its exact API operation and application scope.
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| capabilityId | property | ``${string}.${string}`` | yes |  |
+| intent | property | `DataOperationIntent` | yes |  |
+| method | property | `DataOperationMethod` | yes |  |
+| operationId | property | `string` | yes |  |
+| owner | property | `string` | yes |  |
+| scope | property | `ApiCompositionContext` | yes |  |
 
 ## ApiHandlerContext
 
 Kind: `type`
 Module: `src/types/api.ts`
-Source: `src/types/api.ts:38:1`
+Source: `src/types/api.ts:41:1`
 
 ### Members
 
 | Name | Kind | Type | Required | Description |
 | --- | --- | --- | --- | --- |
 | binding | property | `ApiOperationBinding` | yes |  |
+| capability | property | `Capability` | no |  |
 | composition | property | `ApiCompositionContext` | no |  |
 
 ## ApiHandlerRegistry
 
 Kind: `unknown`
 Module: `src/types/api.ts`
-Source: `src/types/api.ts:48:1`
+Source: `src/types/api.ts:52:1`
 
 ## ApiHandlerResolutionRequest
 
 Kind: `type`
 Module: `src/types/api.ts`
-Source: `src/types/api.ts:55:1`
+Source: `src/types/api.ts:59:1`
 
 ### Members
 
@@ -70,18 +104,19 @@ Source: `src/types/api.ts:55:1`
 | --- | --- | --- | --- | --- |
 | binding | property | `ApiOperationBinding` | yes |  |
 | context | property | `ApiCompositionContext` | yes |  |
+| declaration | property | `InternalApiOperationHandlerDeclaration` | yes |  |
 
 ## ApiHandlerResolver
 
 Kind: `unknown`
 Module: `src/types/api.ts`
-Source: `src/types/api.ts:60:1`
+Source: `src/types/api.ts:81:1`
 
 ## ApiHandlerResponse
 
 Kind: `type`
 Module: `src/types/api.ts`
-Source: `src/types/api.ts:26:1`
+Source: `src/types/api.ts:29:1`
 
 ### Members
 
@@ -95,7 +130,7 @@ Source: `src/types/api.ts:26:1`
 
 Kind: `type`
 Module: `src/types/api.ts`
-Source: `src/types/api.ts:8:1`
+Source: `src/types/api.ts:11:1`
 
 ### Members
 
@@ -112,7 +147,7 @@ Source: `src/types/api.ts:8:1`
 
 Kind: `type`
 Module: `src/types/api.ts`
-Source: `src/types/api.ts:17:1`
+Source: `src/types/api.ts:20:1`
 
 ### Members
 
@@ -129,7 +164,7 @@ Source: `src/types/api.ts:17:1`
 
 Kind: `type`
 Module: `src/types/api.ts`
-Source: `src/types/api.ts:32:1`
+Source: `src/types/api.ts:35:1`
 
 ### Members
 
@@ -143,7 +178,7 @@ Source: `src/types/api.ts:32:1`
 
 Kind: `type`
 Module: `src/types/api.ts`
-Source: `src/types/api.ts:81:1`
+Source: `src/types/api.ts:102:1`
 
 ### Members
 
@@ -158,7 +193,7 @@ Source: `src/types/api.ts:81:1`
 
 Kind: `type`
 Module: `src/types/api.ts`
-Source: `src/types/api.ts:88:1`
+Source: `src/types/api.ts:109:1`
 
 ### Members
 
@@ -177,21 +212,21 @@ Source: `src/capabilities/index.ts:9:14`
 
 Kind: `function`
 Module: `src/features/execution/composeAuthorizedApiRuntime.ts`
-Source: `src/features/execution/composeAuthorizedApiRuntime.ts:14:1`
+Source: `src/features/execution/composeAuthorizedApiRuntime.ts:16:1`
 
 Compose declared API operations with host-approved handlers and deny-by-default authorization.
 
 ### Signatures
 
-- `(options: ComposeAuthorizedApiRuntimeOptions) => import("../../api.js").ApiRuntime`
+- `(options: ComposeAuthorizedApiRuntimeOptions) => ApiRuntime`
   - options: `ComposeAuthorizedApiRuntimeOptions`
-  - returns: `import("../../api.js").ApiRuntime`
+  - returns: `ApiRuntime`
 
 ## ComposeAuthorizedApiRuntimeOptions
 
 Kind: `type`
 Module: `src/types/api.ts`
-Source: `src/types/api.ts:74:1`
+Source: `src/types/api.ts:95:1`
 
 ### Members
 

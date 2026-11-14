@@ -4,9 +4,14 @@ sequenceDiagram
   participant participant_createApiRuntime as createApiRuntime
   participant participant_resolveApiOperationBindings as resolveApiOperationBindings
   participant participant_resolveAuthorizedHandlers as resolveAuthorizedHandlers
+  participant participant_resolveHandlerDeclarations as resolveHandlerDeclarations
   participant_composeAuthorizedApiRuntime->>participant_assertCompositionContext: assertCompositionContext()
   participant_assertCompositionContext-->>participant_composeAuthorizedApiRuntime: return
   participant_composeAuthorizedApiRuntime->>participant_resolveAuthorizedHandlers: resolveAuthorizedHandlers()
+  participant_resolveAuthorizedHandlers->>participant_resolveHandlerDeclarations: resolveHandlerDeclarations()
+  participant_resolveHandlerDeclarations->>participant_resolveApiOperationBindings: resolveApiOperationBindings()
+  participant_resolveApiOperationBindings-->>participant_resolveHandlerDeclarations: return
+  participant_resolveHandlerDeclarations-->>participant_resolveAuthorizedHandlers: return
   participant_resolveAuthorizedHandlers->>participant_resolveApiOperationBindings: resolveApiOperationBindings()
   participant_resolveApiOperationBindings-->>participant_resolveAuthorizedHandlers: return
   participant_resolveAuthorizedHandlers-->>participant_composeAuthorizedApiRuntime: return

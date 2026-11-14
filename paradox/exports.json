@@ -1,5 +1,52 @@
 [
   {
+    "name": "ApiApprovedHandler",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/api.ts",
+    "sourceLocation": {
+      "filePath": "src/types/api.ts",
+      "line": 65,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [
+      "ApiHandler",
+      "ApiHandlerApproval"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "approval",
+        "kind": "property",
+        "type": "ApiHandlerApproval",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "capability",
+        "kind": "property",
+        "type": "Capability",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "handler",
+        "kind": "property",
+        "type": "ApiHandler",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
     "name": "ApiAuthorizationPolicy",
     "title": null,
     "description": null,
@@ -10,7 +57,7 @@
     "modulePath": "src/types/api.ts",
     "sourceLocation": {
       "filePath": "src/types/api.ts",
-      "line": 70,
+      "line": 91,
       "column": 1
     },
     "exportPaths": [
@@ -32,7 +79,7 @@
     "modulePath": "src/types/api.ts",
     "sourceLocation": {
       "filePath": "src/types/api.ts",
-      "line": 64,
+      "line": 85,
       "column": 1
     },
     "exportPaths": [
@@ -80,7 +127,7 @@
     "modulePath": "src/types/api.ts",
     "sourceLocation": {
       "filePath": "src/types/api.ts",
-      "line": 50,
+      "line": 54,
       "column": 1
     },
     "exportPaths": [
@@ -117,7 +164,7 @@
     "modulePath": "src/types/api.ts",
     "sourceLocation": {
       "filePath": "src/types/api.ts",
-      "line": 43,
+      "line": 47,
       "column": 1
     },
     "exportPaths": [
@@ -126,6 +173,73 @@
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "ApiHandlerApproval",
+    "title": null,
+    "description": "Bind one host-approved owner handler to its exact API operation and application scope.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/api.ts",
+    "sourceLocation": {
+      "filePath": "src/types/api.ts",
+      "line": 72,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [
+      "ApiCompositionContext"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "capabilityId",
+        "kind": "property",
+        "type": "`${string}.${string}`",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "intent",
+        "kind": "property",
+        "type": "DataOperationIntent",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "method",
+        "kind": "property",
+        "type": "DataOperationMethod",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "operationId",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "owner",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "scope",
+        "kind": "property",
+        "type": "ApiCompositionContext",
+        "required": true,
+        "description": null
+      }
+    ],
     "structuredRows": []
   },
   {
@@ -139,7 +253,7 @@
     "modulePath": "src/types/api.ts",
     "sourceLocation": {
       "filePath": "src/types/api.ts",
-      "line": 38,
+      "line": 41,
       "column": 1
     },
     "exportPaths": [
@@ -156,6 +270,13 @@
         "kind": "property",
         "type": "ApiOperationBinding",
         "required": true,
+        "description": null
+      },
+      {
+        "name": "capability",
+        "kind": "property",
+        "type": "Capability",
+        "required": false,
         "description": null
       },
       {
@@ -179,7 +300,7 @@
     "modulePath": "src/types/api.ts",
     "sourceLocation": {
       "filePath": "src/types/api.ts",
-      "line": 48,
+      "line": 52,
       "column": 1
     },
     "exportPaths": [
@@ -201,7 +322,7 @@
     "modulePath": "src/types/api.ts",
     "sourceLocation": {
       "filePath": "src/types/api.ts",
-      "line": 55,
+      "line": 59,
       "column": 1
     },
     "exportPaths": [
@@ -226,6 +347,13 @@
         "type": "ApiCompositionContext",
         "required": true,
         "description": null
+      },
+      {
+        "name": "declaration",
+        "kind": "property",
+        "type": "InternalApiOperationHandlerDeclaration",
+        "required": true,
+        "description": null
       }
     ],
     "structuredRows": []
@@ -241,7 +369,7 @@
     "modulePath": "src/types/api.ts",
     "sourceLocation": {
       "filePath": "src/types/api.ts",
-      "line": 60,
+      "line": 81,
       "column": 1
     },
     "exportPaths": [
@@ -263,7 +391,7 @@
     "modulePath": "src/types/api.ts",
     "sourceLocation": {
       "filePath": "src/types/api.ts",
-      "line": 26,
+      "line": 29,
       "column": 1
     },
     "exportPaths": [
@@ -307,7 +435,7 @@
     "modulePath": "src/types/api.ts",
     "sourceLocation": {
       "filePath": "src/types/api.ts",
-      "line": 8,
+      "line": 11,
       "column": 1
     },
     "exportPaths": [
@@ -372,7 +500,7 @@
     "modulePath": "src/types/api.ts",
     "sourceLocation": {
       "filePath": "src/types/api.ts",
-      "line": 17,
+      "line": 20,
       "column": 1
     },
     "exportPaths": [
@@ -437,7 +565,7 @@
     "modulePath": "src/types/api.ts",
     "sourceLocation": {
       "filePath": "src/types/api.ts",
-      "line": 32,
+      "line": 35,
       "column": 1
     },
     "exportPaths": [
@@ -481,7 +609,7 @@
     "modulePath": "src/types/api.ts",
     "sourceLocation": {
       "filePath": "src/types/api.ts",
-      "line": 81,
+      "line": 102,
       "column": 1
     },
     "exportPaths": [
@@ -536,7 +664,7 @@
     "modulePath": "src/types/api.ts",
     "sourceLocation": {
       "filePath": "src/types/api.ts",
-      "line": 88,
+      "line": 109,
       "column": 1
     },
     "exportPaths": [
@@ -599,7 +727,7 @@
     "modulePath": "src/features/execution/composeAuthorizedApiRuntime.ts",
     "sourceLocation": {
       "filePath": "src/features/execution/composeAuthorizedApiRuntime.ts",
-      "line": 14,
+      "line": 16,
       "column": 1
     },
     "exportPaths": [
@@ -611,7 +739,7 @@
     ],
     "signatures": [
       {
-        "label": "(options: ComposeAuthorizedApiRuntimeOptions) => import(\"../../api.js\").ApiRuntime",
+        "label": "(options: ComposeAuthorizedApiRuntimeOptions) => ApiRuntime",
         "parameters": [
           {
             "name": "options",
@@ -620,7 +748,7 @@
             "description": null
           }
         ],
-        "returnType": "import(\"../../api.js\").ApiRuntime",
+        "returnType": "ApiRuntime",
         "returnDescription": null
       }
     ],
@@ -638,7 +766,7 @@
     "modulePath": "src/types/api.ts",
     "sourceLocation": {
       "filePath": "src/types/api.ts",
-      "line": 74,
+      "line": 95,
       "column": 1
     },
     "exportPaths": [
