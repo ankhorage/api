@@ -2,5 +2,4 @@
 '@ankhorage/api': patch
 ---
 
-Declare the package's existing empty static capability catalog in Ankh discovery
-metadata.
+Document the existing empty API capability catalog in package metadata.
