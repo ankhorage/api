@@ -3,6 +3,11 @@
   "version": "0.5.1",
   "type": "module",
   "description": "Framework-neutral executable API runtime and transport contract for Ankhorage.",
+  "ankh": {
+    "category": "api",
+    "provider": null,
+    "capabilities": []
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -66,7 +71,7 @@
     "@ankhorage/contracts": "^26.10.0"
   },
   "devDependencies": {
-    "@ankhorage/devtools": "^2.1.11",
+    "@ankhorage/devtools": "^2.9.5",
     "@ankhorage/paradox": "^0.2.28",
     "@ankhorage/projects": "^0.1.0",
     "@types/bun": "^1.4.2",
