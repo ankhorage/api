@@ -1,5 +1,11 @@
 # @ankhorage/api
 
+## 0.5.2
+
+### Patch Changes
+
+- 293ef6e: Document the existing empty API capability catalog in package metadata.
+
 ## 0.5.1
 
 ### Patch Changes
