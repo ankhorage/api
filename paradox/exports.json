@@ -902,6 +902,111 @@
     "structuredRows": []
   },
   {
+    "name": "createTrustedExternalApiBroker",
+    "title": null,
+    "description": "Create a framework-neutral, fail-closed boundary for generated-app external API operations.\n\nThe caller supplies operation identity and input only; trusted host ports own target,\ncredentials, authorization, validation, and caller-safe result projection.",
+    "isReadme": false,
+    "see": [],
+    "security": [
+      "createTrustedExternalApiBroker.test.ts#denies before resolving secrets or executing network work"
+    ],
+    "kind": "function",
+    "modulePath": "src/features/execution/createTrustedExternalApiBroker.ts",
+    "sourceLocation": {
+      "filePath": "src/features/execution/createTrustedExternalApiBroker.ts",
+      "line": 17,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [
+      "CreateTrustedExternalApiBrokerOptions",
+      "TrustedExternalApiBroker"
+    ],
+    "signatures": [
+      {
+        "label": "(options: CreateTrustedExternalApiBrokerOptions) => TrustedExternalApiBroker",
+        "parameters": [
+          {
+            "name": "options",
+            "type": "CreateTrustedExternalApiBrokerOptions",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "TrustedExternalApiBroker",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "CreateTrustedExternalApiBrokerOptions",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/api.ts",
+    "sourceLocation": {
+      "filePath": "src/types/api.ts",
+      "line": 165,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [
+      "TrustedExternalApiBrokerContext",
+      "TrustedExternalApiBrokerRequest",
+      "TrustedExternalApiCredentials",
+      "TrustedExternalApiExecutionResult",
+      "TrustedExternalApiOperation"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "authorizeAsync",
+        "kind": "property",
+        "type": "(input: { readonly context: TrustedExternalApiBrokerContext; readonly request: TrustedExternalApiBrokerRequest; }) => boolean | Promise<boolean>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "executeOperationAsync",
+        "kind": "property",
+        "type": "(input: { readonly operation: TrustedExternalApiOperation; readonly input: unknown; readonly credentials?: TrustedExternalApiCredentials; }) => TrustedExternalApiExecutionResult | Promise<TrustedExternalApiExecutionResult>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "resolveCredentialsAsync",
+        "kind": "property",
+        "type": "(input: { readonly scope: TrustedExternalApiBrokerContext[\"scope\"]; readonly operation: TrustedExternalApiOperation; }) => TrustedExternalApiCredentials | undefined | Promise<TrustedExternalApiCredentials | undefined>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "resolveOperationAsync",
+        "kind": "property",
+        "type": "(input: { readonly scope: TrustedExternalApiBrokerContext[\"scope\"]; readonly request: TrustedExternalApiBrokerRequest; }) => TrustedExternalApiOperation | undefined | Promise<TrustedExternalApiOperation | undefined>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "validateInputAsync",
+        "kind": "property",
+        "type": "(input: { readonly operation: TrustedExternalApiOperation; readonly input: unknown; }) => unknown",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
     "name": "projectApiCapabilities",
     "title": null,
     "description": "Project one internal REST API definition into canonical invocable API capabilities.",
@@ -973,6 +1078,246 @@
       }
     ],
     "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "TrustedExternalApiBroker",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/api.ts",
+    "sourceLocation": {
+      "filePath": "src/types/api.ts",
+      "line": 158,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [
+      "ApiResponse",
+      "TrustedExternalApiBrokerContext",
+      "TrustedExternalApiBrokerRequest"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "executeAsync",
+        "kind": "method",
+        "type": "(input: { readonly context: TrustedExternalApiBrokerContext; readonly request: TrustedExternalApiBrokerRequest; }) => Promise<ApiResponse>",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "TrustedExternalApiBrokerContext",
+    "title": null,
+    "description": "Describe the authenticated host context that scopes one generated-app broker request.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/api.ts",
+    "sourceLocation": {
+      "filePath": "src/types/api.ts",
+      "line": 122,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "caller",
+        "kind": "property",
+        "type": "unknown",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "scope",
+        "kind": "property",
+        "type": "{ readonly appId: string; readonly projectId: string; readonly environment: string; }",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "TrustedExternalApiBrokerRequest",
+    "title": null,
+    "description": "Describe the only client-controlled values accepted by the trusted external API broker.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/api.ts",
+    "sourceLocation": {
+      "filePath": "src/types/api.ts",
+      "line": 132,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "apiId",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "endpointId",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "input",
+        "kind": "property",
+        "type": "unknown",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "operationId",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "TrustedExternalApiCredentials",
+    "title": null,
+    "description": "Describe server-only credentials resolved for a trusted external API operation.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/api.ts",
+    "sourceLocation": {
+      "filePath": "src/types/api.ts",
+      "line": 148,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "values",
+        "kind": "property",
+        "type": "Readonly<Record<string, string>>",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "TrustedExternalApiExecutionResult",
+    "title": null,
+    "description": "Describe the caller-safe result returned after trusted operation execution.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/api.ts",
+    "sourceLocation": {
+      "filePath": "src/types/api.ts",
+      "line": 153,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "publicBody",
+        "kind": "property",
+        "type": "unknown",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "status",
+        "kind": "property",
+        "type": "number",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "TrustedExternalApiOperation",
+    "title": null,
+    "description": "Describe an operation resolved exclusively from trusted server-side application state.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/api.ts",
+    "sourceLocation": {
+      "filePath": "src/types/api.ts",
+      "line": 140,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/api.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "apiId",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "credentialsRequired",
+        "kind": "property",
+        "type": "boolean",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "endpointId",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "operationId",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      }
+    ],
     "structuredRows": []
   }
 ]

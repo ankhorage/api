@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v0.5.2",
+      "value": "v0.6.0",
       "color": "cb3837"
     },
     {
@@ -118,8 +118,16 @@
         "ComposeAuthorizedApiRuntimeOptions",
         "createApiRuntime",
         "createApiTransportHandler",
+        "createTrustedExternalApiBroker",
+        "CreateTrustedExternalApiBrokerOptions",
         "projectApiCapabilities",
-        "resolveApiOperationBindings"
+        "resolveApiOperationBindings",
+        "TrustedExternalApiBroker",
+        "TrustedExternalApiBrokerContext",
+        "TrustedExternalApiBrokerRequest",
+        "TrustedExternalApiCredentials",
+        "TrustedExternalApiExecutionResult",
+        "TrustedExternalApiOperation"
       ]
     },
     {
@@ -194,6 +202,25 @@
       ]
     },
     {
+      "path": "src/features/execution/createTrustedExternalApiBroker.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/execution/createTrustedExternalApiBroker.ts",
+        "src/types/api.ts"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src/features/execution/createTrustedExternalApiBroker.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/types/api.ts"
+      ],
+      "exports": [
+        "createTrustedExternalApiBroker"
+      ]
+    },
+    {
       "path": "src/features/execution/projectApiCapabilities.test.ts",
       "isEntrypoint": false,
       "dependencies": [
@@ -240,7 +267,14 @@
         "ApiResponse",
         "ApiRuntime",
         "ApiTransportAdapter",
-        "ComposeAuthorizedApiRuntimeOptions"
+        "ComposeAuthorizedApiRuntimeOptions",
+        "CreateTrustedExternalApiBrokerOptions",
+        "TrustedExternalApiBroker",
+        "TrustedExternalApiBrokerContext",
+        "TrustedExternalApiBrokerRequest",
+        "TrustedExternalApiCredentials",
+        "TrustedExternalApiExecutionResult",
+        "TrustedExternalApiOperation"
       ]
     }
   ],
@@ -1148,6 +1182,111 @@
       "structuredRows": []
     },
     {
+      "name": "createTrustedExternalApiBroker",
+      "title": null,
+      "description": "Create a framework-neutral, fail-closed boundary for generated-app external API operations.\n\nThe caller supplies operation identity and input only; trusted host ports own target,\ncredentials, authorization, validation, and caller-safe result projection.",
+      "isReadme": false,
+      "see": [],
+      "security": [
+        "createTrustedExternalApiBroker.test.ts#denies before resolving secrets or executing network work"
+      ],
+      "kind": "function",
+      "modulePath": "src/features/execution/createTrustedExternalApiBroker.ts",
+      "sourceLocation": {
+        "filePath": "src/features/execution/createTrustedExternalApiBroker.ts",
+        "line": 17,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/api.ts"
+      ],
+      "relatedSymbols": [
+        "CreateTrustedExternalApiBrokerOptions",
+        "TrustedExternalApiBroker"
+      ],
+      "signatures": [
+        {
+          "label": "(options: CreateTrustedExternalApiBrokerOptions) => TrustedExternalApiBroker",
+          "parameters": [
+            {
+              "name": "options",
+              "type": "CreateTrustedExternalApiBrokerOptions",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "TrustedExternalApiBroker",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "CreateTrustedExternalApiBrokerOptions",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/api.ts",
+      "sourceLocation": {
+        "filePath": "src/types/api.ts",
+        "line": 165,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/api.ts"
+      ],
+      "relatedSymbols": [
+        "TrustedExternalApiBrokerContext",
+        "TrustedExternalApiBrokerRequest",
+        "TrustedExternalApiCredentials",
+        "TrustedExternalApiExecutionResult",
+        "TrustedExternalApiOperation"
+      ],
+      "signatures": [],
+      "members": [
+        {
+          "name": "authorizeAsync",
+          "kind": "property",
+          "type": "(input: { readonly context: TrustedExternalApiBrokerContext; readonly request: TrustedExternalApiBrokerRequest; }) => boolean | Promise<boolean>",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "executeOperationAsync",
+          "kind": "property",
+          "type": "(input: { readonly operation: TrustedExternalApiOperation; readonly input: unknown; readonly credentials?: TrustedExternalApiCredentials; }) => TrustedExternalApiExecutionResult | Promise<TrustedExternalApiExecutionResult>",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "resolveCredentialsAsync",
+          "kind": "property",
+          "type": "(input: { readonly scope: TrustedExternalApiBrokerContext[\"scope\"]; readonly operation: TrustedExternalApiOperation; }) => TrustedExternalApiCredentials | undefined | Promise<TrustedExternalApiCredentials | undefined>",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "resolveOperationAsync",
+          "kind": "property",
+          "type": "(input: { readonly scope: TrustedExternalApiBrokerContext[\"scope\"]; readonly request: TrustedExternalApiBrokerRequest; }) => TrustedExternalApiOperation | undefined | Promise<TrustedExternalApiOperation | undefined>",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "validateInputAsync",
+          "kind": "property",
+          "type": "(input: { readonly operation: TrustedExternalApiOperation; readonly input: unknown; }) => unknown",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
       "name": "projectApiCapabilities",
       "title": null,
       "description": "Project one internal REST API definition into canonical invocable API capabilities.",
@@ -1219,6 +1358,246 @@
         }
       ],
       "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "TrustedExternalApiBroker",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/api.ts",
+      "sourceLocation": {
+        "filePath": "src/types/api.ts",
+        "line": 158,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/api.ts"
+      ],
+      "relatedSymbols": [
+        "ApiResponse",
+        "TrustedExternalApiBrokerContext",
+        "TrustedExternalApiBrokerRequest"
+      ],
+      "signatures": [],
+      "members": [
+        {
+          "name": "executeAsync",
+          "kind": "method",
+          "type": "(input: { readonly context: TrustedExternalApiBrokerContext; readonly request: TrustedExternalApiBrokerRequest; }) => Promise<ApiResponse>",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "TrustedExternalApiBrokerContext",
+      "title": null,
+      "description": "Describe the authenticated host context that scopes one generated-app broker request.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/api.ts",
+      "sourceLocation": {
+        "filePath": "src/types/api.ts",
+        "line": 122,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/api.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "caller",
+          "kind": "property",
+          "type": "unknown",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "scope",
+          "kind": "property",
+          "type": "{ readonly appId: string; readonly projectId: string; readonly environment: string; }",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "TrustedExternalApiBrokerRequest",
+      "title": null,
+      "description": "Describe the only client-controlled values accepted by the trusted external API broker.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/api.ts",
+      "sourceLocation": {
+        "filePath": "src/types/api.ts",
+        "line": 132,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/api.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "apiId",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "endpointId",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "input",
+          "kind": "property",
+          "type": "unknown",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "operationId",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "TrustedExternalApiCredentials",
+      "title": null,
+      "description": "Describe server-only credentials resolved for a trusted external API operation.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/api.ts",
+      "sourceLocation": {
+        "filePath": "src/types/api.ts",
+        "line": 148,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/api.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "values",
+          "kind": "property",
+          "type": "Readonly<Record<string, string>>",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "TrustedExternalApiExecutionResult",
+      "title": null,
+      "description": "Describe the caller-safe result returned after trusted operation execution.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/api.ts",
+      "sourceLocation": {
+        "filePath": "src/types/api.ts",
+        "line": 153,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/api.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "publicBody",
+          "kind": "property",
+          "type": "unknown",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "status",
+          "kind": "property",
+          "type": "number",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "TrustedExternalApiOperation",
+      "title": null,
+      "description": "Describe an operation resolved exclusively from trusted server-side application state.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/api.ts",
+      "sourceLocation": {
+        "filePath": "src/types/api.ts",
+        "line": 140,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/api.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "apiId",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "credentialsRequired",
+          "kind": "property",
+          "type": "boolean",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "endpointId",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "operationId",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        }
+      ],
       "structuredRows": []
     }
   ],
@@ -1467,6 +1846,173 @@
       }
     },
     {
+      "name": "createOptions",
+      "description": "Create the smallest secure broker port set and allow each test to override one boundary.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/createTrustedExternalApiBroker.test.ts",
+        "line": 173,
+        "column": 1
+      }
+    },
+    {
+      "name": "operation",
+      "description": "Return the exact server-owned operation identity expected by the request fixture.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/createTrustedExternalApiBroker.test.ts",
+        "line": 189,
+        "column": 1
+      }
+    },
+    {
+      "name": "errorResponse",
+      "description": "Create a deterministic caller-safe broker error assertion.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/createTrustedExternalApiBroker.test.ts",
+        "line": 199,
+        "column": 1
+      }
+    },
+    {
+      "name": "requestWithUpstreamUrl",
+      "description": "Return a runtime-shaped hostile request that cannot be represented by the public contract.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/createTrustedExternalApiBroker.test.ts",
+        "line": 208,
+        "column": 1
+      }
+    },
+    {
+      "name": "createTrustedExternalApiBroker",
+      "description": "Create a framework-neutral, fail-closed boundary for generated-app external API operations.\n\nThe caller supplies operation identity and input only; trusted host ports own target,\ncredentials, authorization, validation, and caller-safe result projection.",
+      "see": [],
+      "security": [
+        "createTrustedExternalApiBroker.test.ts#denies before resolving secrets or executing network work"
+      ],
+      "sourceLocation": {
+        "filePath": "src/features/execution/createTrustedExternalApiBroker.ts",
+        "line": 17,
+        "column": 1
+      }
+    },
+    {
+      "name": "executeTrustedOperationAsync",
+      "description": "Authorize before resolving any operation, credential, or outbound execution resource.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/createTrustedExternalApiBroker.ts",
+        "line": 27,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveCredentialsAsync",
+      "description": "Resolve a secret only for an operation whose trusted definition explicitly requires one.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/createTrustedExternalApiBroker.ts",
+        "line": 67,
+        "column": 1
+      }
+    },
+    {
+      "name": "isTrustedBrokerContext",
+      "description": "Treat absent caller identity or incomplete project scope as a denial.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/createTrustedExternalApiBroker.ts",
+        "line": 77,
+        "column": 1
+      }
+    },
+    {
+      "name": "hasCallerSuppliedTarget",
+      "description": "Reject target-selection fields that are never part of the broker's public request contract.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/createTrustedExternalApiBroker.ts",
+        "line": 90,
+        "column": 1
+      }
+    },
+    {
+      "name": "isAuthorizedAsync",
+      "description": "Treat a missing, throwing, or false authorization decision as a denial.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/createTrustedExternalApiBroker.ts",
+        "line": 99,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveOperationAsync",
+      "description": "Resolve only the exact operation whose server-side identity matches the caller request.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/createTrustedExternalApiBroker.ts",
+        "line": 112,
+        "column": 1
+      }
+    },
+    {
+      "name": "operationMatchesRequest",
+      "description": "Prevent a resolver from substituting another declared API, endpoint, or operation.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/createTrustedExternalApiBroker.ts",
+        "line": 132,
+        "column": 1
+      }
+    },
+    {
+      "name": "publicResponse",
+      "description": "Return a result contract that never exposes credential headers or provider diagnostics.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/createTrustedExternalApiBroker.ts",
+        "line": 144,
+        "column": 1
+      }
+    },
+    {
+      "name": "brokerErrorResponse",
+      "description": "Produce a stable caller-visible error without leaking upstream configuration or exception text.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/createTrustedExternalApiBroker.ts",
+        "line": 154,
+        "column": 1
+      }
+    },
+    {
+      "name": "isNonEmpty",
+      "description": "Identify one non-blank trusted scope segment.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/execution/createTrustedExternalApiBroker.ts",
+        "line": 163,
+        "column": 1
+      }
+    },
+    {
       "name": "testProjection",
       "description": null,
       "see": [],
@@ -1670,6 +2216,14 @@
     },
     {
       "kind": "export",
+      "name": "createTrustedExternalApiBroker",
+      "sourcePath": "src/features/execution/createTrustedExternalApiBroker.ts",
+      "symbolName": "createTrustedExternalApiBroker",
+      "description": "Create a framework-neutral, fail-closed boundary for generated-app external API operations.\n\nThe caller supplies operation identity and input only; trusted host ports own target,\ncredentials, authorization, validation, and caller-safe result projection.",
+      "isReadme": false
+    },
+    {
+      "kind": "export",
       "name": "projectApiCapabilities",
       "sourcePath": "src/features/execution/projectApiCapabilities.ts",
       "symbolName": "projectApiCapabilities",
@@ -1710,6 +2264,11 @@
       {
         "fromPath": "src/api.ts",
         "toPath": "src/features/execution/createApiTransportHandler.ts",
+        "sourcePath": "src/api.ts"
+      },
+      {
+        "fromPath": "src/api.ts",
+        "toPath": "src/features/execution/createTrustedExternalApiBroker.ts",
         "sourcePath": "src/api.ts"
       },
       {
@@ -1801,6 +2360,21 @@
         "fromPath": "src/features/execution/createApiTransportHandler.ts",
         "toPath": "src/types/api.ts",
         "sourcePath": "src/features/execution/createApiTransportHandler.ts"
+      },
+      {
+        "fromPath": "src/features/execution/createTrustedExternalApiBroker.test.ts",
+        "toPath": "src/types/api.ts",
+        "sourcePath": "src/features/execution/createTrustedExternalApiBroker.test.ts"
+      },
+      {
+        "fromPath": "src/features/execution/createTrustedExternalApiBroker.test.ts",
+        "toPath": "src/features/execution/createTrustedExternalApiBroker.ts",
+        "sourcePath": "src/features/execution/createTrustedExternalApiBroker.test.ts"
+      },
+      {
+        "fromPath": "src/features/execution/createTrustedExternalApiBroker.ts",
+        "toPath": "src/types/api.ts",
+        "sourcePath": "src/features/execution/createTrustedExternalApiBroker.ts"
       },
       {
         "fromPath": "src/features/execution/projectApiCapabilities.test.ts",
@@ -2115,6 +2689,150 @@
         "sourcePath": "src/features/execution/createApiTransportHandler.ts"
       },
       {
+        "fromSymbol": "src/features/execution/createTrustedExternalApiBroker.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/features/execution/createTrustedExternalApiBroker.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/createTrustedExternalApiBroker.test.ts",
+        "toSymbol": "createTrustedExternalApiBroker",
+        "callExpression": "createTrustedExternalApiBroker",
+        "sourcePath": "src/features/execution/createTrustedExternalApiBroker.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/createTrustedExternalApiBroker.test.ts",
+        "toSymbol": "createOptions",
+        "callExpression": "createOptions",
+        "sourcePath": "src/features/execution/createTrustedExternalApiBroker.test.ts"
+      },
+      {
+        "fromSymbol": "resolveOperationAsync",
+        "toSymbol": "operation",
+        "callExpression": "operation",
+        "sourcePath": "src/features/execution/createTrustedExternalApiBroker.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/createTrustedExternalApiBroker.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/features/execution/createTrustedExternalApiBroker.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/createTrustedExternalApiBroker.test.ts",
+        "toSymbol": "executeAsync",
+        "callExpression": "broker.executeAsync",
+        "sourcePath": "src/features/execution/createTrustedExternalApiBroker.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/createTrustedExternalApiBroker.test.ts",
+        "toSymbol": "errorResponse",
+        "callExpression": "errorResponse",
+        "sourcePath": "src/features/execution/createTrustedExternalApiBroker.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/createTrustedExternalApiBroker.test.ts",
+        "toSymbol": "requestWithUpstreamUrl",
+        "callExpression": "requestWithUpstreamUrl",
+        "sourcePath": "src/features/execution/createTrustedExternalApiBroker.test.ts"
+      },
+      {
+        "fromSymbol": "src/features/execution/createTrustedExternalApiBroker.test.ts",
+        "toSymbol": "executeAsync",
+        "callExpression": "publicBroker.executeAsync",
+        "sourcePath": "src/features/execution/createTrustedExternalApiBroker.test.ts"
+      },
+      {
+        "fromSymbol": "executeAsync",
+        "toSymbol": "executeTrustedOperationAsync",
+        "callExpression": "executeTrustedOperationAsync",
+        "sourcePath": "src/features/execution/createTrustedExternalApiBroker.ts"
+      },
+      {
+        "fromSymbol": "executeTrustedOperationAsync",
+        "toSymbol": "isTrustedBrokerContext",
+        "callExpression": "isTrustedBrokerContext",
+        "sourcePath": "src/features/execution/createTrustedExternalApiBroker.ts"
+      },
+      {
+        "fromSymbol": "executeTrustedOperationAsync",
+        "toSymbol": "hasCallerSuppliedTarget",
+        "callExpression": "hasCallerSuppliedTarget",
+        "sourcePath": "src/features/execution/createTrustedExternalApiBroker.ts"
+      },
+      {
+        "fromSymbol": "executeTrustedOperationAsync",
+        "toSymbol": "brokerErrorResponse",
+        "callExpression": "brokerErrorResponse",
+        "sourcePath": "src/features/execution/createTrustedExternalApiBroker.ts"
+      },
+      {
+        "fromSymbol": "executeTrustedOperationAsync",
+        "toSymbol": "isAuthorizedAsync",
+        "callExpression": "isAuthorizedAsync",
+        "sourcePath": "src/features/execution/createTrustedExternalApiBroker.ts"
+      },
+      {
+        "fromSymbol": "executeTrustedOperationAsync",
+        "toSymbol": "resolveOperationAsync",
+        "callExpression": "resolveOperationAsync",
+        "sourcePath": "src/features/execution/createTrustedExternalApiBroker.ts"
+      },
+      {
+        "fromSymbol": "executeTrustedOperationAsync",
+        "toSymbol": "validateInputAsync",
+        "callExpression": "options.validateInputAsync",
+        "sourcePath": "src/features/execution/createTrustedExternalApiBroker.ts"
+      },
+      {
+        "fromSymbol": "executeTrustedOperationAsync",
+        "toSymbol": "resolveCredentialsAsync",
+        "callExpression": "resolveCredentialsAsync",
+        "sourcePath": "src/features/execution/createTrustedExternalApiBroker.ts"
+      },
+      {
+        "fromSymbol": "executeTrustedOperationAsync",
+        "toSymbol": "executeOperationAsync",
+        "callExpression": "options.executeOperationAsync",
+        "sourcePath": "src/features/execution/createTrustedExternalApiBroker.ts"
+      },
+      {
+        "fromSymbol": "executeTrustedOperationAsync",
+        "toSymbol": "publicResponse",
+        "callExpression": "publicResponse",
+        "sourcePath": "src/features/execution/createTrustedExternalApiBroker.ts"
+      },
+      {
+        "fromSymbol": "resolveCredentialsAsync",
+        "toSymbol": "resolveCredentialsAsync",
+        "callExpression": "options.resolveCredentialsAsync",
+        "sourcePath": "src/features/execution/createTrustedExternalApiBroker.ts"
+      },
+      {
+        "fromSymbol": "isTrustedBrokerContext",
+        "toSymbol": "isNonEmpty",
+        "callExpression": "isNonEmpty",
+        "sourcePath": "src/features/execution/createTrustedExternalApiBroker.ts"
+      },
+      {
+        "fromSymbol": "isAuthorizedAsync",
+        "toSymbol": "authorizeAsync",
+        "callExpression": "options.authorizeAsync",
+        "sourcePath": "src/features/execution/createTrustedExternalApiBroker.ts"
+      },
+      {
+        "fromSymbol": "resolveOperationAsync",
+        "toSymbol": "resolveOperationAsync",
+        "callExpression": "options.resolveOperationAsync",
+        "sourcePath": "src/features/execution/createTrustedExternalApiBroker.ts"
+      },
+      {
+        "fromSymbol": "resolveOperationAsync",
+        "toSymbol": "operationMatchesRequest",
+        "callExpression": "operationMatchesRequest",
+        "sourcePath": "src/features/execution/createTrustedExternalApiBroker.ts"
+      },
+      {
         "fromSymbol": "src/features/execution/projectApiCapabilities.test.ts",
         "toSymbol": "describe",
         "callExpression": "describe",
@@ -2303,6 +3021,16 @@
         "fromSymbol": "createApiTransportHandler",
         "toType": "TResponse",
         "sourcePath": "src/features/execution/createApiTransportHandler.ts"
+      },
+      {
+        "fromSymbol": "createTrustedExternalApiBroker",
+        "toType": "CreateTrustedExternalApiBrokerOptions",
+        "sourcePath": "src/features/execution/createTrustedExternalApiBroker.ts"
+      },
+      {
+        "fromSymbol": "createTrustedExternalApiBroker",
+        "toType": "TrustedExternalApiBroker",
+        "sourcePath": "src/features/execution/createTrustedExternalApiBroker.ts"
       },
       {
         "fromSymbol": "projectApiCapabilities",
@@ -2502,6 +3230,51 @@
       {
         "fromSymbol": "ComposeAuthorizedApiRuntimeOptions",
         "toType": "InternalRestApiDefinition",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "CreateTrustedExternalApiBrokerOptions",
+        "toType": "TrustedExternalApiBrokerContext",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "CreateTrustedExternalApiBrokerOptions",
+        "toType": "TrustedExternalApiBrokerRequest",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "CreateTrustedExternalApiBrokerOptions",
+        "toType": "TrustedExternalApiCredentials",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "CreateTrustedExternalApiBrokerOptions",
+        "toType": "TrustedExternalApiExecutionResult",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "CreateTrustedExternalApiBrokerOptions",
+        "toType": "TrustedExternalApiOperation",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "TrustedExternalApiBroker",
+        "toType": "ApiResponse",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "TrustedExternalApiBroker",
+        "toType": "TrustedExternalApiBrokerContext",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "TrustedExternalApiBroker",
+        "toType": "TrustedExternalApiBrokerRequest",
+        "sourcePath": "src/types/api.ts"
+      },
+      {
+        "fromSymbol": "TrustedExternalApiCredentials",
+        "toType": "Readonly",
         "sourcePath": "src/types/api.ts"
       }
     ],

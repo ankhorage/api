@@ -8,6 +8,8 @@ graph LR
   module_src_features_execution_createApiRuntime_ts["src/features/execution/createApiRuntime.ts"]
   module_src_features_execution_createApiTransportHandler_test_ts["src/features/execution/createApiTransportHandler.test.ts"]
   module_src_features_execution_createApiTransportHandler_ts["src/features/execution/createApiTransportHandler.ts"]
+  module_src_features_execution_createTrustedExternalApiBroker_test_ts["src/features/execution/createTrustedExternalApiBroker.test.ts"]
+  module_src_features_execution_createTrustedExternalApiBroker_ts["src/features/execution/createTrustedExternalApiBroker.ts"]
   module_src_features_execution_projectApiCapabilities_test_ts["src/features/execution/projectApiCapabilities.test.ts"]
   module_src_features_execution_projectApiCapabilities_ts["src/features/execution/projectApiCapabilities.ts"]
   module_src_features_execution_resolveApiOperationBindings_ts["src/features/execution/resolveApiOperationBindings.ts"]
@@ -80,8 +82,34 @@ graph LR
   export_createApiTransportHandler -.-> export_ApiOperationBinding
   export_createApiTransportHandler -.-> export_ApiRuntime
   export_createApiTransportHandler -.-> export_ApiTransportAdapter
+  export_createTrustedExternalApiBroker["createTrustedExternalApiBroker"]
+  module_src_features_execution_createTrustedExternalApiBroker_ts --> export_createTrustedExternalApiBroker
+  export_createTrustedExternalApiBroker -.-> export_CreateTrustedExternalApiBrokerOptions
+  export_createTrustedExternalApiBroker -.-> export_TrustedExternalApiBroker
+  export_CreateTrustedExternalApiBrokerOptions["CreateTrustedExternalApiBrokerOptions"]
+  module_src_types_api_ts --> export_CreateTrustedExternalApiBrokerOptions
+  export_CreateTrustedExternalApiBrokerOptions -.-> export_TrustedExternalApiBrokerContext
+  export_CreateTrustedExternalApiBrokerOptions -.-> export_TrustedExternalApiBrokerRequest
+  export_CreateTrustedExternalApiBrokerOptions -.-> export_TrustedExternalApiCredentials
+  export_CreateTrustedExternalApiBrokerOptions -.-> export_TrustedExternalApiExecutionResult
+  export_CreateTrustedExternalApiBrokerOptions -.-> export_TrustedExternalApiOperation
   export_projectApiCapabilities["projectApiCapabilities"]
   module_src_features_execution_projectApiCapabilities_ts --> export_projectApiCapabilities
   export_resolveApiOperationBindings["resolveApiOperationBindings"]
   module_src_features_execution_resolveApiOperationBindings_ts --> export_resolveApiOperationBindings
   export_resolveApiOperationBindings -.-> export_ApiOperationBinding
+  export_TrustedExternalApiBroker["TrustedExternalApiBroker"]
+  module_src_types_api_ts --> export_TrustedExternalApiBroker
+  export_TrustedExternalApiBroker -.-> export_ApiResponse
+  export_TrustedExternalApiBroker -.-> export_TrustedExternalApiBrokerContext
+  export_TrustedExternalApiBroker -.-> export_TrustedExternalApiBrokerRequest
+  export_TrustedExternalApiBrokerContext["TrustedExternalApiBrokerContext"]
+  module_src_types_api_ts --> export_TrustedExternalApiBrokerContext
+  export_TrustedExternalApiBrokerRequest["TrustedExternalApiBrokerRequest"]
+  module_src_types_api_ts --> export_TrustedExternalApiBrokerRequest
+  export_TrustedExternalApiCredentials["TrustedExternalApiCredentials"]
+  module_src_types_api_ts --> export_TrustedExternalApiCredentials
+  export_TrustedExternalApiExecutionResult["TrustedExternalApiExecutionResult"]
+  module_src_types_api_ts --> export_TrustedExternalApiExecutionResult
+  export_TrustedExternalApiOperation["TrustedExternalApiOperation"]
+  module_src_types_api_ts --> export_TrustedExternalApiOperation

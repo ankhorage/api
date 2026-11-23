@@ -267,6 +267,41 @@ Compose one framework adapter with the canonical runtime for a single operation 
   - runtime: `ApiRuntime`
   - returns: `(request: TRequest) => Promise<TResponse>`
 
+## createTrustedExternalApiBroker
+
+Kind: `function`
+Module: `src/features/execution/createTrustedExternalApiBroker.ts`
+Source: `src/features/execution/createTrustedExternalApiBroker.ts:17:1`
+
+Create a framework-neutral, fail-closed boundary for generated-app external API operations.
+
+The caller supplies operation identity and input only; trusted host ports own target,
+credentials, authorization, validation, and caller-safe result projection.
+
+Security tests: `createTrustedExternalApiBroker.test.ts#denies before resolving secrets or executing network work`
+
+### Signatures
+
+- `(options: CreateTrustedExternalApiBrokerOptions) => TrustedExternalApiBroker`
+  - options: `CreateTrustedExternalApiBrokerOptions`
+  - returns: `TrustedExternalApiBroker`
+
+## CreateTrustedExternalApiBrokerOptions
+
+Kind: `type`
+Module: `src/types/api.ts`
+Source: `src/types/api.ts:165:1`
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| authorizeAsync | property | `(input: { readonly context: TrustedExternalApiBrokerContext; readonly request: TrustedExternalApiBrokerRequest; }) => boolean \| Promise<boolean>` | yes |  |
+| executeOperationAsync | property | `(input: { readonly operation: TrustedExternalApiOperation; readonly input: unknown; readonly credentials?: TrustedExternalApiCredentials; }) => TrustedExternalApiExecutionResult \| Promise<TrustedExternalApiExecutionResult>` | yes |  |
+| resolveCredentialsAsync | property | `(input: { readonly scope: TrustedExternalApiBrokerContext["scope"]; readonly operation: TrustedExternalApiOperation; }) => TrustedExternalApiCredentials \| undefined \| Promise<TrustedExternalApiCredentials \| undefined>` | yes |  |
+| resolveOperationAsync | property | `(input: { readonly scope: TrustedExternalApiBrokerContext["scope"]; readonly request: TrustedExternalApiBrokerRequest; }) => TrustedExternalApiOperation \| undefined \| Promise<TrustedExternalApiOperation \| undefined>` | yes |  |
+| validateInputAsync | property | `(input: { readonly operation: TrustedExternalApiOperation; readonly input: unknown; }) => unknown` | yes |  |
+
 ## projectApiCapabilities
 
 Kind: `function`
@@ -294,3 +329,93 @@ Resolve one portable internal REST definition into deterministic executable oper
 - `(definition: InternalRestApiDefinition) => readonly ApiOperationBinding[]`
   - definition: `InternalRestApiDefinition`
   - returns: `readonly ApiOperationBinding[]`
+
+## TrustedExternalApiBroker
+
+Kind: `type`
+Module: `src/types/api.ts`
+Source: `src/types/api.ts:158:1`
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| executeAsync | method | `(input: { readonly context: TrustedExternalApiBrokerContext; readonly request: TrustedExternalApiBrokerRequest; }) => Promise<ApiResponse>` | yes |  |
+
+## TrustedExternalApiBrokerContext
+
+Kind: `type`
+Module: `src/types/api.ts`
+Source: `src/types/api.ts:122:1`
+
+Describe the authenticated host context that scopes one generated-app broker request.
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| caller | property | `unknown` | yes |  |
+| scope | property | `{ readonly appId: string; readonly projectId: string; readonly environment: string; }` | yes |  |
+
+## TrustedExternalApiBrokerRequest
+
+Kind: `type`
+Module: `src/types/api.ts`
+Source: `src/types/api.ts:132:1`
+
+Describe the only client-controlled values accepted by the trusted external API broker.
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| apiId | property | `string` | yes |  |
+| endpointId | property | `string` | yes |  |
+| input | property | `unknown` | no |  |
+| operationId | property | `string` | yes |  |
+
+## TrustedExternalApiCredentials
+
+Kind: `type`
+Module: `src/types/api.ts`
+Source: `src/types/api.ts:148:1`
+
+Describe server-only credentials resolved for a trusted external API operation.
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| values | property | `Readonly<Record<string, string>>` | yes |  |
+
+## TrustedExternalApiExecutionResult
+
+Kind: `type`
+Module: `src/types/api.ts`
+Source: `src/types/api.ts:153:1`
+
+Describe the caller-safe result returned after trusted operation execution.
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| publicBody | property | `unknown` | no |  |
+| status | property | `number` | yes |  |
+
+## TrustedExternalApiOperation
+
+Kind: `type`
+Module: `src/types/api.ts`
+Source: `src/types/api.ts:140:1`
+
+Describe an operation resolved exclusively from trusted server-side application state.
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| apiId | property | `string` | yes |  |
+| credentialsRequired | property | `boolean` | no |  |
+| endpointId | property | `string` | yes |  |
+| operationId | property | `string` | yes |  |

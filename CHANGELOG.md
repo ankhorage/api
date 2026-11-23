@@ -1,5 +1,11 @@
 # @ankhorage/api
 
+## 0.6.0
+
+### Minor Changes
+
+- bf3fe6d: Add a framework-neutral trusted generated-app external API broker with injected authorization, operation resolution, credential resolution, validation, and execution ports.
+
 ## 0.5.2
 
 ### Patch Changes
