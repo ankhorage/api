@@ -2,6 +2,7 @@ export { CAPABILITIES } from "./capabilities/index.js";
 export { composeAuthorizedApiRuntime } from "./features/execution/composeAuthorizedApiRuntime.js";
 export { createApiRuntime } from "./features/execution/createApiRuntime.js";
 export { createApiTransportHandler } from "./features/execution/createApiTransportHandler.js";
+export { createTrustedExternalApiBroker } from "./features/execution/createTrustedExternalApiBroker.js";
 export { projectApiCapabilities } from "./features/execution/projectApiCapabilities.js";
 export { resolveApiOperationBindings } from "./features/execution/resolveApiOperationBindings.js";
 export type {
@@ -22,4 +23,11 @@ export type {
   ApiRuntime,
   ApiTransportAdapter,
   ComposeAuthorizedApiRuntimeOptions,
+  CreateTrustedExternalApiBrokerOptions,
+  TrustedExternalApiBroker,
+  TrustedExternalApiBrokerContext,
+  TrustedExternalApiBrokerRequest,
+  TrustedExternalApiCredentials,
+  TrustedExternalApiExecutionResult,
+  TrustedExternalApiOperation,
 } from "./types/api.js";
