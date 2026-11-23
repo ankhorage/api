@@ -10,8 +10,9 @@ import type {
 /***
  * Create a framework-neutral, fail-closed boundary for generated-app external API operations.
  *
- * @security The caller supplies operation identity and input only; trusted host ports own target,
+ * The caller supplies operation identity and input only; trusted host ports own target,
  * credentials, authorization, validation, and caller-safe result projection.
+ * @security createTrustedExternalApiBroker.test.ts#denies before resolving secrets or executing network work
  */
 export function createTrustedExternalApiBroker(
   options: CreateTrustedExternalApiBrokerOptions,
