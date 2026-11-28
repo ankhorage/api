@@ -70,7 +70,11 @@ async function resolveCredentialsAsync(
   operation: TrustedExternalApiOperation,
 ) {
   if (operation.credentialsRequired !== true) return undefined;
-  return options.resolveCredentialsAsync({ scope: context.scope, operation });
+  return options.resolveCredentialsAsync({
+    caller: context.caller,
+    scope: context.scope,
+    operation,
+  });
 }
 
 /*** Treat absent caller identity or incomplete project scope as a denial. */

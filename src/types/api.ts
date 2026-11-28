@@ -179,6 +179,7 @@ export interface CreateTrustedExternalApiBrokerOptions {
     readonly input: unknown;
   }) => unknown;
   readonly resolveCredentialsAsync: (input: {
+    readonly caller: TrustedExternalApiBrokerContext["caller"];
     readonly scope: TrustedExternalApiBrokerContext["scope"];
     readonly operation: TrustedExternalApiOperation;
   }) =>

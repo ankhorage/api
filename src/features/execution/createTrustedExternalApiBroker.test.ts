@@ -63,6 +63,48 @@ test("executes a server-resolved authorized operation without exposing credentia
   ]);
 });
 
+test("keeps concurrent caller credentials isolated from each other and public responses", async () => {
+  const credentialValues: string[] = [];
+  const secondCaller = { subject: "caller-b" };
+  const broker = createTrustedExternalApiBroker(
+    createOptions({
+      resolveCredentialsAsync: ({ caller }) => {
+        return {
+          values: {
+            authorization:
+              caller === CONTEXT.caller ? "caller-a-secret" : "caller-b-secret",
+          },
+        };
+      },
+      executeOperationAsync: ({ credentials }) => {
+        const authorization = credentials?.values.authorization;
+        if (authorization === undefined)
+          throw new Error("Missing caller credential.");
+        credentialValues.push(authorization);
+        return { status: 200, publicBody: { authorized: true } };
+      },
+    }),
+  );
+
+  const responses = await Promise.all([
+    broker.executeAsync({ context: CONTEXT, request: REQUEST }),
+    broker.executeAsync({
+      context: { ...CONTEXT, caller: secondCaller },
+      request: REQUEST,
+    }),
+  ]);
+
+  expect(credentialValues.sort()).toEqual([
+    "caller-a-secret",
+    "caller-b-secret",
+  ]);
+  expect(responses).toEqual([
+    { status: 200, headers: {}, body: { authorized: true } },
+    { status: 200, headers: {}, body: { authorized: true } },
+  ]);
+  expect(JSON.stringify(responses)).not.toContain("secret");
+});
+
 test("denies before resolving secrets or executing network work", async () => {
   const calls: string[] = [];
   const broker = createTrustedExternalApiBroker(
